@@ -2,6 +2,7 @@ import React from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 import { PATH } from "./PATH";
 import ResponsiveDrawer from "../components/pages/layout/sidebar";
+import App from "../App";
 
 export default function Private() {
   const navigate = useNavigate();
@@ -16,7 +17,7 @@ export default function Private() {
   return (
     <div className="air__root">
       <ResponsiveDrawer>
-        <Outlet />
+        <App />
       </ResponsiveDrawer>
     </div>
   );

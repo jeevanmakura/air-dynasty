@@ -1,105 +1,114 @@
-import Box from '@mui/material/Box';
-import Drawer from '@mui/material/Drawer';
-import * as React from 'react';
+import Box from "@mui/material/Box";
+import Drawer from "@mui/material/Drawer";
+import Toolbar from "@mui/material/Toolbar";
+import React from "react";
+import { Link } from "react-router-dom";
+import CustomAppbar from "../appbar";
+import PriymaryMenu from "./PrimaryMenu";
 
-import Toolbar from '@mui/material/Toolbar';
-import { Link } from 'react-router-dom';
-import CustomAppbar from '../appbar';
-import PrimaryMenu from './PrimaryMenu';
-
-const drawerWidth = 356;
+const drawerWidth = 260;
 
 interface Props {
-    /**
-     * Injected by the documentation to work in an iframe.
-     * Remove this when copying and pasting into your project.
-     */
-    window?: () => Window;
-    children: React.ReactNode;
+  window?: () => Window;
+  children: React.ReactNode;
 }
 
-export default function ResponsiveDrawer(props: Props) {
-    const { window } = props;
-    const [mobileOpen, setMobileOpen] = React.useState(false);
-    const [isClosing, setIsClosing] = React.useState(false);
+export default function ResponsiveDrawer({ window, children }: Props) {
+  const [mobileOpen, setMobileOpen] = React.useState(false);
+  const [isClosing, setIsClosing] = React.useState(false);
 
-    const handleDrawerClose = () => {
-        setIsClosing(true);
-        setMobileOpen(false);
-    };
+  const handleDrawerClose = () => {
+    setIsClosing(true);
+    setMobileOpen(false);
+  };
 
-    const handleDrawerTransitionEnd = () => {
-        setIsClosing(false);
-    };
+  const handleDrawerTransitionEnd = () => {
+    setIsClosing(false);
+  };
 
-    const handleDrawerToggle = () => {
-        if (!isClosing) {
-            setMobileOpen(!mobileOpen);
-        }
-    };
+  const handleDrawerToggle = () => {
+    if (!isClosing) setMobileOpen(!mobileOpen);
+  };
 
-    const drawer = (
-        <div>
-            <Toolbar sx={{
-                padding: "32px 32px 56px",
-                justifyContent: "center"
-            }}>
-                <Link to={"/"}>
-                    <img src="/logo.svg" alt="" width={137} height={73} />
-                </Link>
-            </Toolbar>
-            <PrimaryMenu />
-        </div>
-    );
+  const drawer = (
+    <div>
+      <Toolbar sx={{ padding: "16px", justifyContent: "center" }}>
+        <Link to={"/"}>
+          <img src="/logo.svg" alt="Logo" width={156} height={46} />
+        </Link>
+      </Toolbar>
 
-    // Remove this const when copying and pasting into your project.
-    const container = window !== undefined ? () => window().document.body : undefined;
+      <div>
+        <PriymaryMenu />
+      </div>
+    </div>
+  );
 
-    return (
-        <Box sx={{ display: 'flex' }}>
-            <CustomAppbar handleDrawerToggle={handleDrawerToggle} />
-            <Box
-                component="nav"
-                sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
-                aria-label="mailbox folders"
-            >
-                {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
-                <Drawer
-                    container={container}
-                    variant="temporary"
-                    open={mobileOpen}
-                    onTransitionEnd={handleDrawerTransitionEnd}
-                    onClose={handleDrawerClose}
-                    sx={{
-                        display: { xs: 'block', sm: 'none' },
-                        '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
-                    }}
-                    slotProps={{
-                        root: {
-                            keepMounted: true, // Better open performance on mobile.
-                        },
-                    }}
-                >
-                    {drawer}
-                </Drawer>
-                <Drawer
-                    variant="permanent"
-                    sx={{
-                        display: { xs: 'none', sm: 'block' },
-                        '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
-                    }}
-                    open
-                >
-                    {drawer}
-                </Drawer>
-            </Box>
-            <Box
-                component="main"
-                sx={{ flexGrow: 1, width: { sm: `calc(100% - ${drawerWidth}px)`, padding: "32px 24px" } }}
-            >
-                <Toolbar sx={{ height: 88 }} />
-                {props.children}
-            </Box>
+  const container = window ? () => window().document.body : undefined;
+
+  return (
+    <Box sx={{ display: "flex" }}>
+      {/* LEFT SIDEBAR */}
+      <Box
+        component="nav"
+        sx={{
+          width: { sm: drawerWidth },
+          flexShrink: { sm: 0 },
+        }}
+      >
+        {/* MOBILE DRAWER */}
+        <Drawer
+          container={container}
+          variant="temporary"
+          open={mobileOpen}
+          onTransitionEnd={handleDrawerTransitionEnd}
+          onClose={handleDrawerClose}
+          sx={{
+            display: { xs: "block", sm: "none" },
+            "& .MuiDrawer-paper": { width: drawerWidth },
+          }}
+          slotProps={{ root: { keepMounted: true } }}
+        >
+          {drawer}
+        </Drawer>
+
+        {/* DESKTOP DRAWER */}
+        <Drawer
+          variant="permanent"
+          sx={{
+            display: { xs: "none", sm: "block" },
+            "& .MuiDrawer-paper": { width: drawerWidth },
+          }}
+          open
+        >
+          {drawer}
+        </Drawer>
+      </Box>
+
+      {/* RIGHT SIDE: APPBAR + MAIN */}
+      <Box
+        sx={{
+          flexGrow: 1,
+          display: "flex",
+          flexDirection: "column",
+          minHeight: "100vh",
+          gap: "16px",
+          width: { sm: `calc(100% - ${drawerWidth}px)` },
+        }}
+      >
+        <CustomAppbar handleDrawerToggle={handleDrawerToggle} />
+
+        <Box
+          component="main"
+          sx={{
+            flexGrow: 1,
+            p: 0,
+          }}
+        >
+          <Toolbar />
+          {children}
         </Box>
-    );
+      </Box>
+    </Box>
+  );
 }

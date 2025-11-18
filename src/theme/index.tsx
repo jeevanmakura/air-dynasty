@@ -1,241 +1,259 @@
-import type { ThemeOptions } from '@mui/material/styles';
-import { createTheme, } from '@mui/material/styles';
+import type { ThemeOptions } from "@mui/material/styles";
+import { createTheme } from "@mui/material/styles";
 
 // Define color palettes
 const lightPalette = {
-    primary: {
-        main: '#1976d2',
-        light: '#42a5f5',
-        dark: '#1565c0',
-        contrastText: '#ffffff',
-    },
-    secondary: {
-        main: '#9c27b0',
-        light: '#ba68c8',
-        dark: '#7b1fa2',
-        contrastText: '#ffffff',
-    },
-    error: {
-        main: '#d32f2f',
-        light: '#ef5350',
-        dark: '#c62828',
-        contrastText: '#ffffff',
-    },
-    warning: {
-        main: '#ed6c02',
-        light: '#ff9800',
-        dark: '#e65100',
-        contrastText: '#ffffff',
-    },
-    info: {
-        main: '#0288d1',
-        light: '#03a9f4',
-        dark: '#01579b',
-        contrastText: '#ffffff',
-    },
-    success: {
-        main: '#2e7d32',
-        light: '#4caf50',
-        dark: '#1b5e20',
-        contrastText: '#ffffff',
-    },
-    background: {
-        default: '#f5f5f5',
-        paper: '#ffffff',
-    },
-    text: {
-        primary: 'rgba(0, 0, 0, 0.87)',
-        secondary: 'rgba(0, 0, 0, 0.6)',
-        disabled: 'rgba(0, 0, 0, 0.38)',
-    },
-    divider: 'rgba(0, 0, 0, 0.12)',
+  primary: {
+    main: "#C10308",
+    light: "#f94247",
+    contrastText: "#ffffff",
+    alt: "#F94247",
+  },
+  secondary: {
+    main: "#7B61FF",
+    light: "#ede7f6",
+    dark: "#5e35b1",
+    contrastText: "#ffffff",
+  },
+  error: {
+    main: "#c10308",
+    light: "#ef5350",
+    dark: "#c62828",
+    contrastText: "#c62828",
+  },
+  warning: {
+    main: "##F8D008",
+    light: "#ff9800",
+    dark: "#e65100",
+    contrastText: "#ffffff",
+  },
+  info: {
+    main: "#0288d1",
+    light: "#03a9f4",
+    dark: "#01579b",
+    contrastText: "#ffffff",
+  },
+  success: {
+    main: "#2e7d32",
+    light: "#4caf50",
+    dark: "#1b5e20",
+    contrastText: "#ffffff",
+  },
+  background: {
+    default: "#f5f5f5",
+    paper: "#ffffff",
+  },
+  text: {
+    primary: "#1D1F1E",
+    secondary: "#525753",
+    black: "#000000",
+    disabled: "rgba(0, 0, 0, 0.38)",
+  },
+  divider: "rgba(0, 0, 0, 0.12)",
 };
 
 const darkPalette = {
-    primary: {
-        main: '#90caf9',
-        light: '#e3f2fd',
-        dark: '#42a5f5',
-        contrastText: 'rgba(0, 0, 0, 0.87)',
-    },
-    secondary: {
-        main: '#ce93d8',
-        light: '#f3e5f5',
-        dark: '#ab47bc',
-        contrastText: 'rgba(0, 0, 0, 0.87)',
-    },
-    error: {
-        main: '#f44336',
-        light: '#e57373',
-        dark: '#d32f2f',
-        contrastText: '#ffffff',
-    },
-    warning: {
-        main: '#ffa726',
-        light: '#ffb74d',
-        dark: '#f57c00',
-        contrastText: 'rgba(0, 0, 0, 0.87)',
-    },
-    info: {
-        main: '#29b6f6',
-        light: '#4fc3f7',
-        dark: '#0288d1',
-        contrastText: 'rgba(0, 0, 0, 0.87)',
-    },
-    success: {
-        main: '#66bb6a',
-        light: '#81c784',
-        dark: '#388e3c',
-        contrastText: 'rgba(0, 0, 0, 0.87)',
-    },
-    background: {
-        default: '#121212',
-        paper: '#1e1e1e',
-    },
-    text: {
-        primary: '#ffffff',
-        secondary: 'rgba(255, 255, 255, 0.7)',
-        disabled: 'rgba(255, 255, 255, 0.5)',
-    },
-    divider: 'rgba(255, 255, 255, 0.12)',
+  primary: {
+    main: "#f94247",
+    light: "#ff6659",
+    contrastText: "#000000",
+    alt: "#C10308",
+  },
+  secondary: {
+    main: "#ce93d8",
+    light: "#f3e5f5",
+    dark: "#ab47bc",
+    contrastText: "rgba(0, 0, 0, 0.87)",
+  },
+  error: {
+    main: "#f44336",
+    light: "#e57373",
+    dark: "#d32f2f",
+    contrastText: "#ffffff",
+  },
+  warning: {
+    main: "#ffa726",
+    light: "#ffb74d",
+    dark: "#f57c00",
+    contrastText: "rgba(0, 0, 0, 0.87)",
+  },
+  info: {
+    main: "#29b6f6",
+    light: "#4fc3f7",
+    dark: "#0288d1",
+    contrastText: "rgba(0, 0, 0, 0.87)",
+  },
+  success: {
+    main: "#66bb6a",
+    light: "#81c784",
+    dark: "#388e3c",
+    contrastText: "rgba(0, 0, 0, 0.87)",
+  },
+  background: {
+    default: "#121212",
+    paper: "#1e1e1e",
+  },
+  text: {
+    primary: "#ffffff",
+    secondary: "rgba(255, 255, 255, 0.7)",
+    disabled: "rgba(255, 255, 255, 0.5)",
+  },
+  divider: "rgba(255, 255, 255, 0.12)",
 };
 
 // Common theme options
 const commonThemeOptions: ThemeOptions = {
-    typography: {
-        fontFamily: [
-            'Inter',
-            '-apple-system',
-            'BlinkMacSystemFont',
-            '"Segoe UI"',
-            'Roboto',
-            '"Helvetica Neue"',
-            'Arial',
-            'sans-serif',
-        ].join(','),
-        h1: {
-            fontSize: '2.5rem',
-            fontWeight: 600,
-        },
-        h2: {
-            fontSize: '2rem',
-            fontWeight: 600,
-        },
-        h3: {
-            fontSize: '1.75rem',
-            fontWeight: 600,
-        },
-        h4: {
-            fontSize: '1.5rem',
-            fontWeight: 600,
-        },
-        h5: {
-            fontSize: '1.25rem',
-            fontWeight: 600,
-        },
-        h6: {
-            fontSize: '1rem',
-            fontWeight: 600,
-        },
-        button: {
-            textTransform: 'none',
-            fontWeight: 500,
-        },
-        body2: {
-            color: '#000',
-            fontFamily: 'Satoshi',
-            fontSize: '12px',
-            fontStyle: 'normal',
-            fontWeight: 500,
-            lineHeight: 'normal',
-        }
+  typography: {
+    fontFamily: [
+      "Inter",
+      "-apple-system",
+      "BlinkMacSystemFont",
+      '"Segoe UI"',
+      "Roboto",
+      '"Helvetica Neue"',
+      "Arial",
+      "sans-serif",
+    ].join(","),
+    h1: {
+      fontSize: "2.5rem",
+      fontWeight: 600,
     },
-    shape: {
-        borderRadius: 8,
+    h2: {
+      fontSize: "2rem",
+      fontWeight: 600,
     },
-    components: {
-        MuiButton: {
-            styleOverrides: {
-                root: {
-                    borderRadius: 8,
-                    padding: '8px 16px',
-                },
-            },
-        },
-        MuiCard: {
-            styleOverrides: {
-                root: {
-                    borderRadius: 12,
-                    boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)',
-                },
-            },
-        },
-        MuiPaper: {
-            styleOverrides: {
-                root: {
-                    borderRadius: 8,
-                },
-            },
-        },
-        MuiOutlinedInput: {
-            styleOverrides: {
-                root: {
-                    padding: "10px 12px",
-                    borderRadius: "8px",
-                },
-                input: {
-                    padding: "0"
-                },
-                notchedOutline: {
-                    borderColor: '#C1C1C1',
-                }
-            }
-        },
-        MuiListItem: {
-            styleOverrides: {
-                root: {
-                    padding: "0"
-                }
-            }
-        },
-        MuiList: {
-            styleOverrides: {
-                root: {
-                    padding: "0"
-                }
-            }
-        },
-        MuiListItemButton: {
-            styleOverrides: {
-                root: {
-                    padding: "16px",
-                    borderRadius: "14px",
-                    fontSize: "16px",
-                    fontWeight: 500,
-                    lineHeight: "24px",
-                    gap: "8px"
-                }
-            }
-        },
-        MuiListItemIcon: {
-            styleOverrides: {
-                root: {
-                    minWidth: "unset"
-                }
-            }
-        }
+    h3: {
+      fontSize: "1.75rem",
+      fontWeight: 600,
     },
+    h4: {
+      fontSize: "1.5rem",
+      fontWeight: 600,
+    },
+    h5: {
+      fontSize: "1.25rem",
+      fontWeight: 600,
+    },
+    h6: {
+      fontSize: "1rem",
+      fontWeight: 600,
+    },
+    button: {
+      textTransform: "none",
+      fontWeight: 500,
+    },
+    body2: {
+      color: "#000",
+      fontFamily: "Satoshi",
+      fontSize: "12px",
+      fontStyle: "normal",
+      fontWeight: 500,
+      lineHeight: "normal",
+    },
+  },
+  shape: {
+    borderRadius: 8,
+  },
+  components: {
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          borderRadius: 8,
+          padding: "8px 16px",
+        },
+      },
+    },
+    MuiCardContent: {
+      styleOverrides: {
+        root: {
+          padding: "16px",
+          "&:last-child": {
+            paddingBottom: "16px",
+          },
+        },
+      },
+    },
+    MuiCard: {
+      styleOverrides: {
+        root: {
+          borderRadius: 12,
+          boxShadow: "0 2px 8px rgba(0, 0, 0, 0.1)",
+        },
+      },
+    },
+    MuiPaper: {
+      styleOverrides: {
+        root: {
+          borderRadius: 8,
+        },
+      },
+    },
+    MuiOutlinedInput: {
+      styleOverrides: {
+        root: {
+          padding: "10px 12px",
+          borderRadius: "8px",
+        },
+        input: {
+          padding: "0",
+        },
+        notchedOutline: {
+          borderColor: "#C1C1C1",
+        },
+      },
+    },
+    MuiListItem: {
+      styleOverrides: {
+        root: {
+          padding: "0",
+        },
+      },
+    },
+    MuiList: {
+      styleOverrides: {
+        root: {
+          padding: "0",
+        },
+      },
+    },
+    MuiListItemButton: {
+      styleOverrides: {
+        root: {
+          padding: "16px",
+          borderRadius: "14px",
+          fontSize: "16px",
+          fontWeight: 500,
+          lineHeight: "24px",
+          gap: "8px",
+        },
+      },
+    },
+    MuiListItemIcon: {
+      styleOverrides: {
+        root: {
+          minWidth: "unset",
+        },
+      },
+    },
+    MuiListItemText: {
+      styleOverrides: {
+        root: {
+          margin: "0",
+        },
+      },
+    },
+  },
 };
 
 // Create theme function
-export const createAppTheme = (mode: 'light' | 'dark') => {
-    return createTheme({
-        ...commonThemeOptions,
-        palette: {
-            mode,
-            ...(mode === 'light' ? lightPalette : darkPalette),
-        },
-    });
+export const createAppTheme = (mode: "light" | "dark") => {
+  return createTheme({
+    ...commonThemeOptions,
+    palette: {
+      mode,
+      ...lightPalette,
+    },
+  });
 };
 
 // Export palettes for reference
