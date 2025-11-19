@@ -12,7 +12,7 @@ const DataCard = ({ icon: Icon, title, subtitle, children }: DataCardProps) => {
   const theme = useTheme();
   const iconColor = theme.palette.primary.main;
   return (
-    <Card sx={{ p: 2, bgcolor: "background.paper", height: "100%" }}>
+    <Card sx={{ p: 4, bgcolor: "background.paper", height: "100%" }}>
       <Stack direction="column" spacing={1}>
         {/* Icon + Title */}
         <Stack direction="row" alignItems="center" spacing={1}>

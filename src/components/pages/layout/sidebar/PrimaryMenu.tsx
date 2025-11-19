@@ -46,6 +46,9 @@ export default function PrimaryMenu() {
                       "& .MuiListItemIcon-root": {
                         color: (theme) => theme.palette.primary.main,
                       },
+                      "& .MuiTypography-root": {
+                        fontWeight: "semibold",
+                      },
                     },
                   }}
                 >

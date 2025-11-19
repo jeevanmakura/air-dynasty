@@ -1,1 +1,9 @@
 @import "tailwindcss";
+
+.css-ck9f8y-MuiNativeSelect-root-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input.css-ck9f8y-MuiNativeSelect-root-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input.css-ck9f8y-MuiNativeSelect-root-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input {
+  padding-right: 20px !important;
+}
+
+.css-1rfqz7c-MuiSvgIcon-root-MuiNativeSelect-root-MuiSelect-icon {
+  right: 4px !important;
+}

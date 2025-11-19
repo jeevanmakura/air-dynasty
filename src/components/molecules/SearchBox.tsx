@@ -1,11 +1,21 @@
 import { TextField, InputAdornment, Box } from "@mui/material";
 import { Command, SearchNormal1 } from "iconsax-react";
 
-export default function SearchBox() {
+export default function SearchBox({
+  value,
+  onChange,
+  hasEndAdornment = false,
+}: {
+  hasEndAdornment?: boolean;
+  value: string;
+  onChange: (value: string) => void;
+}) {
   return (
     <TextField
       placeholder="Search..."
       size="small"
+      value={value}
+      onChange={(e) => onChange(e.target.value)}
       sx={{
         width: 330,
         height: "100%",
@@ -33,7 +43,7 @@ export default function SearchBox() {
           </InputAdornment>
         ),
 
-        endAdornment: (
+        endAdornment: hasEndAdornment && (
           <InputAdornment position="end">
             <Box
               sx={(theme) => ({

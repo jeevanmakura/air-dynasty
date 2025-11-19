@@ -44,11 +44,15 @@ const lightPalette = {
     paper: "#ffffff",
   },
   text: {
-    primary: "#1D1F1E",
-    secondary: "#525753",
+    primary: "#1F2937",
+    secondary: "#4B5563",
+    grey: "#6B7280",
     black: "#000000",
+    white: "#ffffff",
+    light: "#C9C9C9",
     disabled: "rgba(0, 0, 0, 0.38)",
   },
+  border: "#f9f9f9",
   divider: "rgba(0, 0, 0, 0.12)",
 };
 

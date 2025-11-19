@@ -68,7 +68,7 @@ export default function CustomAppbar({
           >
             {/* Search Box - takes remaining space */}
             <Box>
-              <SearchBox />
+              <SearchBox hasEndAdornment />
             </Box>
 
             {/* Notification */}
