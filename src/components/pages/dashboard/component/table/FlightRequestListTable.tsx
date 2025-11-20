@@ -16,6 +16,8 @@ import {
 } from "iconsax-react";
 import type { HeaderConfig } from "../../../../../types/types";
 import AllFlight from "../forms/AddFlight";
+import DialogButton from "../../../../organism/DialogButton";
+import DetailView from "../dialogebox/DetailView";
 
 const tableData = [
   {
@@ -191,22 +193,30 @@ const FlightRequestListTable = () => {
     customHeaders,
   });
 
-  const ActionField = ({ row }: { row: any }) => (
+  const ActionField = ({ rowData }: { rowData: any }) => (
     <Stack direction="row" spacing={1}>
-      <IconButton size="small" onClick={() => console.log(row.sn)}>
-        <Eye size={24} color={theme.palette.text.light} variant="Bold" />
+      <IconButton size="small">
+        <DialogButton
+          title="View Request List's Details"
+          button={
+            <Eye size={24} color={theme.palette.grey[400]} variant="Bold" />
+          }
+        >
+          {/* only send clicked row data */}
+          <DetailView data={rowData} />
+        </DialogButton>
       </IconButton>
       <IconButton size="small">
-        <Edit2 size={24} color={theme.palette.text.light} variant="Bold" />
+        <Edit2 size={24} color={theme.palette.grey[400]} variant="Bold" />
       </IconButton>
       <IconButton size="small">
-        <Sms size={24} color={theme.palette.text.light} variant="Bold" />
+        <Sms size={24} color={theme.palette.grey[400]} variant="Bold" />
       </IconButton>
       <IconButton size="small">
-        <Airplane size={24} color={theme.palette.text.light} variant="Bold" />
+        <Airplane size={24} color={theme.palette.grey[400]} variant="Bold" />
       </IconButton>
       <IconButton size="small">
-        <Trash size={24} color={theme.palette.text.light} variant="Bold" />
+        <Trash size={24} color={theme.palette.grey[400]} variant="Bold" />
       </IconButton>
     </Stack>
   );
@@ -217,7 +227,9 @@ const FlightRequestListTable = () => {
       {
         header: "Actions",
         accessorKey: "actions",
-        cell: (info: any) => <ActionField row={info.row.original} />,
+        cell: (cellInfo: any) => (
+          <ActionField rowData={cellInfo.row.original} />
+        ),
       },
     ],
     [columns]
