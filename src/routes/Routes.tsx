@@ -1,17 +1,22 @@
-import { Route, RouterProvider, Routes } from "react-router-dom";
+import { RouterProvider } from "react-router-dom";
 import App from "../App";
 import Private from "./Private";
 import AuthRoot from "../components/pages/auth";
 import Login from "../components/pages/auth/login";
 import { PATH } from "./PATH";
 import Register from "../components/pages/auth/register";
-import RoleManagementRoot from "../components/pages/RoleManagement";
-import RoleManagementForm from "../components/pages/RoleManagement/RoleManagementForm";
-import AllRoles from "../components/pages/RoleManagement/allRoles";
+
 import NotFound from "../components/pages/layout/NotFound";
 
 import { createBrowserRouter } from "react-router-dom";
 import { DashboardPage } from "../components/pages/dashboard";
+import AgentsPage from "../components/pages/dashboard/agents";
+import FlightsPage from "../components/pages/dashboard/flights";
+import FlightRequestList from "../components/pages/dashboard/flights/request-list";
+import AdHoc from "../components/pages/dashboard/flights/ad-hoc";
+import PreBookingList from "../components/pages/dashboard/flights/pre-booking";
+import DailyOperation from "../components/pages/dashboard/flights/dailyOperation/index.tsx";
+import CanceledFlight from "../components/pages/dashboard/flights/canceledFlight/index.tsx";
 
 const router = createBrowserRouter([
   {
@@ -32,15 +37,45 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <DashboardPage />,
+        element: <App />,
       },
       {
         path: PATH.ADMIN.DASHBOARD.ROOT,
         element: <DashboardPage />,
       },
       {
+        path: PATH.ADMIN.AGENTS.ROOT,
+        element: <AgentsPage />,
+      },
+      {
         path: PATH.ADMIN.FLIGHTS.ROOT,
-        element: <App />,
+        element: <FlightsPage />,
+        children: [
+          {
+            path: PATH.ADMIN.FLIGHTS.REQUEST_LIST.ROOT,
+            element: <FlightRequestList />,
+          },
+          {
+            path: PATH.ADMIN.FLIGHTS.ADD_HOC_FLIGHT.ROOT,
+            element: <AdHoc />,
+          },
+          {
+            path: PATH.ADMIN.FLIGHTS.PRE_BOOKING_LIST.ROOT,
+            element: <PreBookingList />,
+          },
+          {
+            path: PATH.ADMIN.FLIGHTS.DAILY_OPERATION.ROOT,
+            element: <DailyOperation />,
+          },
+          {
+            path: PATH.ADMIN.FLIGHTS.CANCELLED_FLIGHTS.ROOT,
+            element: <CanceledFlight />,
+          },
+        ],
+      },
+      {
+        path: "*",
+        element: <NotFound />,
       },
     ],
   },

@@ -1,17 +1,15 @@
 import {
-  Button,
   Dialog,
   DialogContent,
   DialogTitle,
   Divider,
   IconButton,
-  Stack,
   useTheme,
 } from "@mui/material";
 import { CloseCircle } from "iconsax-react";
 import { cloneElement, useState } from "react";
 
-const ButtonDialog = ({
+const DialogButton = ({
   title,
   button,
   children,
@@ -58,6 +56,7 @@ const ButtonDialog = ({
             pr: 5,
             color: theme.palette.text.secondary,
           }}
+          variant="subtitle2"
         >
           {title}
 
@@ -80,7 +79,7 @@ const ButtonDialog = ({
         <Divider />
 
         <DialogContent>{children}</DialogContent>
-        <Divider
+        {/* <Divider
           sx={{
             borderWidth: 1,
             mx: 2,
@@ -89,8 +88,9 @@ const ButtonDialog = ({
         <Stack
           direction="row"
           alignItems="center"
-          justifyContent="center"
+          justifyContent="end"
           gap={1.5}
+          px={2}
           my={3}
         >
           <Button
@@ -104,11 +104,13 @@ const ButtonDialog = ({
           >
             Cancel
           </Button>
-          <Button variant="contained">Yes</Button>
-        </Stack>
+          <Button variant="contained" type="submit" sx={{ px: 3 }}>
+            Confirm
+          </Button>
+        </Stack> */}
       </Dialog>
     </>
   );
 };
 
-export default ButtonDialog;
+export default DialogButton;

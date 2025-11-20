@@ -19,7 +19,23 @@ export const PATH = {
     },
     FLIGHTS: {
       ROOT: "/flights",
+      REQUEST_LIST: {
+        ROOT: "/flights/request-list",
+      },
+      ADD_HOC_FLIGHT: {
+        ROOT: "/flights/add-hoc",
+      },
+      PRE_BOOKING_LIST: {
+        ROOT: "/flights/pre-booking-list",
+      },
+      DAILY_OPERATION: {
+        ROOT: "/flights/daily-operation",
+      },
+      CANCELLED_FLIGHTS: {
+        ROOT: "/flights/cancelled-flight",
+      },
     },
+
     AGENTS: {
       ROOT: "/agents",
     },

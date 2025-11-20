@@ -22,7 +22,7 @@ const lightPalette = {
     contrastText: "#c62828",
   },
   warning: {
-    main: "##F8D008",
+    main: "#F8D008",
     light: "#ff9800",
     dark: "#e65100",
     contrastText: "#ffffff",

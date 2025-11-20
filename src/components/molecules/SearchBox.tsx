@@ -7,15 +7,15 @@ export default function SearchBox({
   hasEndAdornment = false,
 }: {
   hasEndAdornment?: boolean;
-  value: string;
-  onChange: (value: string) => void;
+  value?: string;
+  onChange?: (value: string) => void;
 }) {
   return (
     <TextField
       placeholder="Search..."
       size="small"
       value={value}
-      onChange={(e) => onChange(e.target.value)}
+      onChange={(e) => onChange && onChange(e.target.value)}
       sx={{
         width: 330,
         height: "100%",

@@ -8,3 +8,8 @@ export const buildColumns = (data: any[], columnsToHide: string[]) => {
 
   return cols.filter((col) => !columnsToHide.includes(col.accessorKey));
 };
+
+export const formatText = (text: string) => {
+  if (typeof text !== "string") return text;
+  return text.replace(/[_-]/g, " ");
+};

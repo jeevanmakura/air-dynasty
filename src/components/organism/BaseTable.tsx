@@ -5,10 +5,10 @@ import {
   flexRender,
   getFilteredRowModel,
   getSortedRowModel,
+  type Cell,
 } from "@tanstack/react-table";
 import { useState } from "react";
 import {
-  Button,
   Checkbox,
   Table,
   TableBody,
@@ -19,13 +19,17 @@ import {
 } from "@mui/material";
 import TableFooter from "../molecules/TableFooter";
 import TableHeader from "../molecules/TableHeader";
+import type { HeaderConfig } from "../../types/types";
 
 const BaseTable = ({
   data,
   columns,
+  heaaderConfig,
+  perPage = 10,
 }: {
   data: any[];
   columns: any[];
+  heaaderConfig: HeaderConfig;
   perPage?: number;
 }) => {
   const [sorting, setSorting] = useState([]);
@@ -39,27 +43,28 @@ const BaseTable = ({
     getPaginationRowModel: getPaginationRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
     getSortedRowModel: getSortedRowModel(),
-    getRowSelection: () => rowSelection,
     onRowSelectionChange: setRowSelection,
     columnResizeMode: "onChange",
     state: {
-      sorting: sorting,
+      sorting,
       globalFilter: filtering,
-      rowSelection: rowSelection,
+      rowSelection,
     },
-    onSortingChange: setSorting,
+    onSortingChange: setSorting as any,
     onGlobalFilterChange: setFiltering,
   });
 
-  let searchCount = table.getFilteredRowModel().rows.length;
-
   return (
     <>
-      <TableHeader
-        searchValue={filtering}
-        onSearchChange={setFiltering}
-        table={table}
-      />
+      {heaaderConfig?.showHeader && (
+        <TableHeader
+          searchValue={filtering}
+          onSearchChange={setFiltering}
+          table={table}
+          headerConfig={heaaderConfig}
+        />
+      )}
+
       <TableContainer
         sx={{
           borderRadius: 2,
@@ -69,7 +74,7 @@ const BaseTable = ({
       >
         <Table>
           <TableHead sx={{ backgroundColor: "primary.main" }}>
-            {table?.getHeaderGroups()?.map((headerGroup) => (
+            {table.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id}>
                 {headerGroup.headers.map((header) => (
                   <TableCell
@@ -80,7 +85,6 @@ const BaseTable = ({
                       fontWeight: 500,
                       fontSize: 14,
                       fontFamily: "sans-serif",
-                      textTransform: "capitalize",
                     }}
                   >
                     {flexRender(
@@ -93,36 +97,32 @@ const BaseTable = ({
             ))}
           </TableHead>
 
-          {
-            //if there are no rows, show a message
-            table.getRowModel().rows.length === 0 && (
-              <TableRow>
-                <TableCell
-                  colSpan={columns.length}
-                  sx={{
-                    color: "text.grey",
-                    fontWeight: 500,
-                    fontSize: 14,
-                    fontFamily: "sans-serif",
-                  }}
-                >
-                  No data found
-                </TableCell>
-              </TableRow>
-            )
-          }
+          {table.getRowModel().rows.length === 0 && (
+            <TableRow>
+              <TableCell
+                colSpan={columns.length}
+                sx={{
+                  color: "text.grey",
+                  fontWeight: 500,
+                  fontSize: 14,
+                  fontFamily: "sans-serif",
+                }}
+              >
+                No data found
+              </TableCell>
+            </TableRow>
+          )}
+
           <TableBody>
             {table.getRowModel().rows.map((row) => (
               <TableRow
                 key={row.id}
                 sx={{
-                  "&:hover": {
-                    backgroundColor: "#f9fafb",
-                  },
+                  "&:hover": { backgroundColor: "#f9fafb" },
                 }}
               >
-                {row.getVisibleCells().map((cell) => {
-                  //checkbox in Sn column
+                {row.getVisibleCells().map((cell: Cell<any, any>) => {
+                  // Checkbox for SN column
                   if (cell.column.id === "sn") {
                     return (
                       <TableCell
@@ -134,17 +134,14 @@ const BaseTable = ({
                           fontSize: 14,
                           display: "flex",
                           alignItems: "center",
+                          minHeight: "72px",
                         }}
                       >
                         <Checkbox
                           checked={row.getIsSelected()}
                           indeterminate={row.getIsSomeSelected()}
                           onChange={row.getToggleSelectedHandler()}
-                          sx={{
-                            p: 0,
-                            pr: 0.5,
-                            color: "text.light",
-                          }}
+                          sx={{ p: 0, pr: 0.5, color: "text.light" }}
                           size="small"
                         />
                         {cell.getValue()}
@@ -152,52 +149,7 @@ const BaseTable = ({
                     );
                   }
 
-                  // check if this is the "status" column
-                  if (cell.column.id === "status") {
-                    const status = cell.getValue();
-
-                    let bg = "";
-                    let color = "";
-
-                    if (status === "On Time") {
-                      bg = "#D1F7D8"; // light green background
-                      color = "#1A7F37"; // green text
-                    } else if (status === "Delayed") {
-                      bg = "#FFE7C2"; // light orange
-                      color = "#B45F06"; // dark orange
-                    } else if (status === "Failed") {
-                      bg = "#FFD6D6"; // light red
-                      color = "#B22222"; // red text
-                    }
-
-                    return (
-                      <TableCell
-                        key={cell.id}
-                        sx={{
-                          fontFamily: "sans-serif",
-                          color: "text.secondary",
-                          fontWeight: 500,
-                          fontSize: 14,
-                        }}
-                      >
-                        <span
-                          style={{
-                            padding: "8px 16px",
-                            borderRadius: "20px",
-                            fontWeight: 500,
-                            backgroundColor: bg,
-                            color,
-                            fontSize: "0.8rem",
-                            fontFamily: "sans-serif",
-                          }}
-                        >
-                          {status}
-                        </span>
-                      </TableCell>
-                    );
-                  }
-
-                  // default cell rendering
+                  // Default cell rendering (supports customRenderer)
                   return (
                     <TableCell
                       key={cell.id}
@@ -226,7 +178,7 @@ const BaseTable = ({
         count={table.getPageCount()}
         page={table.getState().pagination.pageIndex + 1}
         table={table}
-        perPage={6}
+        perPage={perPage}
       />
     </>
   );

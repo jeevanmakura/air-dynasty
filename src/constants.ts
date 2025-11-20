@@ -1,6 +1,9 @@
 import {
   Airplane,
   AirplaneSquare,
+  ArrowDown,
+  Bookmark,
+  CloseSquare,
   DocumentSketch,
   DollarCircle,
   Grid5,
@@ -36,17 +39,27 @@ export const sidebarMenuItems: MenuItem[] = [
       {
         label: "Request List",
         icon: MessageQuestion,
-        path: "/flights",
+        path: "/flights/request-list",
       },
       {
         label: "Ad-hoc Flight",
         icon: AirplaneSquare,
-        path: "/flights/add-flight",
+        path: "/flights/add-hoc",
       },
       {
         label: "Pre-booking List",
-        icon: MessageQuestion,
-        path: "/flights",
+        icon: Bookmark,
+        path: "/flights/pre-booking-list",
+      },
+      {
+        label: "Daily operations",
+        icon: ArrowDown,
+        path: "/flights/daily-operation",
+      },
+      {
+        label: "Cancelled Flights",
+        icon: CloseSquare,
+        path: "/flights/cancelled-flight",
       },
     ],
   },

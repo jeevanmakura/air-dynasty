@@ -79,9 +79,7 @@ export const DashboardPage = () => {
         <Box className="col-span-4">
           <MonthlyFloghtOperation />
         </Box>
-        <Box className="col-span-6">
-          <OverviewTable />
-        </Box>
+        <Box className="col-span-6"><OverviewTable /></Box>
       </Grid>
     </Box>
   );

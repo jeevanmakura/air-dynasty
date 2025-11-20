@@ -1,8 +1,9 @@
-import { ArrowDown } from "iconsax-react";
+import { ArrowDown, CloseCircle } from "iconsax-react";
 import DataCard from "../../../../molecules/DataCard";
 
 import BaseTable from "../../../../organism/BaseTable";
 import useFetchTable from "../../../../../hook/useFetchTable";
+import { alpha, useTheme } from "@mui/material";
 
 const tableData = [
   {
@@ -13,7 +14,7 @@ const tableData = [
     departure: "12:00PM",
     arrival: "1:20PM",
     pax: 7,
-    status: "On Time",
+    status: "on-time",
   },
   {
     sn: 2,
@@ -23,7 +24,7 @@ const tableData = [
     departure: "12:00PM",
     arrival: "1:20PM",
     pax: 9,
-    status: "Delayed",
+    status: "delayed",
   },
   {
     sn: 3,
@@ -33,7 +34,7 @@ const tableData = [
     departure: "12:00PM",
     arrival: "1:20PM",
     pax: 990,
-    status: "Failed",
+    status: "failed",
   },
   {
     sn: 4,
@@ -43,7 +44,7 @@ const tableData = [
     departure: "12:00PM",
     arrival: "1:20PM",
     pax: 100,
-    status: "Failed",
+    status: "failed",
   },
   {
     sn: 5,
@@ -53,7 +54,7 @@ const tableData = [
     departure: "12:00PM",
     arrival: "1:20PM",
     pax: 7,
-    status: "On Time",
+    status: "on-time",
   },
   {
     sn: 6,
@@ -63,18 +64,93 @@ const tableData = [
     departure: "12:00PM",
     arrival: "1:20PM",
     pax: 7,
-    status: "On Time",
+    status: "on-time",
   },
 ];
 
+export interface HeaderConfig {
+  showHeader: boolean;
+  headerLeftContent?: {
+    showSearch: boolean;
+    showFilter: boolean;
+    showDelete: boolean;
+  };
+  headerRightContent?: {
+    buttonFirst?: {
+      label: string;
+      path: string;
+    };
+    buttonSecond?: {
+      label: string;
+      path: string;
+    };
+  };
+}
+
 const OverviewTable = () => {
-  const { rowData, colums } = useFetchTable({
+  const theme = useTheme();
+
+  const customRenderer = {
+    status: (info: any) => {
+      const value: string = info.getValue();
+
+      if (!value) {
+        return <span>-</span>;
+      }
+
+      const map: Record<string, { color: string }> = {
+        "on-time": {
+          color: theme.palette.success.main,
+        },
+        delayed: {
+          color: theme.palette.error.light,
+        },
+
+        failed: {
+          color: theme.palette.error.main,
+        },
+
+        "not-approved": {
+          color: theme.palette.error.main,
+        },
+      };
+
+      const config = map[value];
+
+      // Fallback (if value doesn't match any key)
+      if (!config) return <span>{value}</span>;
+
+      return (
+        <span
+          style={{
+            display: "inline-flex",
+            alignItems: "center",
+            gap: "6px",
+            padding: "6px 12px",
+            borderRadius: "20px",
+            fontWeight: 500,
+            backgroundColor: alpha(config.color, 0.15),
+            color: config.color,
+            textTransform: "capitalize",
+            fontSize: "0.8rem",
+            fontFamily: "sans-serif",
+          }}
+        >
+          {value.replace("-", " ")}
+        </span>
+      );
+    },
+  };
+
+  const { rowData, columns } = useFetchTable({
     data: tableData,
     columnsToHide: [],
+    customRenderer: customRenderer,
   });
-  // console.log("cols", colums);
 
-  // console.log("rowData", rowData);
+  const headerConfig: HeaderConfig = {
+    showHeader: false,
+  };
 
   return (
     <DataCard
@@ -83,7 +159,12 @@ const OverviewTable = () => {
       subtitle="Monitor and manage today’s active flights — track status, passengers, and performance in real time"
     >
       <div className="mt-4">
-        <BaseTable data={rowData} columns={colums} perPage={6} />
+        <BaseTable
+          data={rowData}
+          columns={columns}
+          perPage={6}
+          heaaderConfig={headerConfig}
+        />
       </div>
     </DataCard>
   );
