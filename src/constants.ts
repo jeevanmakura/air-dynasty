@@ -66,7 +66,7 @@ export const sidebarMenuItems: MenuItem[] = [
   {
     label: "Notices",
     icon: Note,
-    path: "/support",
+    path: "/notices",
   },
   {
     label: "Users",

@@ -39,6 +39,9 @@ export const PATH = {
     AGENTS: {
       ROOT: "/agents",
     },
+    NOTICES: {
+      ROOT: "/notices",
+    },
   },
   ROLES: {
     ROOT: "/roles",
