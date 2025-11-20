@@ -71,7 +71,7 @@ export const sidebarMenuItems: MenuItem[] = [
   {
     label: "Users",
     icon: Profile2User,
-    path: "/support",
+    path: "/users",
   },
   {
     label: "Roles",

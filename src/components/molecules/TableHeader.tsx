@@ -74,7 +74,7 @@ const TableHeader = ({
               <DeleteBox />
             </DialogButton>
           )}
-          {headerConfig?.headerRightContent?.buttonFirst && (
+          {headerConfig?.headerLeftContent?.showDelete && (
             <Button
               variant="outlined"
               sx={{

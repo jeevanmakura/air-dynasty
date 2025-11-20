@@ -18,6 +18,7 @@ import PreBookingList from "../components/pages/dashboard/flights/pre-booking";
 import DailyOperation from "../components/pages/dashboard/flights/dailyOperation/index.tsx";
 import CanceledFlight from "../components/pages/dashboard/flights/canceledFlight/index.tsx";
 import NoticePage from "../components/pages/dashboard/notice/index.tsx";
+import UsersPage from "../components/pages/dashboard/user/index.tsx";
 
 const router = createBrowserRouter([
   {
@@ -77,6 +78,10 @@ const router = createBrowserRouter([
       {
         path: PATH.ADMIN.NOTICES.ROOT,
         element: <NoticePage />,
+      },
+      {
+        path: PATH.ADMIN.USERS.ROOT,
+        element: <UsersPage />,
       },
       {
         path: "*",
