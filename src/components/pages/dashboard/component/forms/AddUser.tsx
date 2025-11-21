@@ -8,7 +8,7 @@ import {
   Divider,
 } from "@mui/material";
 import type { FormFields } from "../../../../../types/types";
-import { Airplane } from "iconsax-react";
+import { UserOctagon } from "iconsax-react";
 import ButtonWithBackground from "../../../../atom/ButtonWithBackground";
 import FormSection from "../../../../organism/FormSection";
 
@@ -70,7 +70,7 @@ const AddUser = () => {
       <Stack direction="row" justifyContent="space-between" alignItems="center">
         <Stack direction="row" alignItems="center" spacing={2}>
           <ButtonWithBackground>
-            <Airplane
+            <UserOctagon
               size={40}
               color={theme.palette.primary.main}
               variant="Bold"

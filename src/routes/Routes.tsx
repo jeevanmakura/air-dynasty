@@ -20,6 +20,9 @@ import CanceledFlight from "../components/pages/dashboard/flights/canceledFlight
 import NoticePage from "../components/pages/dashboard/notice/index.tsx";
 import UsersPage from "../components/pages/dashboard/user/index.tsx";
 import RolePage from "../components/pages/dashboard/role/index.tsx";
+import Finance from "../components/pages/dashboard/finance/Finance.tsx";
+import FinancePage from "../components/pages/dashboard/finance/index.tsx";
+import FinanceDetailsPage from "../components/pages/dashboard/finance/detail/index.tsx";
 
 const router = createBrowserRouter([
   {
@@ -87,6 +90,19 @@ const router = createBrowserRouter([
       {
         path: PATH.ADMIN.ROLES.ROOT,
         element: <RolePage />,
+      },
+      {
+        element: <FinancePage />,
+        children: [
+          {
+            path: PATH.ADMIN.FINANCE.ROOT,
+            element: <Finance />,
+          },
+          {
+            path: PATH.ADMIN.FINANCE.FINANCE_DETAILS.ROOT,
+            element: <FinanceDetailsPage />,
+          },
+        ],
       },
       {
         path: "*",

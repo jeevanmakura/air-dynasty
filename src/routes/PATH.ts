@@ -48,6 +48,12 @@ export const PATH = {
     ROLES: {
       ROOT: "/roles",
     },
+    FINANCE: {
+      ROOT: "/finance",
+      FINANCE_DETAILS: {
+        ROOT: "/finance/:id",
+      },
+    },
   },
   ROLES: {
     ROOT: "/roles",
