@@ -19,6 +19,7 @@ import DailyOperation from "../components/pages/dashboard/flights/dailyOperation
 import CanceledFlight from "../components/pages/dashboard/flights/canceledFlight/index.tsx";
 import NoticePage from "../components/pages/dashboard/notice/index.tsx";
 import UsersPage from "../components/pages/dashboard/user/index.tsx";
+import RolePage from "../components/pages/dashboard/role/index.tsx";
 
 const router = createBrowserRouter([
   {
@@ -82,6 +83,10 @@ const router = createBrowserRouter([
       {
         path: PATH.ADMIN.USERS.ROOT,
         element: <UsersPage />,
+      },
+      {
+        path: PATH.ADMIN.ROLES.ROOT,
+        element: <RolePage />,
       },
       {
         path: "*",

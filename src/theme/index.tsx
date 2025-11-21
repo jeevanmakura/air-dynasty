@@ -1,8 +1,34 @@
 import type { ThemeOptions } from "@mui/material/styles";
 import { createTheme } from "@mui/material/styles";
+import "@mui/material/styles";
+
+declare module "@mui/material/styles" {
+  interface Palette {
+    border?: string;
+  }
+
+  interface PaletteOptions {
+    border?: string;
+  }
+
+  interface TypeText {
+    grey?: string;
+    black?: string;
+    white?: string;
+    light?: string;
+  }
+
+  interface PaletteColor {
+    alt?: string;
+  }
+
+  interface SimplePaletteColorOptions {
+    alt?: string;
+  }
+}
 
 // Define color palettes
-const lightPalette = {
+const lightPalette: ThemeOptions["palette"] = {
   primary: {
     main: "#C10308",
     light: "#f94247",

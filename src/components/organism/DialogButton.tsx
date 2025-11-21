@@ -37,6 +37,7 @@ const DialogButton = ({
         open={open}
         onClose={() => setOpen(false)}
         fullWidth
+        maxWidth="md"
         //rouded corners
         slotProps={{
           paper: {

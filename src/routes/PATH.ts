@@ -45,6 +45,9 @@ export const PATH = {
     USERS: {
       ROOT: "/users",
     },
+    ROLES: {
+      ROOT: "/roles",
+    },
   },
   ROLES: {
     ROOT: "/roles",
