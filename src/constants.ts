@@ -86,7 +86,7 @@ export const sidebarMenuItems: MenuItem[] = [
   {
     label: "Fixed Departures",
     icon: Airplane,
-    path: "/fixed-departures",
+    path: "/fixed-departure",
   },
   {
     label: "Advertisements",

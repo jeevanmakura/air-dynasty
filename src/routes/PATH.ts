@@ -54,6 +54,9 @@ export const PATH = {
         ROOT: "/finance/:id",
       },
     },
+    FIXED_DEPARTURE: {
+      ROOT: "/fixed-departure",
+    },
   },
   ROLES: {
     ROOT: "/roles",

@@ -23,6 +23,7 @@ import RolePage from "../components/pages/dashboard/role/index.tsx";
 import Finance from "../components/pages/dashboard/finance/Finance.tsx";
 import FinancePage from "../components/pages/dashboard/finance/index.tsx";
 import FinanceDetailsPage from "../components/pages/dashboard/finance/detail/index.tsx";
+import FixedDepartureTable from "../components/pages/dashboard/component/table/FixedDepartureTable.tsx";
 
 const router = createBrowserRouter([
   {
@@ -103,6 +104,10 @@ const router = createBrowserRouter([
             element: <FinanceDetailsPage />,
           },
         ],
+      },
+      {
+        path: PATH.ADMIN.FIXED_DEPARTURE.ROOT,
+        element: <FixedDepartureTable />,
       },
       {
         path: "*",
