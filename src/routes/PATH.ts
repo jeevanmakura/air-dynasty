@@ -57,6 +57,9 @@ export const PATH = {
     FIXED_DEPARTURE: {
       ROOT: "/fixed-departure",
     },
+    ACTIVITY_LOGS: {
+      ROOT: "/activity-logs",
+    },
   },
   ROLES: {
     ROOT: "/roles",
