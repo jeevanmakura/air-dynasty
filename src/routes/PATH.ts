@@ -60,6 +60,9 @@ export const PATH = {
     ACTIVITY_LOGS: {
       ROOT: "/activity-logs",
     },
+    SETTINGS: {
+      ROOT: "/settings",
+    },
   },
   ROLES: {
     ROOT: "/roles",

@@ -25,6 +25,8 @@ import FinancePage from "../components/pages/dashboard/finance/index.tsx";
 import FinanceDetailsPage from "../components/pages/dashboard/finance/detail/index.tsx";
 import FixedDepartureTable from "../components/pages/dashboard/component/table/FixedDepartureTable.tsx";
 import ActivityLogs from "../components/pages/dashboard/activityLog/index.tsx";
+import SettingPage from "../components/pages/dashboard/settings/index.tsx";
+import Setting from "../components/pages/dashboard/settings/Setting.tsx";
 
 const router = createBrowserRouter([
   {
@@ -113,6 +115,15 @@ const router = createBrowserRouter([
       {
         path: PATH.ADMIN.ACTIVITY_LOGS.ROOT,
         element: <ActivityLogs />,
+      },
+      {
+        element: <SettingPage />,
+        children: [
+          {
+            path: PATH.ADMIN.SETTINGS.ROOT,
+            element: <Setting />,
+          },
+        ],
       },
       {
         path: "*",

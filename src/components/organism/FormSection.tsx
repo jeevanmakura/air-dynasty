@@ -13,12 +13,14 @@ import Switch from "../atom/Switch";
 interface FormSectionProps {
   fields: FormFields[];
   form: Record<string, any>;
+  disabled?: boolean;
   onChange: (name: string, value: any) => void;
 }
 
 export default function FormSection({
   fields,
   form,
+  disabled,
   onChange,
 }: FormSectionProps) {
   const theme = useTheme();
@@ -44,6 +46,7 @@ export default function FormSection({
         <FormControl size="small">
           <Switch
             value={form[field.name]}
+            disabled={disabled}
             onChange={() => onChange(field.name, !form[field.name])}
           />
         </FormControl>
@@ -53,6 +56,7 @@ export default function FormSection({
             value={form[field.name] || ""}
             displayEmpty
             onChange={(e) => onChange(field.name, e.target.value)}
+            disabled={disabled}
             IconComponent={() => (
               <ArrowDown2 size={20} color={theme.palette.text.primary} />
             )}
@@ -84,6 +88,7 @@ export default function FormSection({
           value={form[field.name] || ""}
           onChange={(e) => onChange(field.name, e.target.value)}
           InputLabelProps={field.type === "date" ? { shrink: true } : {}}
+          disabled={disabled}
         />
       )}
     </div>
