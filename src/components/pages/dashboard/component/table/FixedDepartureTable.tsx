@@ -5,7 +5,7 @@ import useFetchTable from "../../../../../hook/useFetchTable";
 import { useMemo } from "react";
 import { IconButton, Stack, useTheme } from "@mui/material";
 import { Airplane, Edit2, Eye, Sms, Trash } from "iconsax-react";
-import type { HeaderConfig } from "../../../../../types/types";
+import type { TableConfig } from "../../../../../types/types";
 import DialogButton from "../../../../organism/DialogButton";
 import DetailView from "../dialogebox/DetailView";
 import AddFixedDeparture from "../forms/AddFixedDeparture";
@@ -137,15 +137,15 @@ const FixedDepartureTable = () => {
     [columns]
   );
 
-  const headerConfig: HeaderConfig = {
+  const headerConfig: TableConfig = {
     showHeader: true,
-    headerLeftContent: {
+    headerLeft: {
       showSearch: true,
       showFilter: true,
       showDelete: true,
     },
 
-    headerRightContent: {
+    headerRight: {
       buttonSecond: {
         headerText: "Fixed Departures",
         label: "Add Fixed Departure",

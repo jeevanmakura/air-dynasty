@@ -14,7 +14,7 @@ import {
   Timer,
   Trash,
 } from "iconsax-react";
-import type { HeaderConfig } from "../../../../../types/types";
+import type { TableConfig } from "../../../../../types/types";
 import AllFlight from "../forms/AddFlight";
 import DialogButton from "../../../../organism/DialogButton";
 import DetailView from "../dialogebox/DetailView";
@@ -235,15 +235,15 @@ const FlightRequestListTable = () => {
     [columns]
   );
 
-  const headerConfig: HeaderConfig = {
+  const headerConfig: TableConfig = {
     showHeader: true,
-    headerLeftContent: {
+    headerLeft: {
       showSearch: true,
       showFilter: true,
       showDelete: true,
     },
 
-    headerRightContent: {
+    headerRight: {
       buttonSecond: {
         headerText: "Flight Requests",
         label: "Add Flight",

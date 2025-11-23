@@ -68,14 +68,14 @@ const tableData = [
   },
 ];
 
-export interface HeaderConfig {
+export interface TableConfig {
   showHeader: boolean;
-  headerLeftContent?: {
+  headerLeft?: {
     showSearch: boolean;
     showFilter: boolean;
     showDelete: boolean;
   };
-  headerRightContent?: {
+  headerRight?: {
     buttonFirst?: {
       label: string;
       path: string;
@@ -148,7 +148,7 @@ const OverviewTable = () => {
     customRenderer: customRenderer,
   });
 
-  const headerConfig: HeaderConfig = {
+  const headerConfig: TableConfig = {
     showHeader: false,
   };
 

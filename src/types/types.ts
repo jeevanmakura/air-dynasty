@@ -17,14 +17,15 @@ export interface FormFields {
   options?: string[];
 }
 
-export interface HeaderConfig {
-  showHeader: boolean;
-  headerLeftContent?: {
+export interface TableConfig {
+  showHeader?: boolean;
+  showFooter?: boolean;
+  headerLeft?: {
     showSearch: boolean;
     showFilter: boolean;
     showDelete: boolean;
   };
-  headerRightContent?: {
+  headerRight?: {
     buttonFirst?: {
       headerText: string;
       label: string;

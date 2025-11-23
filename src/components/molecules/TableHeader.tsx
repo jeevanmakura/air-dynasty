@@ -1,7 +1,7 @@
 import { alpha, Box, Button, Stack, Typography, useTheme } from "@mui/material";
 import { Add, ArrowForward, Filter, Grid1, Trash } from "iconsax-react";
 import SearchBox from "./SearchBox";
-import type { HeaderConfig } from "../../types/types";
+import type { TableConfig } from "../../types/types";
 import DialogButton from "../organism/DialogButton";
 import DeleteBox from "../pages/dashboard/component/dialogebox/DeleteBox";
 
@@ -13,7 +13,7 @@ const TableHeader = ({
 }: {
   searchValue: string;
   table: any;
-  headerConfig: HeaderConfig;
+  headerConfig: TableConfig;
   onSearchChange: (value: string) => void;
 }) => {
   const theme = useTheme();
@@ -29,10 +29,10 @@ const TableHeader = ({
         mb={4}
       >
         <Stack direction="row" alignItems="center" spacing={1.5}>
-          {headerConfig?.headerLeftContent?.showSearch && (
+          {headerConfig?.headerLeft?.showSearch && (
             <SearchBox value={searchValue} onChange={onSearchChange} />
           )}
-          {headerConfig?.headerLeftContent?.showFilter && (
+          {headerConfig?.headerLeft?.showFilter && (
             <Button
               variant="outlined"
               sx={{
@@ -45,7 +45,7 @@ const TableHeader = ({
               Filter
             </Button>
           )}
-          {headerConfig?.headerLeftContent?.showDelete && (
+          {headerConfig?.headerLeft?.showDelete && (
             <DialogButton
               title="Delete row"
               button={
@@ -74,7 +74,7 @@ const TableHeader = ({
               <DeleteBox />
             </DialogButton>
           )}
-          {headerConfig?.headerLeftContent?.showDelete && (
+          {headerConfig?.headerLeft?.showDelete && (
             <Button
               variant="outlined"
               sx={{
@@ -92,11 +92,10 @@ const TableHeader = ({
           )}
         </Stack>
         <Stack direction="row" alignItems="center" spacing={1}>
-          {headerConfig?.headerRightContent?.buttonFirst && (
+          {headerConfig?.headerRight?.buttonFirst && (
             <DialogButton
               title={
-                headerConfig?.headerRightContent?.buttonFirst?.headerText ||
-                "Add Form"
+                headerConfig?.headerRight?.buttonFirst?.headerText || "Add Form"
               }
               button={
                 <Button
@@ -105,17 +104,17 @@ const TableHeader = ({
                     <Add size={24} color={theme.palette.primary.main} />
                   }
                 >
-                  {headerConfig?.headerRightContent?.buttonFirst?.label}
+                  {headerConfig?.headerRight?.buttonFirst?.label}
                 </Button>
               }
             >
-              {headerConfig?.headerRightContent?.buttonFirst?.component}
+              {headerConfig?.headerRight?.buttonFirst?.component}
             </DialogButton>
           )}
-          {headerConfig?.headerRightContent?.buttonSecond && (
+          {headerConfig?.headerRight?.buttonSecond && (
             <DialogButton
               title={
-                headerConfig?.headerRightContent?.buttonSecond?.headerText ||
+                headerConfig?.headerRight?.buttonSecond?.headerText ||
                 "Add Form"
               }
               button={
@@ -126,11 +125,11 @@ const TableHeader = ({
                   }}
                   startIcon={<Add size={24} color={theme.palette.grey[50]} />}
                 >
-                  {headerConfig?.headerRightContent?.buttonSecond?.label}
+                  {headerConfig?.headerRight?.buttonSecond?.label}
                 </Button>
               }
             >
-              {headerConfig?.headerRightContent?.buttonSecond?.component}
+              {headerConfig?.headerRight?.buttonSecond?.component}
             </DialogButton>
           )}
         </Stack>

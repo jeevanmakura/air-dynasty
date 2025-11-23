@@ -19,19 +19,24 @@ import {
 } from "@mui/material";
 import TableFooter from "../molecules/TableFooter";
 import TableHeader from "../molecules/TableHeader";
-import type { HeaderConfig } from "../../types/types";
+import type { TableConfig } from "../../types/types";
+
+const defaultTableConfig: TableConfig = {
+  showFooter: true,
+};
 
 const BaseTable = ({
   data,
   columns,
-  heaaderConfig,
+  heaaderConfig = {},
   perPage = 10,
 }: {
   data: any[];
   columns: any[];
-  heaaderConfig: HeaderConfig;
+  heaaderConfig: TableConfig;
   perPage?: number;
 }) => {
+  console.log("footer", heaaderConfig?.showFooter);
   const [sorting, setSorting] = useState([]);
   const [filtering, setFiltering] = useState("");
   const [rowSelection, setRowSelection] = useState({});
@@ -174,12 +179,14 @@ const BaseTable = ({
       </TableContainer>
 
       {/* Pagination */}
-      <TableFooter
-        count={table.getPageCount()}
-        page={table.getState().pagination.pageIndex + 1}
-        table={table}
-        perPage={perPage}
-      />
+      {heaaderConfig.showFooter && heaaderConfig?.showFooter && (
+        <TableFooter
+          count={table.getPageCount()}
+          page={table.getState().pagination.pageIndex + 1}
+          table={table}
+          perPage={perPage}
+        />
+      )}
     </>
   );
 };

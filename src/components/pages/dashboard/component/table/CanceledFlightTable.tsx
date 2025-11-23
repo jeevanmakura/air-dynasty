@@ -5,7 +5,7 @@ import useFetchTable from "../../../../../hook/useFetchTable";
 import { useMemo } from "react";
 import { IconButton, Stack, useTheme } from "@mui/material";
 import { Eye, Trash } from "iconsax-react";
-import type { HeaderConfig } from "../../../../../types/types";
+import type { TableConfig } from "../../../../../types/types";
 
 const tableData = [
   {
@@ -124,9 +124,9 @@ const CanceledFlightTable = () => {
     [columns]
   );
 
-  const headerConfig: HeaderConfig = {
+  const headerConfig: TableConfig = {
     showHeader: true,
-    headerLeftContent: {
+    headerLeft: {
       showSearch: true,
       showFilter: true,
       showDelete: true,

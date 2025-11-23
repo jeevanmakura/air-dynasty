@@ -4,7 +4,7 @@ import BaseTable from "../../../../organism/BaseTable";
 import useFetchTable from "../../../../../hook/useFetchTable";
 import { useMemo } from "react";
 
-import type { HeaderConfig } from "../../../../../types/types";
+import type { TableConfig } from "../../../../../types/types";
 import { useTheme } from "@mui/material";
 
 const tableData = [
@@ -94,9 +94,9 @@ const ActivityLogTable = () => {
 
   const finalColumns = useMemo(() => [...columns], [columns]);
 
-  const headerConfig: HeaderConfig = {
+  const headerConfig: TableConfig = {
     showHeader: true,
-    headerLeftContent: {
+    headerLeft: {
       showSearch: true,
       showFilter: true,
       showDelete: true,
