@@ -146,7 +146,7 @@ const FixedDepartureTable = () => {
     },
 
     headerRight: {
-      buttonSecond: {
+      primaryButton: {
         headerText: "Fixed Departures",
         label: "Add Fixed Departure",
         path: "/dashboard/fixed-departure",

@@ -76,11 +76,11 @@ export interface TableConfig {
     showDelete: boolean;
   };
   headerRight?: {
-    buttonFirst?: {
+    secondaryButton?: {
       label: string;
       path: string;
     };
-    buttonSecond?: {
+    primaryButton?: {
       label: string;
       path: string;
     };

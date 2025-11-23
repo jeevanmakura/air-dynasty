@@ -21,22 +21,27 @@ export interface TableConfig {
   showHeader?: boolean;
   showFooter?: boolean;
   headerLeft?: {
+    isCustomSearch?: boolean;
     showSearch: boolean;
     showFilter: boolean;
     showDelete: boolean;
   };
   headerRight?: {
-    buttonFirst?: {
+    secondaryButton?: {
       headerText: string;
       label: string;
+      startIcon?: Icon;
       path: string;
       component: React.ReactNode;
+      dialogWidth?: "xs" | "sm" | "md" | "lg" | "xl";
     };
-    buttonSecond?: {
+    primaryButton?: {
       headerText: string;
       label: string;
+      startIcon?: Icon;
       path: string;
       component: React.ReactNode;
+      dialogWidth?: "xs" | "sm" | "md" | "lg" | "xl";
     };
   };
 }

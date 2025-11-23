@@ -158,7 +158,7 @@ const AdvertisementTable = () => {
     },
 
     headerRight: {
-      buttonSecond: {
+      primaryButton: {
         headerText: "Advertisement Creation",
         label: "Add Advertisement",
         path: "/dashboard/advertisements",

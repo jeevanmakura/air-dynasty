@@ -1,9 +1,20 @@
-import { alpha, Box, Button, Stack, Typography, useTheme } from "@mui/material";
-import { Add, ArrowForward, Filter, Grid1, Trash } from "iconsax-react";
+import { Button, Stack, TextField, Typography, useTheme } from "@mui/material";
+import { Add, ArrowForward, Filter, Trash } from "iconsax-react";
 import SearchBox from "./SearchBox";
-import type { TableConfig } from "../../types/types";
+import type { FormFields, TableConfig } from "../../types/types";
 import DialogButton from "../organism/DialogButton";
 import DeleteBox from "../pages/dashboard/component/dialogebox/DeleteBox";
+
+const searchField: FormFields[] = [
+  {
+    label: "Payement Date",
+    name: "Date",
+    type: "date",
+    required: true,
+    defaultValue: "",
+    placeholder: "Select Date",
+  },
+];
 
 const TableHeader = ({
   searchValue,
@@ -90,48 +101,106 @@ const TableHeader = ({
               />
             </Button>
           )}
+          {/* custom search */}
+          {headerConfig?.headerLeft?.isCustomSearch &&
+            searchField.map((field: FormFields) => (
+              <div key={field.name} className="w-[292px]">
+                <Typography
+                  fontSize={14}
+                  fontWeight={600}
+                  color={"text.primary"}
+                  mb={0.5}
+                >
+                  {field.label}{" "}
+                  {field.required && <span style={{ color: "red" }}>*</span>}
+                </Typography>
+                <TextField
+                  name={field.name}
+                  variant="outlined"
+                  fullWidth
+                  size="small"
+                  type={field.type}
+                  placeholder={field.placeholder}
+                  value={searchValue}
+                  onChange={(e) => onSearchChange(e.target.value)}
+                />
+              </div>
+            ))}
         </Stack>
         <Stack direction="row" alignItems="center" spacing={1}>
-          {headerConfig?.headerRight?.buttonFirst && (
-            <DialogButton
-              title={
-                headerConfig?.headerRight?.buttonFirst?.headerText || "Add Form"
-              }
-              button={
-                <Button
-                  variant="outlined"
-                  startIcon={
-                    <Add size={24} color={theme.palette.primary.main} />
+          {headerConfig?.headerRight?.secondaryButton &&
+            (() => {
+              const IconComponent =
+                headerConfig.headerRight.secondaryButton.startIcon || Add;
+
+              return (
+                <DialogButton
+                  title={
+                    headerConfig.headerRight.secondaryButton.headerText ||
+                    "Add Form"
+                  }
+                  dialogWidth={
+                    headerConfig?.headerRight?.secondaryButton?.dialogWidth
+                  }
+                  button={
+                    <Button
+                      variant="outlined"
+                      startIcon={
+                        !IconComponent ? (
+                          <Add size={24} color={theme.palette.primary.main} />
+                        ) : (
+                          <IconComponent
+                            size={24}
+                            color={theme.palette.primary.main}
+                          />
+                        )
+                      }
+                    >
+                      {headerConfig.headerRight.secondaryButton.label}
+                    </Button>
                   }
                 >
-                  {headerConfig?.headerRight?.buttonFirst?.label}
-                </Button>
-              }
-            >
-              {headerConfig?.headerRight?.buttonFirst?.component}
-            </DialogButton>
-          )}
-          {headerConfig?.headerRight?.buttonSecond && (
-            <DialogButton
-              title={
-                headerConfig?.headerRight?.buttonSecond?.headerText ||
-                "Add Form"
-              }
-              button={
-                <Button
-                  variant="contained"
-                  sx={{
-                    backgroundColor: theme.palette.primary.main,
-                  }}
-                  startIcon={<Add size={24} color={theme.palette.grey[50]} />}
+                  {headerConfig.headerRight.secondaryButton.component}
+                </DialogButton>
+              );
+            })()}
+          {headerConfig?.headerRight?.primaryButton &&
+            (() => {
+              const IconComponent =
+                headerConfig.headerRight.primaryButton.startIcon || Add;
+
+              return (
+                <DialogButton
+                  title={
+                    headerConfig.headerRight.primaryButton.headerText ||
+                    "Add Form"
+                  }
+                  dialogWidth={
+                    headerConfig?.headerRight?.primaryButton?.dialogWidth
+                  }
+                  button={
+                    <Button
+                      variant="contained"
+                      sx={{ backgroundColor: theme.palette.primary.main }}
+                      startIcon={
+                        !IconComponent ? (
+                          <Add size={24} color={theme.palette.grey[50]} />
+                        ) : (
+                          <IconComponent
+                            size={24}
+                            color={theme.palette.grey[50]}
+                          />
+                        )
+                      }
+                    >
+                      {headerConfig.headerRight.primaryButton.label}
+                    </Button>
+                  }
                 >
-                  {headerConfig?.headerRight?.buttonSecond?.label}
-                </Button>
-              }
-            >
-              {headerConfig?.headerRight?.buttonSecond?.component}
-            </DialogButton>
-          )}
+                  {headerConfig.headerRight.primaryButton.component}
+                </DialogButton>
+              );
+            })()}
         </Stack>
       </Stack>
     </>

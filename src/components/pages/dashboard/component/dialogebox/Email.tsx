@@ -7,9 +7,9 @@ import {
   Typography,
   useTheme,
 } from "@mui/material";
-import { Grid1 } from "iconsax-react";
+import { Sms } from "iconsax-react";
 
-const DeleteBox = () => {
+const Email = () => {
   const theme = useTheme();
   return (
     <Box>
@@ -31,17 +31,17 @@ const DeleteBox = () => {
             borderRadius: "50%",
           }}
         >
-          <Grid1 size={40} variant="Bold" color={theme.palette.primary.main} />
+          <Sms size={40} variant="Bold" color={theme.palette.primary.main} />
         </Box>
         <Typography variant="h5" fontWeight="bold" marginTop={1}>
-          Delete Row of the Table
+          Send Reservation Email
         </Typography>
         <Typography
           variant="subtitle1"
           fontWeight="semibold"
           color="text.secondary"
         >
-          Are you sure you want to delete row of table?
+          Are you sure you want to send a reservation email?
         </Typography>
       </Stack>
       <Divider
@@ -67,4 +67,4 @@ const DeleteBox = () => {
   );
 };
 
-export default DeleteBox;
+export default Email;

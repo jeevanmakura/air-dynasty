@@ -180,7 +180,7 @@ const NoticeTable = () => {
     },
 
     headerRight: {
-      buttonSecond: {
+      primaryButton: {
         headerText: "Add Notice",
         label: "Add Notice",
         path: "/dashboard/notice",

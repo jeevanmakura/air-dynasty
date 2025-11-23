@@ -6,12 +6,13 @@ import { useMemo } from "react";
 import { IconButton, Stack, useTheme } from "@mui/material";
 import { Edit2, Eye, Trash } from "iconsax-react";
 import { Link } from "react-router-dom";
-import type { HeaderConfig } from "../../../../../types/types";
+import type { TableConfig } from "../../../../../types/types";
 import AddStatement from "../forms/AddStatement";
 import AddAgend from "../forms/AddAgend";
 import DialogButton from "../../../../organism/DialogButton";
 import DeleteBox from "../dialogebox/DeleteBox";
 import DetailView from "../dialogebox/DetailView";
+import SeeStatement from "../../agents/SeeStatement";
 
 const tableData = [
   {
@@ -74,7 +75,14 @@ const AgentsTable = () => {
     customHeaders,
   });
 
-  const StatementField = () => <Link to="#">View Statement</Link>;
+  const StatementField = () => (
+    <DialogButton
+      title="See Statement"
+      button={<span className="cursor-pointer">See Statement</span>}
+    >
+      <SeeStatement />
+    </DialogButton>
+  );
 
   const PaymentField = () => <Link to="#">View Payment</Link>;
 
@@ -131,22 +139,22 @@ const AgentsTable = () => {
     [columns]
   );
 
-  const headerConfig: HeaderConfig = {
+  const headerConfig: TableConfig = {
     showHeader: true,
-    headerLeftContent: {
+    headerLeft: {
       showSearch: true,
       showFilter: true,
       showDelete: true,
     },
 
-    headerRightContent: {
-      buttonFirst: {
+    headerRight: {
+      secondaryButton: {
         headerText: "Statement Creation",
         label: "Add Statement",
         path: "/dashboard/agents/statement",
         component: <AddStatement />,
       },
-      buttonSecond: {
+      primaryButton: {
         headerText: "Add Agend",
         label: "Add Agent",
         path: "/dashboard/agents/add",

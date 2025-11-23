@@ -127,7 +127,7 @@ const RoleTable = () => {
     },
 
     headerRight: {
-      buttonSecond: {
+      primaryButton: {
         headerText: "Role Creation ",
         label: "Add Role",
         path: "/dashboard/users",

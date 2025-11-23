@@ -12,10 +12,12 @@ import { cloneElement, useState } from "react";
 const DialogButton = ({
   title,
   button,
+  dialogWidth = "md",
   children,
 }: {
   title?: string;
   button?: React.ReactNode;
+  dialogWidth?: "xs" | "sm" | "md" | "lg" | "xl";
   children?: React.ReactNode;
 }) => {
   const [open, setOpen] = useState(false);
@@ -37,7 +39,7 @@ const DialogButton = ({
         open={open}
         onClose={() => setOpen(false)}
         fullWidth
-        maxWidth="md"
+        maxWidth={dialogWidth}
         //rouded corners
         slotProps={{
           paper: {

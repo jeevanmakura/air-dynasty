@@ -132,7 +132,7 @@ const FlightRequestListTable = () => {
     },
 
     headerRight: {
-      buttonSecond: {
+      primaryButton: {
         headerText: "Flight Requests",
         label: "Add Flight",
         path: "/dashboard/agents/add-statement",

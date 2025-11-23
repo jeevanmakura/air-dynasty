@@ -36,10 +36,11 @@ const BaseTable = ({
   heaaderConfig: TableConfig;
   perPage?: number;
 }) => {
-  console.log("footer", heaaderConfig?.showFooter);
   const [sorting, setSorting] = useState([]);
   const [filtering, setFiltering] = useState("");
   const [rowSelection, setRowSelection] = useState({});
+
+  const finalConfig = { ...defaultTableConfig, ...heaaderConfig };
 
   const table = useReactTable({
     data,
@@ -61,12 +62,12 @@ const BaseTable = ({
 
   return (
     <>
-      {heaaderConfig?.showHeader && (
+      {finalConfig?.showHeader && (
         <TableHeader
           searchValue={filtering}
           onSearchChange={setFiltering}
           table={table}
-          headerConfig={heaaderConfig}
+          headerConfig={finalConfig}
         />
       )}
 
@@ -179,7 +180,7 @@ const BaseTable = ({
       </TableContainer>
 
       {/* Pagination */}
-      {heaaderConfig.showFooter && heaaderConfig?.showFooter && (
+      {finalConfig.showFooter && finalConfig?.showFooter && (
         <TableFooter
           count={table.getPageCount()}
           page={table.getState().pagination.pageIndex + 1}

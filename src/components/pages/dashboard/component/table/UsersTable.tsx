@@ -145,7 +145,7 @@ const UserTable = () => {
     },
 
     headerRight: {
-      buttonSecond: {
+      primaryButton: {
         headerText: "User Creation ",
         label: "Add User",
         path: "/dashboard/users",
