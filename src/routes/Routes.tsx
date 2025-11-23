@@ -27,6 +27,7 @@ import FixedDepartureTable from "../components/pages/dashboard/component/table/F
 import ActivityLogs from "../components/pages/dashboard/activityLog/index.tsx";
 import SettingPage from "../components/pages/dashboard/settings/index.tsx";
 import Setting from "../components/pages/dashboard/settings/Setting.tsx";
+import AdvertisementPage from "../components/pages/dashboard/advertisement/index.tsx";
 
 const router = createBrowserRouter([
   {
@@ -115,6 +116,10 @@ const router = createBrowserRouter([
       {
         path: PATH.ADMIN.ACTIVITY_LOGS.ROOT,
         element: <ActivityLogs />,
+      },
+      {
+        path: PATH.ADMIN.ADVERTISMENT.ROOT,
+        element: <AdvertisementPage />,
       },
       {
         element: <SettingPage />,
