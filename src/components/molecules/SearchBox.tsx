@@ -4,16 +4,19 @@ import { Command, SearchNormal1 } from "iconsax-react";
 export default function SearchBox({
   value,
   onChange,
+  inputRef,
   hasEndAdornment = false,
 }: {
   hasEndAdornment?: boolean;
   value?: string;
+  inputRef?: React.RefObject<HTMLInputElement | null>;
   onChange?: (value: string) => void;
 }) {
   return (
     <TextField
       placeholder="Search..."
       size="small"
+      inputRef={(inputRef && inputRef) || undefined}
       value={value}
       onChange={(e) => onChange && onChange(e.target.value)}
       sx={{

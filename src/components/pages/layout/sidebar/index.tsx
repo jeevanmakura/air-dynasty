@@ -30,18 +30,21 @@ export default function ResponsiveDrawer({ window, children }: Props) {
     if (!isClosing) setMobileOpen(!mobileOpen);
   };
 
-  const drawer = (
-    <div>
-      <Toolbar sx={{ padding: "16px", justifyContent: "center" }}>
+  // Drawer content: Logo on top, menu below
+  const drawerContent = (
+    <Box sx={{ display: "flex", flexDirection: "column", height: "100%" }}>
+      <Toolbar
+        sx={{ padding: "16px", justifyContent: "center", flexShrink: 0 }}
+      >
         <Link to={"/"}>
           <img src="/logo.svg" alt="Logo" width={156} height={46} />
         </Link>
       </Toolbar>
 
-      <div>
+      <Box sx={{ flexGrow: 1, overflowY: "auto" }}>
         <PriymaryMenu />
-      </div>
-    </div>
+      </Box>
+    </Box>
   );
 
   const container = window ? () => window().document.body : undefined;
@@ -69,7 +72,7 @@ export default function ResponsiveDrawer({ window, children }: Props) {
           }}
           slotProps={{ root: { keepMounted: true } }}
         >
-          {drawer}
+          {drawerContent}
         </Drawer>
 
         {/* DESKTOP DRAWER */}
@@ -81,7 +84,7 @@ export default function ResponsiveDrawer({ window, children }: Props) {
           }}
           open
         >
-          {drawer}
+          {drawerContent}
         </Drawer>
       </Box>
 
