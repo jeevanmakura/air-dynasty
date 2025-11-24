@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Box,
   Typography,
@@ -31,7 +31,7 @@ let fields: FormFields[] = [
   },
   {
     label: "Do you want this advertisement to be visible?",
-    name: "is_approved",
+    name: "status",
     type: "switch",
     required: false,
     defaultValue: false,
@@ -39,7 +39,13 @@ let fields: FormFields[] = [
   },
 ];
 
-const AddAdvertisement = () => {
+const AddAdvertisement = ({
+  isEdit,
+  data,
+}: {
+  isEdit?: boolean;
+  data?: any;
+}) => {
   const [form, setForm] = useState<Record<string, any>>(
     fields.reduce((acc, f) => ({ ...acc, [f.name]: f.defaultValue }), {})
   );
@@ -54,6 +60,17 @@ const AddAdvertisement = () => {
   };
 
   const theme = useTheme();
+
+  useEffect(() => {
+    if (isEdit && data) {
+      const newForm = fields.reduce((acc, f) => {
+        acc[f.name] = data[f.name] ?? f.defaultValue;
+        return acc;
+      }, {} as Record<string, any>);
+
+      setForm(newForm);
+    }
+  }, [isEdit, data]);
 
   return (
     <Box component="section">
