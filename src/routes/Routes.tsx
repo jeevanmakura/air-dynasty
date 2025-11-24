@@ -28,6 +28,7 @@ import ActivityLogs from "../components/pages/dashboard/activityLog/index.tsx";
 import SettingPage from "../components/pages/dashboard/settings/index.tsx";
 import Setting from "../components/pages/dashboard/settings/Setting.tsx";
 import AdvertisementPage from "../components/pages/dashboard/advertisement/index.tsx";
+import EmailLogsPage from "../components/pages/dashboard/emailLogs/index.tsx";
 
 const router = createBrowserRouter([
   {
@@ -120,6 +121,10 @@ const router = createBrowserRouter([
       {
         path: PATH.ADMIN.ADVERTISMENT.ROOT,
         element: <AdvertisementPage />,
+      },
+      {
+        path: PATH.ADMIN.EMAIL_LOGS.ROOT,
+        element: <EmailLogsPage />,
       },
       {
         element: <SettingPage />,

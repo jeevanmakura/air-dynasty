@@ -88,7 +88,7 @@ const RoleTable = () => {
           }
         >
           {/* only send clicked row data */}
-          <DetailView data={rowData} />
+          <AddRole isEdit={true} data={rowData} />
         </DialogButton>
       </IconButton>
       <IconButton size="small">

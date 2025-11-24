@@ -1,4 +1,4 @@
-import { useState, useMemo, type FormEvent } from "react";
+import { useState, useMemo, type FormEvent, useEffect } from "react";
 import {
   Box,
   Button,
@@ -98,7 +98,13 @@ const formFields = [
 ];
 
 // ---------------- MAIN COMPONENT ----------------
-export default function AddRole() {
+export default function AddRole({
+  isEdit,
+  data: rowData,
+}: {
+  isEdit?: boolean;
+  data?: any;
+}) {
   const theme = useTheme();
   const [data, setData] = useState(initialPermissions);
   const [search, setSearch] = useState("");
@@ -182,6 +188,18 @@ export default function AddRole() {
     alert(`Role submitted!\n${JSON.stringify(payload, null, 2)}`);
   };
 
+  useEffect(() => {
+    if (isEdit && data) {
+      // Map data to form fields, fallback to defaultValue if key missing
+      const newForm = formFields.reduce((acc, f) => {
+        acc[f.name] = rowData[f.name] ?? f.defaultValue;
+        return acc;
+      }, {} as Record<string, any>);
+
+      setRoleName(newForm.roleName);
+    }
+  }, [isEdit, data]);
+
   return (
     <Box p={2}>
       {/* Header */}
@@ -201,7 +219,7 @@ export default function AddRole() {
           </ButtonWithBackground>
           <Stack spacing={0.5}>
             <Typography variant="h5" fontWeight="bold">
-              Create Role
+              {isEdit ? "Edit" : "Create"} Role
             </Typography>
             <Typography variant="body1" color="text.secondary">
               Fill in the form to create a new role.
@@ -213,33 +231,35 @@ export default function AddRole() {
 
       {/* ---------------- FORM ---------------- */}
       <Box component="form" onSubmit={handleSubmit} mb={3}>
-        <Stack spacing={2}>
-          {formFields.map((field) => (
-            <Box>
-              <Typography
-                fontSize={field.type === "switch" ? 16 : 14}
-                fontWeight={600}
-                color={
-                  field.type === "switch" ? "text.secondary" : "text.primary"
-                }
-                mb={0.5}
-              >
-                {field.label}{" "}
-                {field.required && <span style={{ color: "red" }}>*</span>}
-              </Typography>
-              <TextField
-                variant="outlined"
-                fullWidth
-                size="small"
-                type={field.type}
-                placeholder={field.placeholder}
-                value={roleName}
-                required={field.required}
-                onChange={(e) => setRoleName(e.target.value)}
-              />
-            </Box>
-          ))}
-        </Stack>
+        {!isEdit && (
+          <Stack spacing={2}>
+            {formFields.map((field) => (
+              <Box>
+                <Typography
+                  fontSize={field.type === "switch" ? 16 : 14}
+                  fontWeight={600}
+                  color={
+                    field.type === "switch" ? "text.secondary" : "text.primary"
+                  }
+                  mb={0.5}
+                >
+                  {field.label}{" "}
+                  {field.required && <span style={{ color: "red" }}>*</span>}
+                </Typography>
+                <TextField
+                  variant="outlined"
+                  fullWidth
+                  size="small"
+                  type={field.type}
+                  placeholder={field.placeholder}
+                  value={roleName}
+                  required={field.required}
+                  onChange={(e) => setRoleName(e.target.value)}
+                />
+              </Box>
+            ))}
+          </Stack>
+        )}
 
         {/* ---------------- TABLE ---------------- */}
         <TableContainer component={Paper} sx={{ mt: 4 }}>

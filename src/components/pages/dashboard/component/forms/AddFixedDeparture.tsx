@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Box,
   Typography,
@@ -91,7 +91,13 @@ const flightFields: FormFields[] = [
   },
 ];
 
-const AddFixedDeparture = () => {
+const AddFixedDeparture = ({
+  isEdit,
+  data,
+}: {
+  isEdit?: boolean;
+  data?: any;
+}) => {
   const theme = useTheme();
 
   // Main form state with passengers nested
@@ -138,6 +144,17 @@ const AddFixedDeparture = () => {
     e.preventDefault();
     console.log("FORM SUBMITTED:", form);
   };
+
+  useEffect(() => {
+    if (isEdit && data) {
+      const newForm = flightFields.reduce((acc, f) => {
+        acc[f.name] = data[f.name] ?? f.defaultValue;
+        return acc;
+      }, {} as Record<string, any>);
+
+      setForm(newForm);
+    }
+  }, [isEdit, data]);
 
   return (
     <Box component="section">
@@ -215,7 +232,7 @@ const AddFixedDeparture = () => {
             </Stack>
           </Stack>
 
-          {form.passengers.length! === 0 && (
+          {form?.passengers?.length! === 0 && (
             <Button
               variant="contained"
               onClick={addPassenger}
@@ -230,7 +247,7 @@ const AddFixedDeparture = () => {
           )}
         </Stack>
         <Divider sx={{ borderWidth: 1 }} />
-        {form.passengers.map((passenger: any, index: number) => (
+        {form?.passengers?.map((passenger: any, index: number) => (
           <AddPassenger
             key={index}
             index={index}

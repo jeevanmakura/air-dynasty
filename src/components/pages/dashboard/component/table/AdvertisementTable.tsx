@@ -8,20 +8,19 @@ import { Edit2, Trash } from "iconsax-react";
 import type { TableConfig } from "../../../../../types/types";
 import DialogButton from "../../../../organism/DialogButton";
 import DeleteBox from "../dialogebox/DeleteBox";
-import DetailView from "../dialogebox/DetailView";
 import AddAdvertisement from "../forms/AddAdvertisement";
 
 const tableData = [
   {
     sn: 1,
-    ad_name: "Saikush PSD",
+    name: "Saikush PSD",
     image:
       "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
     status: "visible",
   },
   {
     sn: 2,
-    ad_name: "Saikush PSD",
+    name: "Saikush PSD",
     image:
       "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
     status: "invisible",
@@ -33,7 +32,7 @@ const AdvertisementTable = () => {
 
   const customHeaders = {
     sn: "SN",
-    ad_name: "Name",
+    name: "Name",
     image: "Image",
     status: "Status",
   };
@@ -119,7 +118,7 @@ const AdvertisementTable = () => {
           }
         >
           {/* only send clicked row data */}
-          <DetailView data={rowData} />
+          <AddAdvertisement isEdit={true} data={rowData} />
         </DialogButton>
       </IconButton>
       <IconButton size="small">

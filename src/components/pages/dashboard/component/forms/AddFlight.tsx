@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Box,
   Typography,
@@ -91,7 +91,7 @@ const flightFields: FormFields[] = [
   },
 ];
 
-const AllFlight = () => {
+const AllFlight = ({ isEdit, data }: { isEdit?: boolean; data?: any }) => {
   const theme = useTheme();
 
   // Main form state with passengers nested
@@ -138,6 +138,18 @@ const AllFlight = () => {
     e.preventDefault();
     console.log("FORM SUBMITTED:", form);
   };
+
+  useEffect(() => {
+    if (isEdit && data) {
+      // Map data to form fields, fallback to defaultValue if key missing
+      const newForm = flightFields.reduce((acc, f) => {
+        acc[f.name] = data[f.name] ?? f.defaultValue;
+        return acc;
+      }, {} as Record<string, any>);
+
+      setForm(newForm);
+    }
+  }, [isEdit, data]);
 
   return (
     <Box component="section">
@@ -215,7 +227,7 @@ const AllFlight = () => {
             </Stack>
           </Stack>
 
-          {form.passengers.length! === 0 && (
+          {form?.passengers?.length! === 0 && (
             <Button
               variant="contained"
               onClick={addPassenger}
@@ -230,7 +242,7 @@ const AllFlight = () => {
           )}
         </Stack>
         <Divider sx={{ borderWidth: 1 }} />
-        {form.passengers.map((passenger: any, index: number) => (
+        {form?.passengers?.map((passenger: any, index: number) => (
           <AddPassenger
             key={index}
             index={index}

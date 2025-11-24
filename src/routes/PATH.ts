@@ -63,6 +63,9 @@ export const PATH = {
     ADVERTISMENT: {
       ROOT: "/advertisements",
     },
+    EMAIL_LOGS: {
+      ROOT: "/email-logs",
+    },
     SETTINGS: {
       ROOT: "/settings",
     },

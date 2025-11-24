@@ -207,7 +207,14 @@ const FlightRequestListTable = () => {
         </DialogButton>
       </IconButton>
       <IconButton size="small">
-        <Edit2 size={24} color={theme.palette.grey[400]} variant="Bold" />
+        <DialogButton
+          title="Delete row"
+          button={
+            <Edit2 size={24} color={theme.palette.grey[400]} variant="Bold" />
+          }
+        >
+          <AllFlight isEdit={true} data={rowData} />
+        </DialogButton>
       </IconButton>
       <IconButton size="small">
         <Sms size={24} color={theme.palette.grey[400]} variant="Bold" />

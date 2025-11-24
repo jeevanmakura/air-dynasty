@@ -3,12 +3,9 @@ import DataCard from "../../../../molecules/DataCard";
 import BaseTable from "../../../../organism/BaseTable";
 import useFetchTable from "../../../../../hook/useFetchTable";
 import { useMemo } from "react";
-import { IconButton, Stack, useTheme } from "@mui/material";
-import { Airplane, Edit2, Eye, Sms, Trash } from "iconsax-react";
+
 import type { TableConfig } from "../../../../../types/types";
-import DialogButton from "../../../../organism/DialogButton";
-import DetailView from "../dialogebox/DetailView";
-import AddFixedDeparture from "../forms/AddFixedDeparture";
+import { useTheme } from "@mui/material";
 
 const tableData = [
   {
@@ -76,7 +73,7 @@ const tableData = [
   },
 ];
 
-const FixedDepartureTable = () => {
+const EmailLogTable = () => {
   const theme = useTheme();
   const customHeaders = {
     sn: "SN",
@@ -95,55 +92,7 @@ const FixedDepartureTable = () => {
     customHeaders,
   });
 
-  const ActionField = ({ rowData }: { rowData: any }) => (
-    <Stack direction="row" spacing={1}>
-      <IconButton size="small">
-        <DialogButton
-          title="View Request List's Details"
-          button={
-            <Eye size={24} color={theme.palette.grey[400]} variant="Bold" />
-          }
-        >
-          {/* only send clicked row data */}
-          <DetailView data={rowData} />
-        </DialogButton>
-      </IconButton>
-      <IconButton size="small">
-        <DialogButton
-          title="View Request List's Details"
-          button={
-            <Edit2 size={24} color={theme.palette.grey[400]} variant="Bold" />
-          }
-        >
-          {/* only send clicked row data */}
-          <AddFixedDeparture isEdit={true} data={rowData} />
-        </DialogButton>
-      </IconButton>
-      <IconButton size="small">
-        <Sms size={24} color={theme.palette.grey[400]} variant="Bold" />
-      </IconButton>
-      <IconButton size="small">
-        <Airplane size={24} color={theme.palette.grey[400]} variant="Bold" />
-      </IconButton>
-      <IconButton size="small">
-        <Trash size={24} color={theme.palette.grey[400]} variant="Bold" />
-      </IconButton>
-    </Stack>
-  );
-
-  const finalColumns = useMemo(
-    () => [
-      ...columns,
-      {
-        header: "Actions",
-        accessorKey: "actions",
-        cell: (cellInfo: any) => (
-          <ActionField rowData={cellInfo.row.original} />
-        ),
-      },
-    ],
-    [columns]
-  );
+  const finalColumns = useMemo(() => [...columns], [columns]);
 
   const headerConfig: TableConfig = {
     showHeader: true,
@@ -151,15 +100,6 @@ const FixedDepartureTable = () => {
       showSearch: true,
       showFilter: true,
       showDelete: true,
-    },
-
-    headerRight: {
-      primaryButton: {
-        headerText: "Fixed Departures",
-        label: "Add Fixed Departure",
-        path: "/dashboard/fixed-departure",
-        component: <AddFixedDeparture />,
-      },
     },
   };
 
@@ -169,7 +109,7 @@ const FixedDepartureTable = () => {
         <BaseTable
           data={rowData}
           columns={finalColumns}
-          perPage={6}
+          perPage={8}
           heaaderConfig={headerConfig}
         />
       </div>
@@ -177,4 +117,4 @@ const FixedDepartureTable = () => {
   );
 };
 
-export default FixedDepartureTable;
+export default EmailLogTable;

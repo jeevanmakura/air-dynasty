@@ -174,21 +174,34 @@ export default function PrimaryMenu() {
         })}
       </List>
       <ListItemButton
-        sx={{
-          color: (theme) => theme.palette.text.secondary,
+        sx={(theme) => ({
+          color: location.pathname.includes("settings")
+            ? theme.palette.primary.main
+            : theme.palette.text.secondary,
+
           padding: "16px 12px",
           height: "48px",
           borderRadius: "8px",
           mt: 4,
+          backgroundColor: location.pathname.includes("settings")
+            ? alpha(theme.palette.primary.light, 0.1)
+            : "transparent",
+          "& .MuiTypography-root": {
+            fontWeight: location.pathname.includes("settings") ? 600 : "normal",
+          },
 
           "&:hover": {
-            backgroundColor: (theme) => theme.palette.action.hover,
-            color: (theme) => theme.palette.primary.main,
+            backgroundColor: alpha(theme.palette.primary.light, 0.1),
+            color: theme.palette.primary.main,
+            fontWeight: 600,
             "& .MuiListItemIcon-root": {
-              color: (theme) => theme.palette.primary.main,
+              color: theme.palette.primary.main,
+            },
+            "& .MuiTypography-root": {
+              fontWeight: "semibold",
             },
           },
-        }}
+        })}
         component={Link}
         to="/settings"
       >

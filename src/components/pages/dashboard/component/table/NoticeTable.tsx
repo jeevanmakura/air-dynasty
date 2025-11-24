@@ -141,7 +141,7 @@ const NoticeTable = () => {
           }
         >
           {/* only send clicked row data */}
-          <DetailView data={rowData} />
+          <AddNotice isEdit={true} data={rowData} />
         </DialogButton>
       </IconButton>
       <IconButton size="small">

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Box,
   Typography,
@@ -49,7 +49,7 @@ let fields: FormFields[] = [
   },
 ];
 
-const AddUser = () => {
+const AddUser = ({ isEdit, data }: { isEdit?: boolean; data?: any }) => {
   const [form, setForm] = useState<Record<string, any>>(
     fields.reduce((acc, f) => ({ ...acc, [f.name]: f.defaultValue }), {})
   );
@@ -64,6 +64,17 @@ const AddUser = () => {
   };
 
   const theme = useTheme();
+
+  useEffect(() => {
+    if (isEdit && data) {
+      const newForm = fields.reduce((acc, f) => {
+        acc[f.name] = data[f.name] ?? f.defaultValue;
+        return acc;
+      }, {} as Record<string, any>);
+
+      setForm(newForm);
+    }
+  }, [isEdit, data]);
 
   return (
     <Box component="section">

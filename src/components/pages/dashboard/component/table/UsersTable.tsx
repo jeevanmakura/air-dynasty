@@ -106,7 +106,7 @@ const UserTable = () => {
           }
         >
           {/* only send clicked row data */}
-          <DetailView data={rowData} />
+          <AddUser isEdit={true} data={rowData} />
         </DialogButton>
       </IconButton>
       <IconButton size="small">
