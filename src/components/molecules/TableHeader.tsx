@@ -35,11 +35,11 @@ const TableHeader = ({
     <>
       <Stack
         direction="row"
-        alignItems="center"
+        alignItems="flex-end"
         justifyContent="space-between"
         mb={4}
       >
-        <Stack direction="row" alignItems="center" spacing={1.5}>
+        <Stack direction="row" alignItems="bottom" spacing={1.5}>
           {headerConfig?.headerLeft?.showSearch && (
             <SearchBox value={searchValue} onChange={onSearchChange} />
           )}
@@ -123,11 +123,12 @@ const TableHeader = ({
                   placeholder={field.placeholder}
                   value={searchValue}
                   onChange={(e) => onSearchChange(e.target.value)}
+                  className="custom-date"
                 />
               </div>
             ))}
         </Stack>
-        <Stack direction="row" alignItems="center" spacing={1}>
+        <Stack direction="row" alignItems="bottom" spacing={2}>
           {headerConfig?.headerRight?.secondaryButton &&
             (() => {
               const IconComponent =
