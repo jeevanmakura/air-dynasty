@@ -9,15 +9,17 @@ import {
   Grid5,
   MessageQuestion,
   Messenger,
-  Note,
   Profile2User,
   SecurityUser,
   Sms,
-  User,
+  TableDocument,
   UserTag,
 } from "iconsax-react";
 import type { MenuItem } from "./types/types";
 import type { StatCardProps } from "./components/molecules/StatCard";
+import PendingAeroplane from "./components/atom/icon/PendingAeroplane";
+import CancelAirplane from "./components/atom/icon/CancelAirplane";
+import PlaneDeparture from "./components/atom/icon/PlaneDeparture";
 
 export const drawerWidth = 260;
 export const sidebarMenuItems: MenuItem[] = [
@@ -65,7 +67,7 @@ export const sidebarMenuItems: MenuItem[] = [
   },
   {
     label: "Notices",
-    icon: Note,
+    icon: TableDocument,
     path: "/notices",
   },
   {
@@ -117,18 +119,18 @@ export const statItems: StatCardProps[] = [
     id: 2,
     title: "Pending Approvals",
     value: 120,
-    icon: Airplane,
+    icon: PendingAeroplane,
   },
   {
     id: 3,
     title: "Overall Flights",
     value: 560,
-    icon: Airplane,
+    icon: PlaneDeparture,
   },
   {
     id: 4,
     title: "Cancelled Flights",
     value: 3,
-    icon: Airplane,
+    icon: CancelAirplane,
   },
 ];

@@ -1,9 +1,10 @@
-import { ArrowDown, CloseCircle } from "iconsax-react";
+import { ArrowDown } from "iconsax-react";
 import DataCard from "../../../../molecules/DataCard";
 
 import BaseTable from "../../../../organism/BaseTable";
 import useFetchTable from "../../../../../hook/useFetchTable";
 import { alpha, useTheme } from "@mui/material";
+import type { TableConfig } from "../../../../../types/types";
 
 const tableData = [
   {
@@ -68,25 +69,6 @@ const tableData = [
   },
 ];
 
-export interface TableConfig {
-  showHeader: boolean;
-  headerLeft?: {
-    showSearch: boolean;
-    showFilter: boolean;
-    showDelete: boolean;
-  };
-  headerRight?: {
-    secondaryButton?: {
-      label: string;
-      path: string;
-    };
-    primaryButton?: {
-      label: string;
-      path: string;
-    };
-  };
-}
-
 const OverviewTable = () => {
   const theme = useTheme();
 
@@ -142,6 +124,8 @@ const OverviewTable = () => {
     },
   };
 
+  let perPage = 4;
+
   const { rowData, columns } = useFetchTable({
     data: tableData,
     columnsToHide: [],
@@ -162,7 +146,7 @@ const OverviewTable = () => {
         <BaseTable
           data={rowData}
           columns={columns}
-          perPage={6}
+          perPage={perPage}
           heaaderConfig={headerConfig}
         />
       </div>

@@ -165,61 +165,64 @@ const BaseTable = ({
           )}
 
           <TableBody>
-            {table.getRowModel().rows.map((row) => (
-              <TableRow
-                key={row.id}
-                sx={{
-                  "&:hover": { backgroundColor: "#f9fafb" },
-                }}
-              >
-                {row.getVisibleCells().map((cell: Cell<any, any>, index) => {
-                  // Checkbox for first column
-                  if (index === 0 && row.getVisibleCells().length > 1) {
+            {table
+              .getRowModel()
+              .rows.slice(0, perPage)
+              .map((row) => (
+                <TableRow
+                  key={row.id}
+                  sx={{
+                    "&:hover": { backgroundColor: "#f9fafb" },
+                  }}
+                >
+                  {row.getVisibleCells().map((cell: Cell<any, any>, index) => {
+                    // Checkbox for first column
+                    if (index === 0 && row.getVisibleCells().length > 1) {
+                      return (
+                        <TableCell
+                          key={cell.id}
+                          sx={{
+                            fontFamily: "sans-serif",
+                            color: "text.grey",
+                            fontWeight: 500,
+                            fontSize: 14,
+                            display: "flex",
+                            alignItems: "center",
+                            minHeight: "72px",
+                          }}
+                        >
+                          <Checkbox
+                            checked={row.getIsSelected()}
+                            indeterminate={row.getIsSomeSelected()}
+                            onChange={row.getToggleSelectedHandler()}
+                            sx={{ p: 0, pr: 0.5, color: "text.light" }}
+                            size="small"
+                          />
+                          {cell.getValue()}
+                        </TableCell>
+                      );
+                    }
+
+                    // Default cell rendering (supports customRenderer)
                     return (
                       <TableCell
                         key={cell.id}
                         sx={{
                           fontFamily: "sans-serif",
-                          color: "text.grey",
+                          color: "text.secondary",
                           fontWeight: 500,
                           fontSize: 14,
-                          display: "flex",
-                          alignItems: "center",
-                          minHeight: "72px",
                         }}
                       >
-                        <Checkbox
-                          checked={row.getIsSelected()}
-                          indeterminate={row.getIsSomeSelected()}
-                          onChange={row.getToggleSelectedHandler()}
-                          sx={{ p: 0, pr: 0.5, color: "text.light" }}
-                          size="small"
-                        />
-                        {cell.getValue()}
+                        {flexRender(
+                          cell.column.columnDef.cell,
+                          cell.getContext()
+                        )}
                       </TableCell>
                     );
-                  }
-
-                  // Default cell rendering (supports customRenderer)
-                  return (
-                    <TableCell
-                      key={cell.id}
-                      sx={{
-                        fontFamily: "sans-serif",
-                        color: "text.secondary",
-                        fontWeight: 500,
-                        fontSize: 14,
-                      }}
-                    >
-                      {flexRender(
-                        cell.column.columnDef.cell,
-                        cell.getContext()
-                      )}
-                    </TableCell>
-                  );
-                })}
-              </TableRow>
-            ))}
+                  })}
+                </TableRow>
+              ))}
           </TableBody>
         </Table>
       </TableContainer>
