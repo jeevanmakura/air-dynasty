@@ -82,10 +82,14 @@ const BaseTable = ({
           <TableHead sx={{ backgroundColor: "primary.main" }}>
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id}>
-                {headerGroup.headers.map((header) => (
+                {headerGroup.headers.map((header, index) => (
                   <TableCell
                     key={header.id}
-                    onClick={header.column.getToggleSortingHandler()}
+                    onClick={
+                      index === 0
+                        ? undefined
+                        : header.column.getToggleSortingHandler()
+                    }
                     sx={{
                       color: "white",
                       fontWeight: 500,
@@ -93,9 +97,50 @@ const BaseTable = ({
                       fontFamily: "sans-serif",
                     }}
                   >
-                    {flexRender(
-                      header.column.columnDef.header,
-                      header.getContext()
+                    {index === 0 ? (
+                      Object.keys(rowSelection).length > 0 ? (
+                        <>
+                          <Checkbox
+                            checked={table.getIsAllRowsSelected()}
+                            onChange={table.getToggleAllRowsSelectedHandler()}
+                            sx={{
+                              p: 0,
+                              mr: 0.5,
+                              color: "white",
+                              "& .MuiSvgIcon-root": {
+                                fontSize: 20,
+                                color: (theme) =>
+                                  theme.palette.primary.contrastText,
+                              },
+                              "& .MuiCheckbox-root": {
+                                backgroundColor: "white",
+                              },
+                              "& .Mui-checked": {
+                                color: (theme) =>
+                                  theme.palette.primary.contrastText,
+                              },
+                              "& .MuiCheckbox-indeterminate": {
+                                color: (theme) =>
+                                  theme.palette.primary.contrastText,
+                              },
+                            }}
+                          />
+                          {flexRender(
+                            header.column.columnDef.header,
+                            header.getContext()
+                          )}
+                        </>
+                      ) : (
+                        flexRender(
+                          header.column.columnDef.header,
+                          header.getContext()
+                        )
+                      )
+                    ) : (
+                      flexRender(
+                        header.column.columnDef.header,
+                        header.getContext()
+                      )
                     )}
                   </TableCell>
                 ))}
@@ -127,9 +172,9 @@ const BaseTable = ({
                   "&:hover": { backgroundColor: "#f9fafb" },
                 }}
               >
-                {row.getVisibleCells().map((cell: Cell<any, any>) => {
-                  // Checkbox for SN column
-                  if (cell.column.id === "sn") {
+                {row.getVisibleCells().map((cell: Cell<any, any>, index) => {
+                  // Checkbox for first column
+                  if (index === 0 && row.getVisibleCells().length > 1) {
                     return (
                       <TableCell
                         key={cell.id}

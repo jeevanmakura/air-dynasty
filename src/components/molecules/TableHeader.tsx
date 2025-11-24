@@ -56,7 +56,7 @@ const TableHeader = ({
               Filter
             </Button>
           )}
-          {headerConfig?.headerLeft?.showDelete && (
+          {headerConfig?.headerLeft?.showDelete && isRowSelected && (
             <DialogButton
               title="Delete row"
               button={
