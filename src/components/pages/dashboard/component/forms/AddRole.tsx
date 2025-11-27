@@ -24,6 +24,8 @@ import {
 } from "@tanstack/react-table";
 import { Airplane, ArrowDown2, ArrowUp2, SearchNormal1 } from "iconsax-react";
 import { useEffect, useMemo, useState, type FormEvent } from "react";
+import { showToast } from "../../../../../slice/toastSlice";
+import { useAppDispatch } from "../../../../../store/hook";
 import ButtonWithBackground from "../../../../atom/ButtonWithBackground";
 
 // ---------------- INITIAL DATA ----------------
@@ -113,6 +115,8 @@ export default function AddRole({
   const [sorting, setSorting] = useState<any>([]);
   const [roleName, setRoleName] = useState("");
 
+  const dispatch = useAppDispatch();
+
   // ---------------- FILTER DATA ----------------
   const filteredData = useMemo(
     () =>
@@ -187,7 +191,12 @@ export default function AddRole({
     e.preventDefault();
     const payload = { role: roleName, permissions: data };
     console.log("Submitting role:", payload);
-    alert(`Role submitted!\n${JSON.stringify(payload, null, 2)}`);
+    dispatch(
+      showToast({
+        message: "Statement added successfully",
+        severity: "success",
+      }),
+    );
   };
 
   useEffect(() => {

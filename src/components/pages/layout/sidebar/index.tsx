@@ -1,8 +1,8 @@
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
 import Toolbar from "@mui/material/Toolbar";
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
 import PageBreadcrumbs from "../../../molecules/PageBreadcrumbs";
 import CustomAppbar from "../appbar";
 import PriymaryMenu from "./PrimaryMenu";
@@ -50,13 +50,24 @@ export default function ResponsiveDrawer({ window, children }: Props) {
 
   const container = window ? () => window().document.body : undefined;
 
+  const location = useLocation();
+
+  useEffect(() => {
+    // Route changed → ensure drawer is closed
+    setMobileOpen(false);
+
+    // Remove MUI scroll lock
+    document.body.style.overflow = "auto";
+    document.body.style.paddingRight = "0px";
+  }, [location.pathname]);
+
   return (
     <Box sx={{ display: "flex" }}>
       {/* LEFT SIDEBAR */}
       <Box
         component="nav"
         sx={{
-          width: { sm: drawerWidth },
+          width: { md: drawerWidth },
           flexShrink: { sm: 0 },
         }}
       >
@@ -80,7 +91,7 @@ export default function ResponsiveDrawer({ window, children }: Props) {
         <Drawer
           variant="permanent"
           sx={{
-            display: { xs: "none", sm: "block" },
+            display: { xs: "none", md: "block" },
             "& .MuiDrawer-paper": { width: drawerWidth },
           }}
           open

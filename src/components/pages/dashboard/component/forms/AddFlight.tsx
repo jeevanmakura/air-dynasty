@@ -8,6 +8,8 @@ import {
 } from "@mui/material";
 import { Add, Airplane } from "iconsax-react";
 import { useEffect, useState } from "react";
+import { showToast } from "../../../../../slice/toastSlice";
+import { useAppDispatch } from "../../../../../store/hook";
 import type { FormFields } from "../../../../../types/types";
 import ButtonWithBackground from "../../../../atom/ButtonWithBackground";
 import FormSection from "../../../../organism/FormSection";
@@ -112,6 +114,8 @@ const AllFlight = ({
     passengers: [], // initial passenger
   });
 
+  const dispatch = useAppDispatch();
+
   // Handle main flight field changes
   const handleChange = (name: string, value: any) => {
     setForm((prev) => ({ ...prev, [name]: value }));
@@ -145,6 +149,12 @@ const AllFlight = ({
   const handleSubmit = (e: any) => {
     e.preventDefault();
     console.log("FORM SUBMITTED:", form);
+    dispatch(
+      showToast({
+        message: "Statement added successfully",
+        severity: "success",
+      }),
+    );
   };
 
   useEffect(() => {

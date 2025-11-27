@@ -1,6 +1,6 @@
 
 const DeleteAccount = () => {
-  return <div>DeleteAccount</div>;
+  return <div className="md:hidden">DeleteAccount</div>;
 };
 
 export default DeleteAccount;

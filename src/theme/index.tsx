@@ -76,13 +76,13 @@ const lightPalette: ThemeOptions["palette"] = {
   },
   error: {
     main: "#c10308",
-    light: "#ef5350",
+    light: "#FFF0F1",
     dark: "#c62828",
     contrastText: "#c62828",
   },
   warning: {
     main: "#F8D008",
-    light: "#ff9800",
+    light: "#FFF6EB",
     dark: "#e65100",
     contrastText: "#ffffff",
   },
@@ -94,7 +94,7 @@ const lightPalette: ThemeOptions["palette"] = {
   },
   success: {
     main: "#2e7d32",
-    light: "#4caf50",
+    light: "#EDFDF5",
     dark: "#1b5e20",
     contrastText: "#ffffff",
   },
@@ -177,6 +177,15 @@ const darkPalette = {
 
 // Common theme options
 const commonThemeOptions: ThemeOptions = {
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 640,
+      md: 768,
+      lg: 1024,
+      xl: 1280,
+    },
+  },
   typography: {
     fontFamily: [
       '"DM Sans"',

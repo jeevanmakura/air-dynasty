@@ -8,6 +8,8 @@ import {
 } from "@mui/material";
 import { UserOctagon } from "iconsax-react";
 import { useEffect, useState } from "react";
+import { showToast } from "../../../../../slice/toastSlice";
+import { useAppDispatch } from "../../../../../store/hook";
 import type { FormFields } from "../../../../../types/types";
 import ButtonWithBackground from "../../../../atom/ButtonWithBackground";
 import FormSection from "../../../../organism/FormSection";
@@ -62,6 +64,8 @@ const AddUser = ({
     fields.reduce((acc, f) => ({ ...acc, [f.name]: f.defaultValue }), {})
   );
 
+  const dispatc = useAppDispatch();
+
   const handleChange = (name: string, value: any) => {
     setForm((prev) => ({ ...prev, [name]: value }));
   };
@@ -69,6 +73,12 @@ const AddUser = ({
   const handleSubmit = (e: any) => {
     e.preventDefault();
     console.log("FORM SUBMITTED:", form);
+    dispatc(
+      showToast({
+        message: "Statement added successfully",
+        severity: "success",
+      }),
+    );
   };
 
   const theme = useTheme();

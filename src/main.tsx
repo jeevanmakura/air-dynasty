@@ -6,6 +6,7 @@ import { createRoot } from "react-dom/client";
 import { I18nextProvider, initReactI18next } from "react-i18next";
 import { Provider } from "react-redux";
 import "./App.css";
+import Toast from "./components/organism/toast/index.tsx";
 import GlobalRoutes from "./routes/Routes.tsx";
 import { store } from "./store/store.ts";
 import AirThemeProvider from "./ThemeProvider.tsx";
@@ -38,6 +39,7 @@ createRoot(document.getElementById("root")!).render(
         {/* <Suspense fallback={<div>Loading...</div>}> */}
         <AirThemeProvider>
           <GlobalRoutes />
+          <Toast />
         </AirThemeProvider>
         {/* </Suspense> */}
       </I18nextProvider>

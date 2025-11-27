@@ -68,7 +68,7 @@ export default function CustomAppbar({
       color="default"
       elevation={0}
       sx={{
-        width: { sm: `calc(100% - ${drawerWidth}px)` },
+        width: { md: `calc(100% - ${drawerWidth}px)` },
         ml: { sm: `${drawerWidth}px` },
         borderBottom: (theme) => `1px solid ${theme.palette.divider}`,
       }}
@@ -86,7 +86,7 @@ export default function CustomAppbar({
         >
           <IconButton
             edge="start"
-            sx={{ display: { sm: "none" } }}
+            sx={{ display: { md: "none" } }}
             onClick={handleDrawerToggle}
             color="primary"
           >
