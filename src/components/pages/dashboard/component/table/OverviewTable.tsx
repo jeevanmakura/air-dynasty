@@ -123,7 +123,7 @@ const OverviewTable = () => {
     },
   };
 
-  let perPage = 4;
+  const perPage = 4;
   const customHeaders = {
     s_n: "SN",
     id: "Flight No",

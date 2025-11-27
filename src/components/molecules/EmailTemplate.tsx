@@ -1,11 +1,10 @@
-import { useTheme, alpha, Button } from "@mui/material";
-import ButtonWithBackground from "../atom/ButtonWithBackground";
+import { alpha, Button, useTheme } from "@mui/material";
 import { CloseCircle, TickCircle, Timer } from "iconsax-react";
-import useFetchTable from "../../hook/useFetchTable";
-import BaseTable from "../organism/BaseTable";
-import type { TableConfig } from "../../types/types";
 import { Link } from "react-router-dom";
-import { Twitter } from "@mui/icons-material";
+import useFetchTable from "../../hook/useFetchTable";
+import type { TableConfig } from "../../types/types";
+import ButtonWithBackground from "../atom/ButtonWithBackground";
+import BaseTable from "../organism/BaseTable";
 
 const tableData = [
   {

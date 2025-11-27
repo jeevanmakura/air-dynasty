@@ -1,11 +1,10 @@
 import DataCard from "../../../../molecules/DataCard";
 
-import BaseTable from "../../../../organism/BaseTable";
-import useFetchTable from "../../../../../hook/useFetchTable";
 import { useMemo } from "react";
+import useFetchTable from "../../../../../hook/useFetchTable";
+import BaseTable from "../../../../organism/BaseTable";
 
 import type { TableConfig } from "../../../../../types/types";
-import { useTheme } from "@mui/material";
 
 const tableData = [
   {
@@ -74,7 +73,6 @@ const tableData = [
 ];
 
 const EmailLogTable = () => {
-  const theme = useTheme();
   const customHeaders = {
     sn: "SN",
     id: "Flight No",

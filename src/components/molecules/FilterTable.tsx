@@ -13,7 +13,9 @@ import {
 import { useState } from 'react';
 import RangeSlider from './RangeSlider';
 
-export const FilterTable = ({ table, onSubmit, closePopover }: any) => {
+export const FilterTable = ({
+    // table,
+    onSubmit, closePopover }: any) => {
     const theme = useTheme();
 
     const [status, setStatus] = useState<string>("");

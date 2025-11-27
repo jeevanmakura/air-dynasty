@@ -12,8 +12,11 @@ export default function RangeSlider() {
 
     const theme = useTheme();
 
-    const handleChange = (event: Event, newValue: number[]) => {
+    const handleChange = (
+        event: Event,
+        newValue: number[]) => {
         setValue(newValue);
+        event.preventDefault();
     };
 
     return (

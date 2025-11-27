@@ -1,20 +1,20 @@
+import { ExpandLess, ExpandMore } from "@mui/icons-material";
 import {
+  alpha,
   Box,
+  Collapse,
+  Divider,
   List,
   ListItem,
   ListItemButton,
   ListItemIcon,
   ListItemText,
-  Collapse,
-  alpha,
   Stack,
-  Divider,
 } from "@mui/material";
-import { ExpandLess, ExpandMore } from "@mui/icons-material";
-import { useState } from "react";
-import { sidebarMenuItems } from "../../../../constants";
-import { Link, useLocation } from "react-router-dom";
 import { Setting2 } from "iconsax-react";
+import { useState } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { sidebarMenuItems } from "../../../../constants";
 
 export default function PrimaryMenu({
   handleDrawerToggle,
@@ -41,7 +41,7 @@ export default function PrimaryMenu({
               <ListItem
                 disablePadding
                 component={"li"}
-                // onClick={!hasChildren && handleDrawerToggle}
+              // onClick={!hasChildren && handleDrawerToggle}
               >
                 <ListItemButton
                   onClick={() => hasChildren && handleToggle(item.label)}
@@ -112,7 +112,7 @@ export default function PrimaryMenu({
                           key={child.label}
                           disablePadding
                           component={"li"}
-                          // onClick={handleDrawerToggle}n~
+                        // onClick={handleDrawerToggle}n~
                         >
                           <ListItemButton
                             sx={{
@@ -187,7 +187,7 @@ export default function PrimaryMenu({
         })}
       </List>
       <ListItemButton
-        // onClick={handleDrawerToggle}
+        onClick={handleDrawerToggle}
         sx={(theme) => ({
           color: location.pathname.includes("settings")
             ? theme.palette.primary.main

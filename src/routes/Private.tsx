@@ -1,8 +1,8 @@
 import React from "react";
-import { Outlet, useNavigate } from "react-router-dom";
-import { PATH } from "./PATH";
-import ResponsiveDrawer from "../components/pages/layout/sidebar";
+import { useNavigate } from "react-router-dom";
 import App from "../App";
+import ResponsiveDrawer from "../components/pages/layout/sidebar";
+import { PATH } from "./PATH";
 
 export default function Private() {
   const navigate = useNavigate();

@@ -12,7 +12,7 @@ import type { FormFields } from "../../../../../types/types";
 import ButtonWithBackground from "../../../../atom/ButtonWithBackground";
 import FormSection from "../../../../organism/FormSection";
 
-let fields: FormFields[] = [
+const fields: FormFields[] = [
   {
     label: "Agend Name",
     name: "name",

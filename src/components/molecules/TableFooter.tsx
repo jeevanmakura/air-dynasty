@@ -56,7 +56,7 @@ const TableFooter = ({ count, page, table, perPage = 6 }: TableFooterProps) => {
         <Pagination
           count={count}
           page={page}
-          onChange={(e, value) => table.setPageIndex(value - 1)}
+          onChange={(_, value) => table.setPageIndex(value - 1)}
           shape="rounded"
           siblingCount={1}
           boundaryCount={1}

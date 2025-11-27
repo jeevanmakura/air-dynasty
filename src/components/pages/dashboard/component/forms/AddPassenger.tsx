@@ -1,7 +1,7 @@
-import { Box, Button, Divider, IconButton, Stack } from "@mui/material";
-import FormSection from "../../../../organism/FormSection";
+import { Box, Button, Divider, Stack } from "@mui/material";
+import { Add, Trash } from "iconsax-react";
 import type { FormFields } from "../../../../../types/types";
-import { Add, CloseCircle, Trash } from "iconsax-react";
+import FormSection from "../../../../organism/FormSection";
 
 const passengerFields: FormFields[] = [
   {

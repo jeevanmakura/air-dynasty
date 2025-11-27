@@ -4,7 +4,7 @@ import { useState } from "react";
 import type { FormFields } from "../../../../types/types";
 import FormSection from "../../../organism/FormSection";
 
-let fields: FormFields[] = [
+const fields: FormFields[] = [
   {
     label: "Full Name",
     name: "name",

@@ -45,7 +45,9 @@ export default function CustomAppbar({
     );
   }
 
-
+  if (child) {
+    console.log(child);
+  }
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {

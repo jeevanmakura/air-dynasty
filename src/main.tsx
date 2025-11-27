@@ -1,11 +1,10 @@
 import i18n from "i18next";
 import LanguageDetector from "i18next-browser-languagedetector";
 import HttpApi from "i18next-http-backend";
-import { StrictMode, Suspense } from "react";
+import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { I18nextProvider, initReactI18next } from "react-i18next";
 import { Provider } from "react-redux";
-import { BrowserRouter } from "react-router-dom";
 import "./App.css";
 import GlobalRoutes from "./routes/Routes.tsx";
 import { store } from "./store/store.ts";
