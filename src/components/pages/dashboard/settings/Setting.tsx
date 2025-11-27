@@ -7,10 +7,10 @@ import {
   useTheme,
 } from "@mui/material";
 import { useState } from "react";
-import Profile from "./Profile";
-import Password from "./Password";
-import Security from "./Security";
 import DeleteAccount from "./DeleteAccount";
+import Password from "./Password";
+import Profile from "./Profile";
+import Security from "./Security";
 
 const Setting = () => {
   const theme = useTheme();
@@ -26,8 +26,9 @@ const Setting = () => {
 
   return (
     <Box
-      p={4}
+
       borderRadius={1.5}
+      p={2}
       component={"section"}
       sx={{
         backgroundColor: theme.palette.background.paper,
@@ -44,17 +45,19 @@ const Setting = () => {
 
       <Divider sx={{ mt: 2, mb: 4 }} />
 
-      <Box className="flex gap-8">
-        <Box className="w-1/5 flex flex-col items-start gap-0.5">
+      <Box className="md:flex gap-8">
+        <Box className="md:w-1/4 lg:w-1/6 flex flex-col items-start gap-0.5 shadow-md md:shadow-none p-3 border md:border-0" borderRadius={1} borderColor={"border"}>
           {tabs.map((tab) => (
             <Button
               key={tab.key}
               fullWidth
               onClick={() => setActiveTab(tab.key)}
               sx={{
+                width: "max-content",
                 justifyContent: "left",
                 borderRadius: 1.5,
                 fontSize: 16,
+                py: 0.5,
                 bgcolor:
                   activeTab === tab.key
                     ? alpha(theme.palette.primary.main, 0.1)
@@ -63,6 +66,8 @@ const Setting = () => {
                   activeTab === tab.key
                     ? theme.palette.primary.main
                     : theme.palette.text.primary,
+                border:
+                  activeTab === tab.key ? `none` : "1px solid text.disabled",
                 fontWeight: 600,
               }}
             >
@@ -75,6 +80,7 @@ const Setting = () => {
           orientation="vertical"
           flexItem
           sx={{
+            my: 2,
             borderWidth: 1,
             borderColor: alpha(theme.palette.primary.light, 0.05),
           }}

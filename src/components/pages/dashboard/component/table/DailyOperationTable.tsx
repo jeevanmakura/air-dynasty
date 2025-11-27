@@ -108,7 +108,6 @@ const DailyOperationTable = () => {
             color: config.color,
             textTransform: "capitalize",
             fontSize: "0.8rem",
-            fontFamily: "sans-serif",
           }}
         >
           {value.replace("-", " ")}

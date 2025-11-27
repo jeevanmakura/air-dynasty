@@ -3,7 +3,11 @@ import AdvertisementTable from "../component/table/AdvertisementTable";
 
 const AdvertisementPage = () => {
   return (
-    <Box component={"section"} p={4}>
+    <Box
+      component={"section"}
+
+      sx={{ maxWidth: "100vw", overflowX: "hidden" }}
+    >
       <AdvertisementTable />
     </Box>
   );

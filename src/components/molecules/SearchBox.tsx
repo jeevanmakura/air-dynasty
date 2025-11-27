@@ -1,4 +1,4 @@
-import { TextField, InputAdornment, Box } from "@mui/material";
+import { Box, InputAdornment, TextField } from "@mui/material";
 import { Command, SearchNormal1 } from "iconsax-react";
 
 export default function SearchBox({
@@ -20,7 +20,11 @@ export default function SearchBox({
       value={value}
       onChange={(e) => onChange && onChange(e.target.value)}
       sx={{
-        width: 330,
+        width: {
+          xs: 150,
+          sm: 200,
+          md: 330,
+        },
         height: "100%",
         backgroundColor: "#fff",
         borderRadius: "4px",
@@ -54,7 +58,7 @@ export default function SearchBox({
                 alignItems: "center",
                 gap: 0.5,
                 padding: "2px 4px",
-                border: `1px solid ${theme.palette.divider}`,
+                border: `1px solid ${theme.palette.border}`,
                 borderRadius: "4px",
                 transition: "all 0.2s",
 

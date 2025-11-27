@@ -1,17 +1,17 @@
-import { useEffect, useState } from "react";
 import {
   Box,
-  Typography,
-  Stack,
-  useTheme,
   Button,
   Divider,
+  Stack,
+  Typography,
+  useTheme,
 } from "@mui/material";
 import { Add, Airplane } from "iconsax-react";
+import { useEffect, useState } from "react";
+import type { FormFields } from "../../../../../types/types";
 import ButtonWithBackground from "../../../../atom/ButtonWithBackground";
 import FormSection from "../../../../organism/FormSection";
 import AddPassenger from "./AddPassenger";
-import type { FormFields } from "../../../../../types/types";
 
 const flightFields: FormFields[] = [
   {
@@ -91,7 +91,15 @@ const flightFields: FormFields[] = [
   },
 ];
 
-const AllFlight = ({ isEdit, data }: { isEdit?: boolean; data?: any }) => {
+const AllFlight = ({
+  isEdit,
+  data,
+  setOpen,
+}: {
+  isEdit?: boolean;
+  data?: any;
+  setOpen?: (open: boolean) => void;
+}) => {
   const theme = useTheme();
 
   // Main form state with passengers nested
@@ -181,7 +189,7 @@ const AllFlight = ({ isEdit, data }: { isEdit?: boolean; data?: any }) => {
 
       {/* Form */}
       <Box component="form" onSubmit={handleSubmit} mt={3.5}>
-        <div className="grid grid-cols-2 gap-y-6 gap-x-3.5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-6 gap-x-3.5">
           <FormSection
             fields={flightFields}
             form={form}
@@ -266,6 +274,7 @@ const AllFlight = ({ isEdit, data }: { isEdit?: boolean; data?: any }) => {
         >
           <Button
             variant="outlined"
+            onClick={() => setOpen?.(false)}
             sx={{
               borderColor: theme.palette.secondary.light,
               color: theme.palette.grey[600],

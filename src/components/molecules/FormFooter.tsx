@@ -79,7 +79,6 @@ const FormFooter = ({ count, page, table, perPage = 6 }: FormFooterProps) => {
                 color: "#111",
                 borderRadius: "50%",
 
-                fontFamily: "sans-serif",
                 "&.Mui-selected": {
                   backgroundColor: "#C00000",
                   color: "#fff",

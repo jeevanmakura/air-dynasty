@@ -16,7 +16,11 @@ import { sidebarMenuItems } from "../../../../constants";
 import { Link, useLocation } from "react-router-dom";
 import { Setting2 } from "iconsax-react";
 
-export default function PrimaryMenu() {
+export default function PrimaryMenu({
+  handleDrawerToggle,
+}: {
+  handleDrawerToggle: any;
+}) {
   const [open, setOpen] = useState<string | null>(null);
 
   const location = useLocation();
@@ -34,7 +38,11 @@ export default function PrimaryMenu() {
           return (
             <Box key={item.label}>
               {/* Parent menu */}
-              <ListItem disablePadding>
+              <ListItem
+                disablePadding
+                component={"li"}
+                // onClick={!hasChildren && handleDrawerToggle}
+              >
                 <ListItemButton
                   onClick={() => hasChildren && handleToggle(item.label)}
                   component={!hasChildren ? Link : "button"}
@@ -100,7 +108,12 @@ export default function PrimaryMenu() {
                     />
                     <List component="div" disablePadding>
                       {item?.children?.map((child) => (
-                        <ListItem key={child.label} disablePadding>
+                        <ListItem
+                          key={child.label}
+                          disablePadding
+                          component={"li"}
+                          // onClick={handleDrawerToggle}n~
+                        >
                           <ListItemButton
                             sx={{
                               color: (theme) =>
@@ -174,6 +187,7 @@ export default function PrimaryMenu() {
         })}
       </List>
       <ListItemButton
+        // onClick={handleDrawerToggle}
         sx={(theme) => ({
           color: location.pathname.includes("settings")
             ? theme.palette.primary.main

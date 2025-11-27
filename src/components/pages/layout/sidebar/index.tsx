@@ -3,6 +3,7 @@ import Drawer from "@mui/material/Drawer";
 import Toolbar from "@mui/material/Toolbar";
 import React from "react";
 import { Link } from "react-router-dom";
+import PageBreadcrumbs from "../../../molecules/PageBreadcrumbs";
 import CustomAppbar from "../appbar";
 import PriymaryMenu from "./PrimaryMenu";
 
@@ -42,7 +43,7 @@ export default function ResponsiveDrawer({ window, children }: Props) {
       </Toolbar>
 
       <Box sx={{ flexGrow: 1, overflowY: "auto" }}>
-        <PriymaryMenu />
+        <PriymaryMenu handleDrawerToggle={handleDrawerToggle} />
       </Box>
     </Box>
   );
@@ -105,10 +106,30 @@ export default function ResponsiveDrawer({ window, children }: Props) {
           component="main"
           sx={{
             flexGrow: 1,
-            p: 0,
+            p: {
+              xs: 2,
+              sm: 3,
+              md: 3,
+              lg: 4,
+            },
+            maxWidth: "100vw",
+            height: "100%",
           }}
         >
           <Toolbar />
+          <Box sx={{
+            mb: 2, width: "100%", px: {
+              xs: 2,
+              sm: 3,
+              md: 7,
+            },
+            display: {
+              xs: "block",
+              sm: "none",
+            }
+          }} >
+            <PageBreadcrumbs />
+          </Box>
           {children}
         </Box>
       </Box>

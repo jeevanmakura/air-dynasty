@@ -3,7 +3,11 @@ import RoleTable from "../component/table/RoleTable";
 
 const RolePage = () => {
   return (
-    <Box component={"section"} p={4}>
+    <Box
+      component={"section"}
+
+      sx={{ maxWidth: "100vw", overflowX: "hidden" }}
+    >
       <RoleTable />
     </Box>
   );

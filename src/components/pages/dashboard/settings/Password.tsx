@@ -1,8 +1,8 @@
 import { Box, Button, Stack, Typography } from "@mui/material";
 
+import { useState } from "react";
 import type { FormFields } from "../../../../types/types";
 import FormSection from "../../../organism/FormSection";
-import { useState } from "react";
 
 let fields: FormFields[] = [
   {
@@ -32,7 +32,6 @@ let fields: FormFields[] = [
 ];
 
 const Password = () => {
-
   const [value] = useState({
     currentPassword: "",
     newPassword: "",
@@ -54,18 +53,14 @@ const Password = () => {
       <Stack direction="row" justifyContent="space-between" alignItems="center">
         <Box>
           <Typography variant="h5">Password</Typography>
-          <Typography variant="subtitle2" color="text.grey">
+          <Typography variant="subtitle2" color="text.gray">
             Please enter your current password to change your password.
           </Typography>
         </Box>
       </Stack>
       <Box mt={4} component={"form"} onSubmit={handleSubmit}>
-        <div className="grid grid-cols-3 gap-y-6 gap-x-3.5 mt-8">
-          <FormSection
-            fields={fields}
-            form={form}
-            onChange={handleChange}
-          />
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-y-6 gap-x-3.5 mt-8">
+          <FormSection fields={fields} form={form} onChange={handleChange} />
         </div>
         <Box textAlign="right">
           <Button

@@ -1,11 +1,11 @@
 import DataCard from "../../../../molecules/DataCard";
 
-import BaseTable from "../../../../organism/BaseTable";
-import useFetchTable from "../../../../../hook/useFetchTable";
-import { useMemo } from "react";
 import { IconButton, Stack, useTheme } from "@mui/material";
 import { Airplane, Edit2, Eye, Sms, Trash } from "iconsax-react";
+import { useMemo } from "react";
+import useFetchTable from "../../../../../hook/useFetchTable";
 import type { TableConfig } from "../../../../../types/types";
+import BaseTable from "../../../../organism/BaseTable";
 import DialogButton from "../../../../organism/DialogButton";
 import DetailView from "../dialogebox/DetailView";
 import AddFixedDeparture from "../forms/AddFixedDeparture";
@@ -101,7 +101,7 @@ const FixedDepartureTable = () => {
         <DialogButton
           title="View Request List's Details"
           button={
-            <Eye size={24} color={theme.palette.grey[400]} variant="Bold" />
+            <Eye size={24} color={theme.palette.icon.light} variant="Bold" />
           }
         >
           {/* only send clicked row data */}
@@ -112,7 +112,7 @@ const FixedDepartureTable = () => {
         <DialogButton
           title="View Request List's Details"
           button={
-            <Edit2 size={24} color={theme.palette.grey[400]} variant="Bold" />
+            <Edit2 size={24} color={theme.palette.icon.light} variant="Bold" />
           }
         >
           {/* only send clicked row data */}
@@ -120,13 +120,13 @@ const FixedDepartureTable = () => {
         </DialogButton>
       </IconButton>
       <IconButton size="small">
-        <Sms size={24} color={theme.palette.grey[400]} variant="Bold" />
+        <Sms size={24} color={theme.palette.icon.light} variant="Bold" />
       </IconButton>
       <IconButton size="small">
-        <Airplane size={24} color={theme.palette.grey[400]} variant="Bold" />
+        <Airplane size={24} color={theme.palette.icon.light} variant="Bold" />
       </IconButton>
       <IconButton size="small">
-        <Trash size={24} color={theme.palette.grey[400]} variant="Bold" />
+        <Trash size={24} color={theme.palette.icon.light} variant="Bold" />
       </IconButton>
     </Stack>
   );

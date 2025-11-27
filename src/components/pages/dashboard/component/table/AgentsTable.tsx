@@ -1,18 +1,18 @@
 import DataCard from "../../../../molecules/DataCard";
 
-import BaseTable from "../../../../organism/BaseTable";
-import useFetchTable from "../../../../../hook/useFetchTable";
-import { useMemo } from "react";
 import { IconButton, Stack, useTheme } from "@mui/material";
 import { Edit2, Eye, Trash } from "iconsax-react";
+import { useMemo } from "react";
 import { Link } from "react-router-dom";
+import useFetchTable from "../../../../../hook/useFetchTable";
 import type { TableConfig } from "../../../../../types/types";
-import AddStatement from "../forms/AddStatement";
-import AddAgend from "../forms/AddAgend";
+import BaseTable from "../../../../organism/BaseTable";
 import DialogButton from "../../../../organism/DialogButton";
+import SeeStatement from "../../agents/SeeStatement";
 import DeleteBox from "../dialogebox/DeleteBox";
 import DetailView from "../dialogebox/DetailView";
-import SeeStatement from "../../agents/SeeStatement";
+import AddAgend from "../forms/AddAgend";
+import AddStatement from "../forms/AddStatement";
 
 const tableData = [
   {
@@ -91,8 +91,9 @@ const AgentsTable = () => {
       <IconButton size="small">
         <DialogButton
           title="View Request List's Details"
+
           button={
-            <Eye size={24} color={theme.palette.grey[400]} variant="Bold" />
+            <Eye size={24} color={theme.palette.icon.light} variant="Bold" />
           }
         >
           {/* only send clicked row data */}
@@ -103,7 +104,7 @@ const AgentsTable = () => {
         <DialogButton
           title="Delete row"
           button={
-            <Edit2 size={24} color={theme.palette.grey[400]} variant="Bold" />
+            <Edit2 size={24} color={theme.palette.icon.light} variant="Bold" />
           }
         >
           <AddAgend isEdit={true} data={rowData} />
@@ -113,7 +114,7 @@ const AgentsTable = () => {
         <DialogButton
           title="Delete row"
           button={
-            <Trash size={24} color={theme.palette.grey[400]} variant="Bold" />
+            <Trash size={24} color={theme.palette.icon.light} variant="Bold" />
           }
         >
           <DeleteBox />
@@ -172,7 +173,7 @@ const AgentsTable = () => {
 
   return (
     <DataCard isHeader={false}>
-      <div className="mt-">
+      <div className="overflow-hidden">
         <BaseTable
           data={rowData}
           columns={finalColumns}

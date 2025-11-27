@@ -59,6 +59,7 @@ const DetailView = ({ data }: any) => {
                 fontWeight="normal"
                 color="gray"
                 textTransform={"capitalize"}
+                gutterBottom
               >
                 {formatText(key)}
               </Typography>

@@ -1,8 +1,9 @@
-import { useState, useMemo, type FormEvent, useEffect } from "react";
 import {
+  alpha,
   Box,
   Button,
   Checkbox,
+  Divider,
   Paper,
   Stack,
   Table,
@@ -13,17 +14,16 @@ import {
   TableRow,
   TextField,
   Typography,
-  Divider,
   useTheme,
-  alpha,
 } from "@mui/material";
 import {
-  useReactTable,
+  flexRender,
   getCoreRowModel,
   getSortedRowModel,
-  flexRender,
+  useReactTable,
 } from "@tanstack/react-table";
-import { ArrowDown2, ArrowUp2, SearchNormal1, Airplane } from "iconsax-react";
+import { Airplane, ArrowDown2, ArrowUp2, SearchNormal1 } from "iconsax-react";
+import { useEffect, useMemo, useState, type FormEvent } from "react";
 import ButtonWithBackground from "../../../../atom/ButtonWithBackground";
 
 // ---------------- INITIAL DATA ----------------
@@ -101,9 +101,11 @@ const formFields = [
 export default function AddRole({
   isEdit,
   data: rowData,
+  setOpen,
 }: {
   isEdit?: boolean;
   data?: any;
+  setOpen?: (open: boolean) => void;
 }) {
   const theme = useTheme();
   const [data, setData] = useState(initialPermissions);
@@ -201,7 +203,7 @@ export default function AddRole({
   }, [isEdit, data]);
 
   return (
-    <Box p={2}>
+    <Box>
       {/* Header */}
       <Stack
         direction="row"
@@ -230,7 +232,7 @@ export default function AddRole({
       <Divider sx={{ borderWidth: 1, mb: 3 }} />
 
       {/* ---------------- FORM ---------------- */}
-      <Box component="form" onSubmit={handleSubmit} mb={3}>
+      <Box component="form" onSubmit={handleSubmit}>
         {!isEdit && (
           <Stack spacing={2}>
             {formFields.map((field) => (
@@ -304,8 +306,8 @@ export default function AddRole({
                     sx={{
                       fontWeight: "bold",
                       fontSize: 14,
-                      fontFamily: "sans-serif",
-                      border: "1px solid #ccc", // cell border
+
+                      border: "1px solid #ccc",
                       textAlign: "center",
                     }}
                   >
@@ -327,7 +329,7 @@ export default function AddRole({
                     fontWeight: "bold",
                     cursor: "pointer",
                     fontSize: 14,
-                    fontFamily: "sans-serif",
+
                     border: "1px solid #ccc",
                   }}
                   onClick={() =>
@@ -374,14 +376,14 @@ export default function AddRole({
                     "& td": { py: 1, border: "1px solid #ccc" }, // cell borders
                   }}
                 >
-                  {row.getVisibleCells().map((cell) => (
+                  {row.getVisibleCells().map((cell, index) => (
                     <TableCell
                       key={cell.id}
                       sx={{
                         fontWeight: "500",
                         fontSize: 14,
-                        fontFamily: "sans-serif",
-                        textAlign: "center",
+
+                        textAlign: index === 0 ? "left" : "center",
                       }}
                     >
                       {flexRender(
@@ -422,6 +424,7 @@ export default function AddRole({
         >
           <Button
             variant="outlined"
+            onClick={() => setOpen?.(false)}
             sx={{
               borderColor: theme.palette.secondary.light,
               color: theme.palette.grey[600],

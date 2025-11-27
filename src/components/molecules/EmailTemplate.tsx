@@ -102,7 +102,6 @@ const EmailTemplate = () => {
             color: config.color,
             textTransform: "capitalize",
             fontSize: "0.8rem",
-            fontFamily: "sans-serif",
           }}
         >
           {config.icon} {value.replace("-", " ")}

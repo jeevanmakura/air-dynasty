@@ -1,8 +1,5 @@
 import DataCard from "../../../../molecules/DataCard";
 
-import BaseTable from "../../../../organism/BaseTable";
-import useFetchTable from "../../../../../hook/useFetchTable";
-import { useMemo } from "react";
 import { alpha, IconButton, Stack, useTheme } from "@mui/material";
 import {
   Airplane,
@@ -14,10 +11,14 @@ import {
   Timer,
   Trash,
 } from "iconsax-react";
+import { useMemo } from "react";
+import useFetchTable from "../../../../../hook/useFetchTable";
 import type { TableConfig } from "../../../../../types/types";
-import AllFlight from "../forms/AddFlight";
+import BaseTable from "../../../../organism/BaseTable";
 import DialogButton from "../../../../organism/DialogButton";
 import DetailView from "../dialogebox/DetailView";
+import Email from "../dialogebox/Email";
+import AllFlight from "../forms/AddFlight";
 
 const tableData = [
   {
@@ -177,7 +178,6 @@ const FlightRequestListTable = () => {
             color: config.color,
             textTransform: "capitalize",
             fontSize: "0.8rem",
-            fontFamily: "sans-serif",
           }}
         >
           {config.icon} {value.replace("-", " ")}
@@ -199,7 +199,7 @@ const FlightRequestListTable = () => {
         <DialogButton
           title="View Request List's Details"
           button={
-            <Eye size={24} color={theme.palette.grey[400]} variant="Bold" />
+            <Eye size={24} color={theme.palette.icon.light} variant="Bold" />
           }
         >
           {/* only send clicked row data */}
@@ -210,20 +210,60 @@ const FlightRequestListTable = () => {
         <DialogButton
           title="Delete row"
           button={
-            <Edit2 size={24} color={theme.palette.grey[400]} variant="Bold" />
+            <Edit2 size={24} color={theme.palette.icon.light} variant="Bold" />
           }
         >
           <AllFlight isEdit={true} data={rowData} />
         </DialogButton>
       </IconButton>
       <IconButton size="small">
-        <Sms size={24} color={theme.palette.grey[400]} variant="Bold" />
+        <DialogButton
+          title="Reservation email"
+          button={
+            <Sms size={24} color={theme.palette.icon.light} variant="Bold" />
+          }
+        >
+          <Email
+            title="Send Reservation Email"
+            subtitle="Are you sure you want to send a reservation email?"
+            icon={
+              <Sms
+                size={40}
+                variant="Bold"
+                color={theme.palette.primary.main}
+              />
+            }
+            onClick={() => { }}
+          />
+        </DialogButton>
       </IconButton>
       <IconButton size="small">
-        <Airplane size={24} color={theme.palette.grey[400]} variant="Bold" />
+        <DialogButton
+          title="Flight Success email"
+          button={
+            <Airplane
+              size={24}
+              color={theme.palette.icon.light}
+              variant="Bold"
+            />
+          }
+        >
+          <Email
+            title="Send Flight Success Email"
+            subtitle="Are you sure you want to send a reservation email?"
+            icon={
+              <Airplane
+                size={40}
+                variant="Bold"
+                color={theme.palette.primary.main}
+              />
+            }
+            onClick={() => { }}
+          />
+        </DialogButton>
       </IconButton>
       <IconButton size="small">
-        <Trash size={24} color={theme.palette.grey[400]} variant="Bold" />
+        <Trash size={24} color={theme.palette.icon.light} variant="Bold" />
       </IconButton>
     </Stack>
   );

@@ -4,7 +4,11 @@ import { Outlet } from "react-router-dom";
 
 const FinancePage = () => {
   return (
-    <Box component={"section"} p={4}>
+    <Box
+      component={"section"}
+
+      sx={{ maxWidth: "100vw", overflowX: "hidden" }}
+    >
       <Outlet />
     </Box>
   );

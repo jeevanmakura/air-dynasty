@@ -14,8 +14,8 @@ const ButtonWithBackground = ({
     <Box
       bgcolor={alpha(bgColor || theme.palette.primary.main, 0.1)}
       sx={{
-        height: size,
-        width: size,
+        minHeight: size,
+        minWidth: size,
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
