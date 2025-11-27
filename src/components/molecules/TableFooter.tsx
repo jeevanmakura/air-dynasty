@@ -67,7 +67,7 @@ const TableFooter = ({ count, page, table, perPage = 6 }: TableFooterProps) => {
               {...item}
               slots={{
                 first: () => (
-                  <ArrowLeftDouble size={20} color={theme.palette.text.primary} />
+                  <ArrowLeftDouble color={theme.palette.text.primary} />
                 ),
                 last: () => (
                   <ArrowRightDouble color={theme.palette.text.primary} />
@@ -83,10 +83,13 @@ const TableFooter = ({ count, page, table, perPage = 6 }: TableFooterProps) => {
                 fontWeight: 500,
                 color: "#111",
                 borderRadius: "50%",
+                height: "24px",
+                minWidth: "24px",
 
                 "&.Mui-selected": {
                   backgroundColor: theme.palette.primary.main,
-                  color: "#fff",
+                  color: "text.white",
+                  fontSize: "12px",
                   "&:hover": {
                     backgroundColor: theme.palette.primary.main,
                   },

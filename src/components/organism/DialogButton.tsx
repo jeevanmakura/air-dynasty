@@ -78,17 +78,19 @@ const DialogButton = ({
 
           {/* Close Icon */}
           <IconButton
+            color="primary"
             onClick={() => setOpen(false)}
             sx={{
               position: "absolute",
               right: 8,
               top: 8,
             }}
+
           >
             <CloseCircle
               variant="Bold"
               size={24}
-              color={theme.palette.primary.main}
+              color={"currentColor"}
             />
           </IconButton>
         </DialogTitle>

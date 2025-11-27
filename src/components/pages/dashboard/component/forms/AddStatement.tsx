@@ -8,6 +8,8 @@ import {
 } from "@mui/material";
 import { Airplane } from "iconsax-react";
 import { useState } from "react";
+import { showToast } from "../../../../../slice/toastSlice";
+import { useAppDispatch } from "../../../../../store/hook";
 import type { FormFields } from "../../../../../types/types";
 import ButtonWithBackground from "../../../../atom/ButtonWithBackground";
 import FormSection from "../../../../organism/FormSection";
@@ -55,6 +57,8 @@ const AddStatement = ({ setOpen }: { setOpen?: (open: boolean) => void }) => {
     fields.reduce((acc, f) => ({ ...acc, [f.name]: f.defaultValue }), {})
   );
 
+  const dispatch = useAppDispatch();
+
   const handleChange = (name: string, value: any) => {
     setForm((prev) => ({ ...prev, [name]: value }));
   };
@@ -62,6 +66,13 @@ const AddStatement = ({ setOpen }: { setOpen?: (open: boolean) => void }) => {
   const handleSubmit = (e: any) => {
     e.preventDefault();
     console.log("FORM SUBMITTED:", form);
+    setOpen && setOpen(false);
+    dispatch(
+      showToast({
+        message: "Statement added successfully",
+        severity: "success",
+      }),
+    );
   };
 
   const theme = useTheme();
