@@ -41,7 +41,7 @@ export default function PrimaryMenu({
               <ListItem
                 disablePadding
                 component={"li"}
-              // onClick={!hasChildren && handleDrawerToggle}
+                onClick={!hasChildren && handleDrawerToggle}
               >
                 <ListItemButton
                   onClick={() => hasChildren && handleToggle(item.label)}
@@ -112,7 +112,7 @@ export default function PrimaryMenu({
                           key={child.label}
                           disablePadding
                           component={"li"}
-                        // onClick={handleDrawerToggle}n~
+                          onClick={handleDrawerToggle}
                         >
                           <ListItemButton
                             sx={{
