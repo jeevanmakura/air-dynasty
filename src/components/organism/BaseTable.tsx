@@ -1,14 +1,4 @@
 import {
-  useReactTable,
-  getCoreRowModel,
-  getPaginationRowModel,
-  flexRender,
-  getFilteredRowModel,
-  getSortedRowModel,
-  type Cell,
-} from "@tanstack/react-table";
-import { useState } from "react";
-import {
   Checkbox,
   Table,
   TableBody,
@@ -17,9 +7,20 @@ import {
   TableHead,
   TableRow,
 } from "@mui/material";
+import {
+  flexRender,
+  getCoreRowModel,
+  getFilteredRowModel,
+  getPaginationRowModel,
+  getSortedRowModel,
+  useReactTable,
+  type Cell,
+  type SortingState,
+} from "@tanstack/react-table";
+import { useState, type Dispatch, type SetStateAction } from "react";
+import type { TableConfig } from "../../types/types";
 import TableFooter from "../molecules/TableFooter";
 import TableHeader from "../molecules/TableHeader";
-import type { TableConfig } from "../../types/types";
 
 const defaultTableConfig: TableConfig = {
   showFooter: true,
@@ -56,7 +57,7 @@ const BaseTable = ({
       globalFilter: filtering,
       rowSelection,
     },
-    onSortingChange: setSorting as any,
+    onSortingChange: setSorting as Dispatch<SetStateAction<SortingState>>,
     onGlobalFilterChange: setFiltering,
   });
 
@@ -75,11 +76,12 @@ const BaseTable = ({
         sx={{
           borderRadius: 2,
           border: "1px solid #d1d5db",
-          overflow: "hidden",
+          width: "100%",
+          overflowX: "auto",
         }}
       >
         <Table>
-          <TableHead sx={{ backgroundColor: "primary.main" }}>
+          <TableHead sx={{ backgroundColor: "primary.main", border: "none" }}>
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id}>
                 {headerGroup.headers.map((header, index) => (
@@ -94,7 +96,10 @@ const BaseTable = ({
                       color: "white",
                       fontWeight: 500,
                       fontSize: 14,
-                      fontFamily: "sans-serif",
+                      whiteSpace: "nowrap",
+                      overflow: "hidden",
+                      textOverflow: "ellipsis",
+                      fontFamily: "DM Sans",
                     }}
                   >
                     {index === 0 ? (
@@ -153,10 +158,9 @@ const BaseTable = ({
               <TableCell
                 colSpan={columns.length}
                 sx={{
-                  color: "text.grey",
+                  color: "text.gray",
                   fontWeight: 500,
                   fontSize: 14,
-                  fontFamily: "sans-serif",
                 }}
               >
                 No data found
@@ -173,22 +177,33 @@ const BaseTable = ({
                   key={row.id}
                   sx={{
                     "&:hover": { backgroundColor: "#f9fafb" },
+                    borderBottom: `1px solid `,
+                    borderColor: "divider",
+
+                    "&:last-child": { border: 0 },
                   }}
                 >
                   {row.getVisibleCells().map((cell: Cell<any, any>, index) => {
                     // Checkbox for first column
-                    if (index === 0 && row.getVisibleCells().length > 1) {
+                    if (index === 0 && cell.column.id === "sn" && row.getVisibleCells().length > 1) {
                       return (
                         <TableCell
                           key={cell.id}
                           sx={{
-                            fontFamily: "sans-serif",
-                            color: "text.grey",
+                            color: "text.gray",
                             fontWeight: 500,
                             fontSize: 14,
                             display: "flex",
                             alignItems: "center",
-                            minHeight: "72px",
+                            minHeight: {
+                              xs: 50,
+                              md: "72px",
+
+                            },
+                            whiteSpace: "nowrap",
+                            overflow: "hidden",
+                            textOverflow: "ellipsis",
+                            border: 0,
                           }}
                         >
                           <Checkbox
@@ -208,10 +223,13 @@ const BaseTable = ({
                       <TableCell
                         key={cell.id}
                         sx={{
-                          fontFamily: "sans-serif",
                           color: "text.secondary",
                           fontWeight: 500,
                           fontSize: 14,
+                          whiteSpace: "nowrap",
+                          overflow: "hidden",
+                          textOverflow: "ellipsis",
+                          border: 0,
                         }}
                       >
                         {flexRender(

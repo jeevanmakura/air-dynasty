@@ -3,7 +3,11 @@ import UserTable from "../component/table/UsersTable";
 
 const UsersPage = () => {
   return (
-    <Box component={"section"} p={4}>
+    <Box
+      component={"section"}
+
+      sx={{ maxWidth: "100vw", overflowX: "hidden" }}
+    >
       <UserTable />
     </Box>
   );

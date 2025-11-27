@@ -1,14 +1,14 @@
 import { ArrowDown } from "iconsax-react";
 import DataCard from "../../../../molecules/DataCard";
 
-import BaseTable from "../../../../organism/BaseTable";
-import useFetchTable from "../../../../../hook/useFetchTable";
 import { alpha, useTheme } from "@mui/material";
+import useFetchTable from "../../../../../hook/useFetchTable";
 import type { TableConfig } from "../../../../../types/types";
+import BaseTable from "../../../../organism/BaseTable";
 
 const tableData = [
   {
-    sn: 1,
+    s_n: 1,
     id: "8738284712",
     sector: "Lukla–Makalu",
     agent: "Ahii0",
@@ -18,7 +18,7 @@ const tableData = [
     status: "on-time",
   },
   {
-    sn: 2,
+    s_n: 2,
     id: "9873828712",
     sector: "Lukla–Makalu",
     agent: "Ahii0",
@@ -28,7 +28,7 @@ const tableData = [
     status: "delayed",
   },
   {
-    sn: 3,
+    s_n: 3,
     id: "9873284712",
     sector: "Lukla–Makalu",
     agent: "Ahii0",
@@ -38,7 +38,7 @@ const tableData = [
     status: "failed",
   },
   {
-    sn: 4,
+    s_n: 4,
     id: "9987284712",
     sector: "Lukla–Makalu",
     agent: "Ahii0",
@@ -48,7 +48,7 @@ const tableData = [
     status: "failed",
   },
   {
-    sn: 5,
+    s_n: 5,
     id: "8738284712",
     sector: "Lukla–Makalu",
     agent: "Ahii0",
@@ -58,7 +58,7 @@ const tableData = [
     status: "on-time",
   },
   {
-    sn: 6,
+    s_n: 6,
     id: "8738284712",
     sector: "Lukla–Makalu",
     agent: "Ahii0",
@@ -115,7 +115,6 @@ const OverviewTable = () => {
             color: config.color,
             textTransform: "capitalize",
             fontSize: "0.8rem",
-            fontFamily: "sans-serif",
           }}
         >
           {value.replace("-", " ")}
@@ -124,12 +123,23 @@ const OverviewTable = () => {
     },
   };
 
-  let perPage = 4;
+  const perPage = 4;
+  const customHeaders = {
+    s_n: "SN",
+    id: "Flight No",
+    sector: "Sector",
+    agent: "Agent",
+    price: "Price",
+    flight_date: "Flight Date",
+    pax: "No. of Pax",
+    status: "Status",
+  };
 
   const { rowData, columns } = useFetchTable({
     data: tableData,
     columnsToHide: [],
     customRenderer: customRenderer,
+    customHeaders,
   });
 
   const headerConfig: TableConfig = {

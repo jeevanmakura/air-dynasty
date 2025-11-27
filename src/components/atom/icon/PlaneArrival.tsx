@@ -1,7 +1,5 @@
-import { useTheme } from "@mui/material";
 
-const PlaneArrival = ({ size, color }: { size?: number; color?: string }) => {
-  const theme = useTheme();
+const PlaneArrival = () => {
   return (
     <>
       <svg

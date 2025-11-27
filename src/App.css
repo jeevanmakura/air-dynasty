@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+* {
+  font-family: "DM Sans", sans-serif;
+}
+
 .css-ck9f8y-MuiNativeSelect-root-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input.css-ck9f8y-MuiNativeSelect-root-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input.css-ck9f8y-MuiNativeSelect-root-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input {
   padding-right: 20px !important;
 }

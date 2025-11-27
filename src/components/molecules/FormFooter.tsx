@@ -1,9 +1,9 @@
 import {
-  PaginationItem,
-  Stack,
-  Pagination,
   MenuItem,
+  Pagination,
+  PaginationItem,
   Select,
+  Stack,
   useTheme,
 } from "@mui/material";
 import type { Table } from "@tanstack/react-table";
@@ -51,7 +51,7 @@ const FormFooter = ({ count, page, table, perPage = 6 }: FormFooterProps) => {
         <Pagination
           count={count}
           page={page}
-          onChange={(e, value) => table.setPageIndex(value - 1)}
+          onChange={(_, value) => table.setPageIndex(value - 1)}
           shape="rounded"
           siblingCount={1}
           boundaryCount={1}
@@ -79,7 +79,6 @@ const FormFooter = ({ count, page, table, perPage = 6 }: FormFooterProps) => {
                 color: "#111",
                 borderRadius: "50%",
 
-                fontFamily: "sans-serif",
                 "&.Mui-selected": {
                   backgroundColor: "#C00000",
                   color: "#fff",

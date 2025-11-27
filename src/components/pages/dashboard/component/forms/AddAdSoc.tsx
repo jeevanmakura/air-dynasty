@@ -1,18 +1,18 @@
-import { useState } from "react";
 import {
   Box,
-  Typography,
-  Stack,
-  useTheme,
   Button,
   Divider,
+  Stack,
+  Typography,
+  useTheme,
 } from "@mui/material";
-import type { FormFields } from "../../../../../types/types";
 import { Airplane } from "iconsax-react";
+import { useState } from "react";
+import type { FormFields } from "../../../../../types/types";
 import ButtonWithBackground from "../../../../atom/ButtonWithBackground";
 import FormSection from "../../../../organism/FormSection";
 
-let fields: FormFields[] = [
+const fields: FormFields[] = [
   {
     label: "Amount",
     name: "amount",
@@ -50,7 +50,7 @@ let fields: FormFields[] = [
   },
 ];
 
-const AddAdHocForm = () => {
+const AddAdHocForm = ({ setOpen }: { setOpen?: (open: boolean) => void }) => {
   const [form, setForm] = useState<Record<string, any>>(
     fields.reduce((acc, f) => ({ ...acc, [f.name]: f.defaultValue }), {})
   );
@@ -92,7 +92,7 @@ const AddAdHocForm = () => {
         </Stack>
       </Stack>
       <Box component="form" onSubmit={handleSubmit} sx={{ mt: 2 }}>
-        <div className="grid grid-cols-2 gap-y-6 gap-x-3.5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-6 gap-x-3.5">
           <FormSection fields={fields} form={form} onChange={handleChange} />
         </div>
         <Divider
@@ -111,7 +111,7 @@ const AddAdHocForm = () => {
         >
           <Button
             variant="outlined"
-            // onClick={() => setOpen(false)}
+            onClick={() => setOpen && setOpen(false)}
             sx={{
               borderColor: theme.palette.secondary.light,
               color: theme.palette.grey[600],

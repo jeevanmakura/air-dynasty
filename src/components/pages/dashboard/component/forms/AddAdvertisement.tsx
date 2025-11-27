@@ -1,18 +1,18 @@
-import { useEffect, useState } from "react";
 import {
   Box,
-  Typography,
-  Stack,
-  useTheme,
   Button,
   Divider,
+  Stack,
+  Typography,
+  useTheme,
 } from "@mui/material";
-import type { FormFields } from "../../../../../types/types";
 import { DocumentSketch } from "iconsax-react";
+import { useEffect, useState } from "react";
+import type { FormFields } from "../../../../../types/types";
 import ButtonWithBackground from "../../../../atom/ButtonWithBackground";
 import FormSection from "../../../../organism/FormSection";
 
-let fields: FormFields[] = [
+const fields: FormFields[] = [
   {
     label: "Name",
     name: "name",
@@ -42,9 +42,11 @@ let fields: FormFields[] = [
 const AddAdvertisement = ({
   isEdit,
   data,
+  setOpen,
 }: {
   isEdit?: boolean;
   data?: any;
+  setOpen?: (open: boolean) => void;
 }) => {
   const [form, setForm] = useState<Record<string, any>>(
     fields.reduce((acc, f) => ({ ...acc, [f.name]: f.defaultValue }), {})
@@ -119,11 +121,11 @@ const AddAdvertisement = ({
           justifyContent="end"
           gap={1.5}
           px={2}
-          my={3}
+          mt={3}
         >
           <Button
             variant="outlined"
-            // onClick={() => setOpen(false)}
+            onClick={() => setOpen && setOpen(false)}
             sx={{
               borderColor: theme.palette.secondary.light,
               color: theme.palette.grey[700],

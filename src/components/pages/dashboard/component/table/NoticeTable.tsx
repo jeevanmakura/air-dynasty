@@ -1,14 +1,13 @@
 import DataCard from "../../../../molecules/DataCard";
 
-import BaseTable from "../../../../organism/BaseTable";
-import useFetchTable from "../../../../../hook/useFetchTable";
-import { useMemo } from "react";
 import { alpha, IconButton, Stack, useTheme } from "@mui/material";
 import { Edit2, Trash } from "iconsax-react";
+import { useMemo } from "react";
+import useFetchTable from "../../../../../hook/useFetchTable";
 import type { TableConfig } from "../../../../../types/types";
+import BaseTable from "../../../../organism/BaseTable";
 import DialogButton from "../../../../organism/DialogButton";
 import DeleteBox from "../dialogebox/DeleteBox";
-import DetailView from "../dialogebox/DetailView";
 import AddNotice from "../forms/AddNotice";
 
 const tableData = [
@@ -115,7 +114,6 @@ const NoticeTable = () => {
             color: config.color,
             textTransform: "capitalize",
             fontSize: "0.8rem",
-            fontFamily: "sans-serif",
           }}
         >
           {value.replace("-", " ")}
@@ -137,7 +135,7 @@ const NoticeTable = () => {
         <DialogButton
           title="View Request List's Details"
           button={
-            <Edit2 size={24} color={theme.palette.grey[400]} variant="Bold" />
+            <Edit2 size={24} color={theme.palette.icon.light} variant="Bold" />
           }
         >
           {/* only send clicked row data */}
@@ -148,7 +146,7 @@ const NoticeTable = () => {
         <DialogButton
           title="Delete row"
           button={
-            <Trash size={24} color={theme.palette.grey[400]} variant="Bold" />
+            <Trash size={24} color={theme.palette.icon.light} variant="Bold" />
           }
         >
           <DeleteBox />

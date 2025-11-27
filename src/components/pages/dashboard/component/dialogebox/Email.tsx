@@ -9,7 +9,17 @@ import {
 } from "@mui/material";
 import { Sms } from "iconsax-react";
 
-const Email = () => {
+const Email = ({
+  title = "Send Reservation Email",
+  subtitle = "Are you sure you want to send a reservation email?",
+  icon = <Sms size={40} variant="Bold" color="red" />,
+  onClick = () => { },
+}: {
+  title?: string;
+  subtitle?: string;
+  icon?: React.ReactNode;
+  onClick?: () => void;
+}) => {
   const theme = useTheme();
   return (
     <Box>
@@ -31,17 +41,17 @@ const Email = () => {
             borderRadius: "50%",
           }}
         >
-          <Sms size={40} variant="Bold" color={theme.palette.primary.main} />
+          {icon}
         </Box>
         <Typography variant="h5" fontWeight="bold" marginTop={1}>
-          Send Reservation Email
+          {title}
         </Typography>
         <Typography
           variant="subtitle1"
           fontWeight="semibold"
           color="text.secondary"
         >
-          Are you sure you want to send a reservation email?
+          {subtitle}
         </Typography>
       </Stack>
       <Divider
@@ -59,7 +69,11 @@ const Email = () => {
         <Button variant="outlined" sx={{ borderRadius: 1.5 }}>
           Cancel
         </Button>
-        <Button variant="contained" sx={{ borderRadius: 1.5 }}>
+        <Button
+          variant="contained"
+          sx={{ borderRadius: 1.5 }}
+          onClick={onClick}
+        >
           Yes
         </Button>
       </Stack>

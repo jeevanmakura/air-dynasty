@@ -1,5 +1,5 @@
 const ArrowRightDouble = ({
-  size,
+  // size,
   color = "#1F2937",
 }: {
   size?: number;

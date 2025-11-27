@@ -1,17 +1,17 @@
-import { useEffect, useState } from "react";
 import {
   Box,
-  Typography,
-  Stack,
-  useTheme,
   Button,
   Divider,
+  Stack,
+  Typography,
+  useTheme,
 } from "@mui/material";
 import { Add, Airplane } from "iconsax-react";
+import { useEffect, useState } from "react";
+import type { FormFields } from "../../../../../types/types";
 import ButtonWithBackground from "../../../../atom/ButtonWithBackground";
 import FormSection from "../../../../organism/FormSection";
 import AddPassenger from "./AddPassenger";
-import type { FormFields } from "../../../../../types/types";
 
 const flightFields: FormFields[] = [
   {
@@ -94,9 +94,11 @@ const flightFields: FormFields[] = [
 const AddFixedDeparture = ({
   isEdit,
   data,
+  setOpen,
 }: {
   isEdit?: boolean;
   data?: any;
+  setOpen?: (open: boolean) => void;
 }) => {
   const theme = useTheme();
 
@@ -186,7 +188,7 @@ const AddFixedDeparture = ({
 
       {/* Form */}
       <Box component="form" onSubmit={handleSubmit} mt={3.5}>
-        <div className="grid grid-cols-2 gap-y-6 gap-x-3.5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-6 gap-x-3.5">
           <FormSection
             fields={flightFields}
             form={form}
@@ -270,6 +272,7 @@ const AddFixedDeparture = ({
           my={3}
         >
           <Button
+            onClick={() => setOpen?.(false)}
             variant="outlined"
             sx={{
               borderColor: theme.palette.secondary.light,

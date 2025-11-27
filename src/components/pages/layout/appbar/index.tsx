@@ -1,24 +1,24 @@
-import MenuIcon from "@mui/icons-material/Menu";
 import {
   AppBar,
   Box,
   IconButton,
   Stack,
-  Toolbar,
-  Typography,
-  useTheme,
+  Toolbar
 } from "@mui/material";
-import SearchBox from "../../../molecules/SearchBox";
 import {
-  ArrowRight2,
   EmojiNormal,
-  NotificationBing,
-  Setting2,
+  HambergerMenu,
+  NotificationBing
 } from "iconsax-react";
+import { useEffect, useRef } from "react";
+import { useLocation } from "react-router-dom";
 import { sidebarMenuItems } from "../../../../constants";
 import type { MenuItem } from "../../../../types/types";
-import { useLocation } from "react-router-dom";
-import { useEffect, useRef } from "react";
+import Notification from "../../../molecules/Notification";
+import PageBreadcrumbs from "../../../molecules/PageBreadcrumbs";
+import PopoverButton from "../../../molecules/PopoverButton";
+import Profile from "../../../molecules/Profile";
+import SearchBox from "../../../molecules/SearchBox";
 
 const drawerWidth = 260;
 
@@ -27,7 +27,6 @@ export default function CustomAppbar({
 }: {
   handleDrawerToggle: () => void;
 }) {
-  const theme = useTheme();
   const location = useLocation();
 
   const inputRef = useRef<HTMLInputElement>(null);
@@ -46,11 +45,9 @@ export default function CustomAppbar({
     );
   }
 
-  const ParentIcon = parent?.icon;
-  const parentIconName = parent?.label;
-
-  const ChildIcon = child?.icon;
-  const childIconName = child?.label;
+  if (child) {
+    console.log(child);
+  }
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -93,79 +90,10 @@ export default function CustomAppbar({
             onClick={handleDrawerToggle}
             color="primary"
           >
-            <MenuIcon />
+            <HambergerMenu size={30} color="gray" />
           </IconButton>
-
-          <Box sx={{ mr: 2, width: "100%" }} onClick={handleDrawerToggle}>
-            <Box sx={{ display: "flex", alignItems: "center", gap: "6px" }}>
-              {ParentIcon && (
-                <ParentIcon
-                  size={20}
-                  color={
-                    childIconName
-                      ? theme.palette.text.grey
-                      : theme.palette.primary.main
-                  }
-                  variant="Bold"
-                />
-              )}
-
-              <Typography
-                variant="body1"
-                fontSize={16}
-                fontWeight={600}
-                color={childIconName ? "text.grey" : "primary.main"}
-              >
-                {parentIconName}
-              </Typography>
-
-              {/* if page is settings  */}
-              {segments[0] === "settings" && (
-                <>
-                  <Setting2
-                    size={20}
-                    color={theme.palette.primary.main}
-                    variant="Bold"
-                  />
-
-                  <Typography
-                    variant="body1"
-                    fontSize={16}
-                    fontWeight={600}
-                    color="primary.main"
-                  >
-                    Settings
-                  </Typography>
-                </>
-              )}
-
-              {childIconName && (
-                <>
-                  <ArrowRight2
-                    size={14}
-                    color={theme.palette.text.grey}
-                    className="mx-0.5 mt-0.5"
-                  />
-
-                  {ChildIcon && (
-                    <ChildIcon
-                      size={20}
-                      color={theme.palette.primary.main}
-                      variant="Bold"
-                    />
-                  )}
-
-                  <Typography
-                    variant="body1"
-                    fontSize={16}
-                    fontWeight={600}
-                    color="primary.main"
-                  >
-                    {childIconName}
-                  </Typography>
-                </>
-              )}
-            </Box>
+          <Box sx={{ mr: 2, width: "100%", display: { xs: "none", sm: "block" } }}>
+            <PageBreadcrumbs />
           </Box>
 
           <Box
@@ -179,33 +107,45 @@ export default function CustomAppbar({
               maxHeight: "40px",
             }}
           >
-            <Box>
+            <Box component={"div"} className="hidden sm:block">
               <SearchBox hasEndAdornment inputRef={inputRef} />
             </Box>
 
-            <IconButton
-              sx={{
-                width: 40,
-                height: 40,
-                backgroundColor: "#fff",
-                borderRadius: 1,
-                border: "1px solid #e0e0e0",
-              }}
+            <PopoverButton
+              trigger={
+                <IconButton
+                  sx={{
+                    width: 40,
+                    height: 40,
+                    backgroundColor: "#fff",
+                    borderRadius: 1,
+                    border: "1px solid #e0e0e0",
+                  }}
+                >
+                  <NotificationBing size={18} color="gray" />
+                </IconButton>
+              }
             >
-              <NotificationBing size={18} color="grey" />
-            </IconButton>
+              <Notification />
+            </PopoverButton>
 
-            <IconButton
-              sx={{
-                width: 40,
-                height: 40,
-                backgroundColor: "#fff",
-                borderRadius: 1,
-                border: "1px solid #e0e0e0",
-              }}
+            <PopoverButton
+              trigger={
+                <IconButton
+                  sx={{
+                    width: 40,
+                    height: 40,
+                    backgroundColor: "#fff",
+                    borderRadius: 1,
+                    border: "1px solid #e0e0e0",
+                  }}
+                >
+                  <EmojiNormal size={18} color="gray" />
+                </IconButton>
+              }
             >
-              <EmojiNormal size={18} color="grey" />
-            </IconButton>
+              <Profile />
+            </PopoverButton>
           </Box>
         </Stack>
       </Toolbar>

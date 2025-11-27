@@ -4,7 +4,11 @@ import AgentsTable from "../component/table/AgentsTable";
 
 const AgentsPage = () => {
   return (
-    <Box component={"section"} p={4}>
+    <Box
+      component={"section"}
+
+      sx={{ maxWidth: "100vw", overflowX: "hidden" }}
+    >
       {/* <EmailTemplate /> */}
       <AgentsTable />
     </Box>

@@ -1,7 +1,7 @@
 import { useTheme } from "@mui/material";
 
 const ArrowLeftDouble = ({
-  size,
+  // size,
   color,
 }: {
   size?: number;

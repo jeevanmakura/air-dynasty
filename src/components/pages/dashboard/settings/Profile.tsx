@@ -1,10 +1,10 @@
 import { Box, Button, Stack, Typography, useTheme } from "@mui/material";
 import { Edit2 } from "iconsax-react";
+import { useState } from "react";
 import type { FormFields } from "../../../../types/types";
 import FormSection from "../../../organism/FormSection";
-import { useState } from "react";
 
-let fields: FormFields[] = [
+const fields: FormFields[] = [
   {
     label: "Full Name",
     name: "name",
@@ -44,7 +44,7 @@ const Profile = () => {
   const theme = useTheme();
   const [edit, setEdit] = useState(false);
 
-  const [value, setValue] = useState({
+  const [value] = useState({
     name: "Jeevan",
     email: "jeevan@jeevan.com",
     dob: "2023-01-01",
@@ -65,9 +65,9 @@ const Profile = () => {
   return (
     <Box>
       <Stack direction="row" justifyContent="space-between" alignItems="center">
-        <Box>
+        <Box component={"div"}>
           <Typography variant="h5">Profile</Typography>
-          <Typography variant="subtitle2" color="text.grey">
+          <Typography variant="subtitle2" color="text.gray">
             Check your information and make changes when needed.
           </Typography>
         </Box>
@@ -77,6 +77,9 @@ const Profile = () => {
           size="medium"
           startIcon={<Edit2 size={24} color={theme.palette.text.white} />}
           onClick={() => setEdit(!edit)}
+          sx={{
+            minWidth: "max-content",
+          }}
         >
           Edit Profile
         </Button>
@@ -90,7 +93,7 @@ const Profile = () => {
             accept="image/*"
             aria-label="Upload image"
             className="absolute inset-0 opacity-0 cursor-pointer rounded-full overflow-hidden z-20"
-            onChange={() => {}}
+            onChange={() => { }}
             disabled
           />
 
@@ -107,7 +110,7 @@ const Profile = () => {
             className="absolute bottom-0 right-0 bg-white rounded-full p-1.5 shadow-md z-10"
           />
         </Box>
-        <div className="grid grid-cols-2 gap-y-6 gap-x-3.5 mt-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-6 gap-x-3.5 mt-8">
           <FormSection
             fields={fields}
             form={form}

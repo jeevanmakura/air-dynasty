@@ -20,7 +20,7 @@ const Security = () => {
       <Stack direction="row" justifyContent="space-between" alignItems="center">
         <Box>
           <Typography variant="h5">Security</Typography>
-          <Typography variant="subtitle2" color="text.grey">
+          <Typography variant="subtitle2" color="text.gray">
             All of your active sessions are lsited below. End any sessions you
             dont recognize or trust.
           </Typography>
@@ -37,7 +37,6 @@ const Security = () => {
           >
             <TableCell
               sx={{
-                fontFamily: "sans-serif",
                 fontSize: 16,
                 fontWeight: 500,
                 color: "text.secondary",
@@ -47,7 +46,6 @@ const Security = () => {
             </TableCell>
             <TableCell
               sx={{
-                fontFamily: "sans-serif",
                 fontSize: 16,
                 fontWeight: 500,
                 color: "text.secondary",
@@ -57,7 +55,6 @@ const Security = () => {
             </TableCell>
             <TableCell
               sx={{
-                fontFamily: "sans-serif",
                 fontSize: 16,
                 fontWeight: 500,
                 color: "text.secondary",
@@ -67,7 +64,6 @@ const Security = () => {
             </TableCell>
             <TableCell
               sx={{
-                fontFamily: "sans-serif",
                 fontSize: 16,
                 fontWeight: 500,
                 color: "text.secondary",
@@ -100,7 +96,7 @@ const Security = () => {
                     </Typography>
                     <Typography
                       sx={{ fontSize: 14, fontWeight: 500 }}
-                      color="text.grey"
+                      color="text.gray"
                     >
                       App 127.0.0.1
                     </Typography>
@@ -126,7 +122,7 @@ const Security = () => {
                 </Typography>
                 <Typography
                   sx={{ fontSize: 14, fontWeight: 500 }}
-                  color="text.grey"
+                  color="text.gray"
                 >
                   Created 2 days ago
                 </Typography>

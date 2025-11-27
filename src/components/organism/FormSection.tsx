@@ -1,12 +1,12 @@
 import {
-  Typography,
-  TextField,
-  MenuItem,
-  FormControl,
-  Select,
-  useTheme,
   Box,
+  FormControl,
+  MenuItem,
+  Select,
+  TextField,
+  Typography,
   alpha,
+  useTheme,
 } from "@mui/material";
 import { ArrowDown2, Gallery } from "iconsax-react";
 import type { FormFields } from "../../types/types";
@@ -30,22 +30,22 @@ export default function FormSection({
   return fields.map((field) => (
     <div
       key={field.name}
-      className={`${
-        field.type === "switch" ? "flex col-span-2 items-center gap-2" : ""
-      }`}
+      className={`${field.type === "switch" ? "flex sm:col-span-2 items-center gap-2" : ""
+        }`}
     >
       <Typography
         fontSize={field.type === "switch" ? 16 : 14}
         fontWeight={600}
         color={field.type === "switch" ? "text.secondary" : "text.primary"}
-        mb={0.5}
+        maxWidth={"75%"}
+        gutterBottom
       >
         {field.label}{" "}
         {field.required && <span style={{ color: "red" }}>*</span>}
       </Typography>
 
       {field.type === "switch" ? (
-        <FormControl size="small">
+        <FormControl size="small" className="flex-1">
           <Switch
             value={form[field.name]}
             disabled={disabled}
@@ -147,6 +147,7 @@ export default function FormSection({
         <TextField
           variant="outlined"
           fullWidth
+          name={field.name}
           size="small"
           type={field.type}
           placeholder={field.placeholder}
@@ -154,6 +155,7 @@ export default function FormSection({
           onChange={(e) => onChange(field.name, e.target.value)}
           InputLabelProps={field.type === "date" ? { shrink: true } : {}}
           disabled={disabled}
+
         />
       )}
     </div>

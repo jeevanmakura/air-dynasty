@@ -7,12 +7,12 @@ import {
   useTheme,
 } from "@mui/material";
 import { CloseCircle } from "iconsax-react";
-import { cloneElement, useState } from "react";
+import React, { cloneElement, useState, type ReactElement } from "react";
 
 const DialogButton = ({
   title,
   button,
-  dialogWidth = "md",
+  dialogWidth = "sm",
   children,
 }: {
   title?: string;
@@ -40,15 +40,28 @@ const DialogButton = ({
         onClose={() => setOpen(false)}
         fullWidth
         maxWidth={dialogWidth}
+        disableEnforceFocus
         //rouded corners
         slotProps={{
           paper: {
             style: {
               borderRadius: "24px",
               border: `8px solid ${theme.palette.background.default}`,
+
+            },
+          },
+
+        }}
+        sx={{
+          p: 0,
+          "& .MuiDialog-paper": {
+            margin: {
+              xs: "12px",
+              sm: "24px",
             },
           },
         }}
+
       >
         <DialogTitle
           sx={{
@@ -81,36 +94,19 @@ const DialogButton = ({
         </DialogTitle>
         <Divider />
 
-        <DialogContent>{children}</DialogContent>
-        {/* <Divider
-          sx={{
-            borderWidth: 1,
-            mx: 2,
-          }}
-        />
-        <Stack
-          direction="row"
-          alignItems="center"
-          justifyContent="end"
-          gap={1.5}
-          px={2}
-          my={3}
-        >
-          <Button
-            variant="outlined"
-            onClick={() => setOpen(false)}
-            sx={{
-              borderColor: theme.palette.secondary.light,
-              color: theme.palette.text.grey,
-              px: 3,
-            }}
-          >
-            Cancel
-          </Button>
-          <Button variant="contained" type="submit" sx={{ px: 3 }}>
-            Confirm
-          </Button>
-        </Stack> */}
+        <DialogContent sx={{
+          p: {
+            xs: 2,
+            md: 3
+          }
+        }}>
+          {children &&
+            React.isValidElement(children) &&
+            React.cloneElement(
+              children as ReactElement<{ setOpen: (val: boolean) => void }>,
+              { setOpen }
+            )}
+        </DialogContent>
       </Dialog>
     </>
   );

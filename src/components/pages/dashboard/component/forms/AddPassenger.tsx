@@ -1,7 +1,7 @@
-import { Box, Button, Divider, IconButton, Stack } from "@mui/material";
-import FormSection from "../../../../organism/FormSection";
+import { Box, Button, Divider, Stack } from "@mui/material";
+import { Add, Trash } from "iconsax-react";
 import type { FormFields } from "../../../../../types/types";
-import { Add, CloseCircle, Trash } from "iconsax-react";
+import FormSection from "../../../../organism/FormSection";
 
 const passengerFields: FormFields[] = [
   {
@@ -91,7 +91,7 @@ const AddPassenger = ({
       }}
     >
       {/* Passenger Form */}
-      <div className="grid grid-cols-2 gap-y-6 gap-x-3.5">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-6 gap-x-3.5">
         <FormSection
           fields={passengerFields}
           form={passenger}

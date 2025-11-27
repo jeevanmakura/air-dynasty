@@ -1,9 +1,11 @@
 import { Button, Stack, TextField, Typography, useTheme } from "@mui/material";
 import { Add, ArrowForward, Filter, Trash } from "iconsax-react";
-import SearchBox from "./SearchBox";
 import type { FormFields, TableConfig } from "../../types/types";
 import DialogButton from "../organism/DialogButton";
 import DeleteBox from "../pages/dashboard/component/dialogebox/DeleteBox";
+import { FilterTable } from "./FilterTable";
+import PopoverButton from "./PopoverButton";
+import SearchBox from "./SearchBox";
 
 const searchField: FormFields[] = [
   {
@@ -31,31 +33,54 @@ const TableHeader = ({
 
   const isRowSelected = table.getSelectedRowModel().rows.length > 0;
 
+
   return (
     <>
       <Stack
-        direction="row"
-        alignItems="flex-end"
+        direction={{
+          xs: "column",
+          sm: "row",
+        }}
+        alignItems={{
+          xs: "flex-start",
+          sm: "flex-end",
+        }}
+        gap={{
+          xs: 2,
+          md: 2,
+        }}
         justifyContent="space-between"
         mb={4}
+        flexWrap={"wrap"}
       >
-        <Stack direction="row" alignItems="bottom" spacing={1.5}>
+        <Stack direction="row" alignItems="bottom" gap={1.5} flexWrap={"wrap"}>
           {headerConfig?.headerLeft?.showSearch && (
             <SearchBox value={searchValue} onChange={onSearchChange} />
           )}
           {headerConfig?.headerLeft?.showFilter && (
-            <Button
-              variant="outlined"
-              sx={{
-                borderColor: theme.palette.secondary.light,
-                color: theme.palette.text.grey,
-                px: 1.5,
-              }}
-              startIcon={<Filter size={20} color={theme.palette.text.grey} />}
+            <PopoverButton
+              trigger={
+                <Button
+                  variant="outlined"
+                  sx={{
+                    borderColor: theme.palette.border,
+                    color: theme.palette.text.gray,
+                    px: 1.5,
+                  }}
+                  startIcon={<Filter size={20} color={theme.palette.text.gray} />}
+                >
+                  Filter
+                </Button>
+              }
+              activeBgColor={theme.palette.primary.main}
+
             >
-              Filter
-            </Button>
+              {({ closePopover }) => (
+                <FilterTable table={table} closePopover={closePopover} />
+              )}
+            </PopoverButton>
           )}
+
           {headerConfig?.headerLeft?.showDelete && isRowSelected && (
             <DialogButton
               title="Delete row"
@@ -66,7 +91,7 @@ const TableHeader = ({
                   sx={{
                     borderColor: isRowSelected
                       ? theme.palette.primary.main
-                      : theme.palette.secondary.light,
+                      : theme.palette.border,
                     color: theme.palette.grey[400],
                     px: 1.5,
                   }}
@@ -89,14 +114,17 @@ const TableHeader = ({
             <Button
               variant="outlined"
               sx={{
-                borderColor: theme.palette.secondary.light,
-                color: theme.palette.text.grey,
-                px: 3,
+                borderColor: theme.palette.border,
+                color: theme.palette.text.gray,
+                px: {
+                  xs: 1,
+                  md: 3,
+                },
               }}
             >
               <ArrowForward
                 size={20}
-                color={theme.palette.text.grey}
+                color={theme.palette.text.gray}
                 className="transform scale-x-[-1]"
               />
             </Button>
@@ -182,7 +210,6 @@ const TableHeader = ({
                   button={
                     <Button
                       variant="contained"
-                      sx={{ backgroundColor: theme.palette.primary.main }}
                       startIcon={
                         !IconComponent ? (
                           <Add size={24} color={theme.palette.grey[50]} />

@@ -8,9 +8,9 @@ import {
 } from "@mui/material";
 import { DocumentUpload, UserOctagon } from "iconsax-react";
 import useFetchTable from "../../../../hook/useFetchTable";
-import BaseTable from "../../../organism/BaseTable";
 import type { TableConfig } from "../../../../types/types";
 import { parseNumber } from "../../../../utils/helper";
+import BaseTable from "../../../organism/BaseTable";
 import Email from "../component/dialogebox/Email";
 
 const tableData = [

@@ -1,18 +1,18 @@
-import { useEffect, useState } from "react";
 import {
   Box,
-  Typography,
-  Stack,
-  useTheme,
   Button,
   Divider,
+  Stack,
+  Typography,
+  useTheme,
 } from "@mui/material";
-import type { FormFields } from "../../../../../types/types";
 import { Airplane } from "iconsax-react";
+import { useEffect, useState } from "react";
+import type { FormFields } from "../../../../../types/types";
 import ButtonWithBackground from "../../../../atom/ButtonWithBackground";
 import FormSection from "../../../../organism/FormSection";
 
-let fields: FormFields[] = [
+const fields: FormFields[] = [
   {
     label: "Agend Name",
     name: "name",
@@ -50,7 +50,15 @@ let fields: FormFields[] = [
   },
 ];
 
-const AddAgend = ({ isEdit, data }: { isEdit?: boolean; data?: any }) => {
+const AddAgend = ({
+  isEdit,
+  data,
+  setOpen,
+}: {
+  isEdit?: boolean;
+  data?: any;
+  setOpen?: (open: boolean) => void;
+}) => {
   const [form, setForm] = useState<Record<string, any>>(
     fields.reduce((acc, f) => ({ ...acc, [f.name]: f.defaultValue }), {})
   );
@@ -110,7 +118,7 @@ const AddAgend = ({ isEdit, data }: { isEdit?: boolean; data?: any }) => {
         }}
       />
       <Box component="form" onSubmit={handleSubmit} sx={{ mt: 4 }}>
-        <div className="grid grid-cols-2 gap-y-6 gap-x-3.5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-6 gap-x-3.5">
           <FormSection fields={fields} form={form} onChange={handleChange} />
         </div>
         <Divider
@@ -125,11 +133,11 @@ const AddAgend = ({ isEdit, data }: { isEdit?: boolean; data?: any }) => {
           justifyContent="end"
           gap={1.5}
           px={2}
-          my={3}
+          mt={3}
         >
           <Button
             variant="outlined"
-            // onClick={() => setOpen(false)}
+            onClick={() => setOpen && setOpen(false)}
             sx={{
               borderColor: theme.palette.secondary.light,
               color: theme.palette.grey[400],

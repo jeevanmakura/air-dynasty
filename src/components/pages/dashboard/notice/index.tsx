@@ -3,7 +3,11 @@ import NoticeTable from "../component/table/NoticeTable";
 
 const NoticePage = () => {
   return (
-    <Box component={"section"} p={4}>
+    <Box
+      component={"section"}
+
+      sx={{ maxWidth: "100vw", overflowX: "hidden" }}
+    >
       <NoticeTable />
     </Box>
   );

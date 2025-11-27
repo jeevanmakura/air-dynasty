@@ -1,18 +1,20 @@
+import "@mui/material/styles";
 import type { ThemeOptions } from "@mui/material/styles";
 import { createTheme } from "@mui/material/styles";
-import "@mui/material/styles";
 
 declare module "@mui/material/styles" {
   interface Palette {
     border?: string;
   }
 
+
+
   interface PaletteOptions {
     border?: string;
   }
 
   interface TypeText {
-    grey?: string;
+    gray?: string;
     black?: string;
     white?: string;
     light?: string;
@@ -25,13 +27,44 @@ declare module "@mui/material/styles" {
   interface SimplePaletteColorOptions {
     alt?: string;
   }
+
 }
 
+declare module "@mui/material/styles" {
+  interface Palette {
+    icon: PaletteIcon;
+  }
+
+  interface PaletteOptions {
+    icon?: PaletteIconOptions;
+    button?: PaletteButtonOptions;
+  }
+
+  interface PaletteIcon {
+    main: string;
+    black: string;
+    dark: string;
+    light: string;
+  }
+
+  interface PaletteIconOptions {
+    main?: string;
+    black?: string;
+    dark?: string;
+    light?: string;
+  }
+
+  interface PaletteButtonOptions {
+    main?: string;
+    light?: string;
+  }
+
+}
 // Define color palettes
 const lightPalette: ThemeOptions["palette"] = {
   primary: {
     main: "#C10308",
-    light: "#f94247",
+    light: "#FDB9BCDE",
     contrastText: "#ffffff",
     alt: "#F94247",
   },
@@ -65,6 +98,12 @@ const lightPalette: ThemeOptions["palette"] = {
     dark: "#1b5e20",
     contrastText: "#ffffff",
   },
+  icon: {
+    main: "#C10308",
+    black: "#111827",
+    dark: "#F94247",
+    light: "#B3B3B3",
+  },
   background: {
     default: "#f5f5f5",
     paper: "#ffffff",
@@ -72,13 +111,18 @@ const lightPalette: ThemeOptions["palette"] = {
   text: {
     primary: "#1F2937",
     secondary: "#4B5563",
-    grey: "#6B7280",
+    gray: "#6B7280",
     black: "#000000",
     white: "#ffffff",
     light: "#C9C9C9",
     disabled: "rgba(0, 0, 0, 0.38)",
   },
-  border: "#f9f9f9",
+  button: {
+    main: "#C10308",
+    light: "#F94247",
+
+  },
+  border: "#C9C9C9",
   divider: "rgba(0, 0, 0, 0.12)",
 };
 
@@ -135,6 +179,7 @@ const darkPalette = {
 const commonThemeOptions: ThemeOptions = {
   typography: {
     fontFamily: [
+      '"DM Sans"',
       "Inter",
       "-apple-system",
       "BlinkMacSystemFont",
@@ -174,7 +219,6 @@ const commonThemeOptions: ThemeOptions = {
     },
     body2: {
       color: "#000",
-      fontFamily: "Satoshi",
       fontSize: "12px",
       fontStyle: "normal",
       fontWeight: 500,
@@ -228,7 +272,7 @@ const commonThemeOptions: ThemeOptions = {
           padding: "0",
         },
         notchedOutline: {
-          borderColor: "#C1C1C1",
+          borderColor: "#C9C9C9",
         },
       },
     },
@@ -272,6 +316,15 @@ const commonThemeOptions: ThemeOptions = {
         },
       },
     },
+    MuiDialog: {
+      styleOverrides: {
+        paper: {
+
+          width: "100%",
+        },
+      },
+    },
+
   },
 };
 
@@ -288,3 +341,4 @@ export const createAppTheme = (mode: "light" | "dark") => {
 
 // Export palettes for reference
 export { darkPalette, lightPalette };
+

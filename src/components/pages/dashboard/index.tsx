@@ -1,8 +1,8 @@
 import { Box, Grid, Stack, Typography } from "@mui/material";
-import { formatDateTime } from "../../../utils/formatDateTime";
 import { Clock } from "iconsax-react";
-import StatCard from "../../molecules/StatCard";
 import { statItems } from "../../../constants";
+import { formatDateTime } from "../../../utils/formatDateTime";
+import StatCard from "../../molecules/StatCard";
 import FlightTypeOverview from "./component/FlightTypeOverview";
 import MonthlyFloghtOperation from "./component/MonthlyFloghtOperation";
 import OverviewTable from "./component/table/OverviewTable";
@@ -16,7 +16,9 @@ export const DashboardPage = () => {
         direction={{ xs: "column", sm: "row" }}
         justifyContent="space-between"
         alignItems={{ xs: "flex-start", sm: "center" }}
-        sx={{ p: 4, gap: 2 }}
+        sx={{
+          gap: 2,
+        }}
       >
         {/* Left Side */}
         <Box
@@ -67,20 +69,22 @@ export const DashboardPage = () => {
           </Stack>
         </Stack>
       </Stack>
-      <Grid className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 px-8 pb-8">
+      <Grid className="mt-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 pb-8">
         {statItems.map((item) => (
           <StatCard key={item.id} data={item} />
         ))}
       </Grid>
-      <Grid className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 px-8 pb-4">
-        <Box className="col-span-2 max-h-[490px]">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 xl:grid-cols-6 gap-4 sm:gap-6 pb-4">
+        <Box className="md:col-span-2 xl:col-span-2">
           <FlightTypeOverview />
         </Box>
-        <Box className="col-span-4">
+        <Box className="md:col-span-2 xl:col-span-4">
           <MonthlyFloghtOperation />
         </Box>
-        <Box className="col-span-6"><OverviewTable /></Box>
-      </Grid>
+      </div>
+      <Box className="">
+        <OverviewTable />
+      </Box>
     </Box>
   );
 };

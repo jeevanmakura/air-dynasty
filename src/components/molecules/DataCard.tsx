@@ -19,7 +19,18 @@ const DataCard = ({
   const theme = useTheme();
   const iconColor = theme.palette.primary.main;
   return (
-    <Card sx={{ p: 4, bgcolor: "background.paper", height: "100%" }}>
+    <Card
+      sx={{
+        p: {
+          xs: 2,
+          sm: 3,
+          md: 4,
+        },
+        bgcolor: "background.paper",
+        height: "100%",
+        width: "100%",
+      }}
+    >
       <Stack direction="column" spacing={1}>
         {isHeader && (
           <>

@@ -1,9 +1,9 @@
 import {
-  PaginationItem,
-  Stack,
-  Pagination,
   MenuItem,
+  Pagination,
+  PaginationItem,
   Select,
+  Stack,
   useTheme,
 } from "@mui/material";
 import type { Table } from "@tanstack/react-table";
@@ -33,10 +33,15 @@ const TableFooter = ({ count, page, table, perPage = 6 }: TableFooterProps) => {
             setPageSize(Number(e.target.value));
             table.setPageSize(Number(e.target.value));
           }}
+
           sx={{
             fontSize: "12px",
             padding: "4px 12px",
             borderRadius: "4px",
+            width: {
+              xs: "40px",
+              sm: "80px",
+            },
           }}
         >
           {[2, 4, 6, 8, 10].map((size) => (
@@ -51,7 +56,7 @@ const TableFooter = ({ count, page, table, perPage = 6 }: TableFooterProps) => {
         <Pagination
           count={count}
           page={page}
-          onChange={(e, value) => table.setPageIndex(value - 1)}
+          onChange={(_, value) => table.setPageIndex(value - 1)}
           shape="rounded"
           siblingCount={1}
           boundaryCount={1}
@@ -62,7 +67,7 @@ const TableFooter = ({ count, page, table, perPage = 6 }: TableFooterProps) => {
               {...item}
               slots={{
                 first: () => (
-                  <ArrowLeftDouble color={theme.palette.text.primary} />
+                  <ArrowLeftDouble size={20} color={theme.palette.text.primary} />
                 ),
                 last: () => (
                   <ArrowRightDouble color={theme.palette.text.primary} />
@@ -79,12 +84,11 @@ const TableFooter = ({ count, page, table, perPage = 6 }: TableFooterProps) => {
                 color: "#111",
                 borderRadius: "50%",
 
-                fontFamily: "sans-serif",
                 "&.Mui-selected": {
-                  backgroundColor: "#C00000",
+                  backgroundColor: theme.palette.primary.main,
                   color: "#fff",
                   "&:hover": {
-                    backgroundColor: "#AA0000",
+                    backgroundColor: theme.palette.primary.main,
                   },
                 },
               }}
