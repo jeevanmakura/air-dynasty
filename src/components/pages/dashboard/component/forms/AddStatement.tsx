@@ -113,7 +113,7 @@ const AddStatement = ({ setOpen }: { setOpen?: (open: boolean) => void }) => {
           justifyContent="end"
           gap={1.5}
           px={2}
-          my={3}
+          mt={3}
         >
           <Button
             variant="outlined"

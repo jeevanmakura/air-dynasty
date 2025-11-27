@@ -13,12 +13,12 @@ const Email = ({
   title = "Send Reservation Email",
   subtitle = "Are you sure you want to send a reservation email?",
   icon = <Sms size={40} variant="Bold" color="red" />,
-  onClick = () => {},
+  onClick = () => { },
 }: {
-  title: string;
-  subtitle: string;
+  title?: string;
+  subtitle?: string;
   icon?: React.ReactNode;
-  onClick: () => void;
+  onClick?: () => void;
 }) => {
   const theme = useTheme();
   return (
