@@ -93,7 +93,7 @@ const TableHeader = ({
                       ? theme.palette.primary.main
                       : theme.palette.border,
                     color: theme.palette.grey[400],
-                    px: 1.5,
+                    minWidth: "fit-content",
                   }}
                 >
                   <Trash
@@ -116,10 +116,7 @@ const TableHeader = ({
               sx={{
                 borderColor: theme.palette.border,
                 color: theme.palette.text.gray,
-                px: {
-                  xs: 1,
-                  md: 3,
-                },
+                minWidth: "fit-content",
               }}
             >
               <ArrowForward
