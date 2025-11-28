@@ -452,7 +452,7 @@ export const createAppTheme = (mode: "light" | "dark") => {
     ...commonThemeOptions,
     palette: {
       mode,
-      ...(mode === "light" ? lightPalette : darkPalette),
+      ...lightPalette,
     },
   });
 };
