@@ -77,7 +77,6 @@ const DetailView = ({ data, customRenderer }: any) => {
                 {formatText(key)}
               </Typography>
 
-              {/* If custom renderer returns JSX, DO NOT wrap in Typography */}
               {hasRenderer ? (
                 <Box>{renderedValue}</Box>
               ) : (

@@ -127,10 +127,10 @@ const AddAdHocForm = ({ setOpen }: { setOpen?: (open: boolean) => void }) => {
               fontWeight="bold"
               fontFamily={"sans-serif"}
             >
-              Add Statement
+              Add Ad Hoc Flight
             </Typography>
             <Typography variant="body1" color="text.secondary">
-              Fill in the form to add statement.
+              Fill in the form to add a new Ad Hoc Flight.
             </Typography>
           </Stack>
         </Stack>
