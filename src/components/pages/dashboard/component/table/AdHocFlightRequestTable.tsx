@@ -1,12 +1,14 @@
 import DataCard from "../../../../molecules/DataCard";
 
 import { IconButton, Stack, useTheme } from "@mui/material";
-import { Eye, Trash } from "iconsax-react";
+import { AirplaneSquare, Eye, Trash } from "iconsax-react";
 import { useMemo } from "react";
 import useFetchTable from "../../../../../hook/useFetchTable";
 import type { TableConfig } from "../../../../../types/types";
 import BaseTable from "../../../../organism/BaseTable";
-import AllFlight from "../forms/AddFlight";
+import DialogButton from "../../../../organism/DialogButton";
+import DeleteBox from "../dialogebox/DeleteBox";
+import DetailView from "../dialogebox/DetailView";
 
 const tableData = [
   {
@@ -81,7 +83,7 @@ const tableData = [
   },
 ];
 
-const FlightRequestListTable = () => {
+const AdHocFlightRequestTable = ({ isHeader = false }: { isHeader?: boolean }) => {
   const theme = useTheme();
 
   const customHeaders = {
@@ -102,11 +104,27 @@ const FlightRequestListTable = () => {
 
   const ActionField = ({ row }: { row: any }) => (
     <Stack direction="row" spacing={1}>
-      <IconButton size="small" onClick={() => console.log(row.sn)}>
-        <Eye size={24} color={theme.palette.text.light} variant="Bold" />
+      <IconButton size="small">
+        <DialogButton
+          title="View Request List's Details"
+
+          button={
+            <Eye size={24} color={theme.palette.icon.light} variant="Bold" />
+          }
+        >
+          {/* only send clicked row data */}
+          <DetailView data={row} />
+        </DialogButton>
       </IconButton>
       <IconButton size="small">
-        <Trash size={24} color={theme.palette.text.light} variant="Bold" />
+        <DialogButton
+          title="Delete row"
+          button={
+            <Trash size={24} color={theme.palette.icon.light} variant="Bold" />
+          }
+        >
+          <DeleteBox />
+        </DialogButton>
       </IconButton>
     </Stack>
   );
@@ -124,26 +142,15 @@ const FlightRequestListTable = () => {
   );
 
   const headerConfig: TableConfig = {
-    showHeader: true,
-    headerLeft: {
-      showSearch: true,
-      showFilter: true,
-      showDelete: true,
-    },
-
-    headerRight: {
-      primaryButton: {
-        headerText: "Flight Requests",
-        label: "Add Flight",
-        path: "/dashboard/agents/add-statement",
-        component: <AllFlight />,
-      },
-    },
+    showHeader: false,
   };
 
   return (
-    <DataCard isHeader={false}>
-      <div className="mt-">
+    <DataCard isHeader={isHeader}
+      icon={AirplaneSquare}
+      title="Ad-hoc Flight Request"
+      subtitle="Review and manage all ad-hoc flight requests awaiting action.">
+      <div className="mt-4">
         <BaseTable
           data={rowData}
           columns={finalColumns}
@@ -155,4 +162,4 @@ const FlightRequestListTable = () => {
   );
 };
 
-export default FlightRequestListTable;
+export default AdHocFlightRequestTable;

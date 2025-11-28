@@ -3,6 +3,8 @@ import Drawer from "@mui/material/Drawer";
 import Toolbar from "@mui/material/Toolbar";
 import React, { useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { adminSidebarMenuItems, agentSidebarMenuItems } from "../../../../constants";
+import CAN from "../../../../routes/CAN";
 import PageBreadcrumbs from "../../../molecules/PageBreadcrumbs";
 import CustomAppbar from "../appbar";
 import PriymaryMenu from "./PrimaryMenu";
@@ -43,7 +45,8 @@ export default function ResponsiveDrawer({ window, children }: Props) {
       </Toolbar>
 
       <Box sx={{ flexGrow: 1, overflowY: "auto" }}>
-        <PriymaryMenu handleDrawerToggle={handleDrawerToggle} />
+        <CAN role="admin" > <PriymaryMenu handleDrawerToggle={handleDrawerToggle} menuItems={adminSidebarMenuItems} /> </CAN>
+        <CAN role="agent" > <PriymaryMenu handleDrawerToggle={handleDrawerToggle} menuItems={agentSidebarMenuItems} /> </CAN>
       </Box>
     </Box>
   );
@@ -79,7 +82,7 @@ export default function ResponsiveDrawer({ window, children }: Props) {
           onTransitionEnd={handleDrawerTransitionEnd}
           onClose={handleDrawerClose}
           sx={{
-            display: { xs: "block", sm: "none" },
+            display: { xs: "block", md: "none" },
             "& .MuiDrawer-paper": { width: drawerWidth },
           }}
           slotProps={{ root: { keepMounted: true } }}
@@ -139,7 +142,8 @@ export default function ResponsiveDrawer({ window, children }: Props) {
               sm: "none",
             }
           }} >
-            <PageBreadcrumbs />
+            <CAN role="admin" > <PageBreadcrumbs menuItem={adminSidebarMenuItems} /> </CAN>
+            <CAN role="agent" > <PageBreadcrumbs menuItem={agentSidebarMenuItems} /> </CAN>
           </Box>
           {children}
         </Box>

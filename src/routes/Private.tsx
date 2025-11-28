@@ -6,7 +6,10 @@ import { PATH } from "./PATH";
 
 export default function Private() {
   const navigate = useNavigate();
-  const user = "arjun";
+  const user = {
+    name: "John Doe",
+    role: "agent",
+  };
   React.useEffect(() => {
     if (!user) {
       navigate(PATH.AUTH.LOGIN.ROOT);

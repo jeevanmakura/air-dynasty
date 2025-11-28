@@ -166,6 +166,11 @@ export default function AddRole({
             onChange={(e) =>
               updatePermission(row.original.id, key, e.target.checked)
             }
+            sx={{
+              '& .MuiSvgIcon-root': {
+                borderRadius: '50px !important',
+              },
+            }}
           />
         ),
       })),

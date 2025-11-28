@@ -1,11 +1,16 @@
 import { Box, Grid, Stack, Typography } from "@mui/material";
 import { Clock } from "iconsax-react";
-import { statItems } from "../../../constants";
+import { adminStatItems, agentStatItems } from "../../../constants";
+import CAN from "../../../routes/CAN";
 import { formatDateTime } from "../../../utils/formatDateTime";
 import StatCard from "../../molecules/StatCard";
+import BookingStatusOverview from "./component/BookingStatusOverview";
 import FlightTypeOverview from "./component/FlightTypeOverview";
-import MonthlyFloghtOperation from "./component/MonthlyFloghtOperation";
+import MonthlyBookingFlights from "./component/MonthlyBookingFlights";
+import MonthlyFlightOperation from "./component/MonthlyFlightOperation";
+import AdHocFlightRequestTable from "./component/table/AdHocFlightRequestTable";
 import OverviewTable from "./component/table/OverviewTable";
+import UpcomingFlightTable from "./component/table/UpcomingFlightTable";
 
 export const DashboardPage = () => {
   const now = formatDateTime();
@@ -70,21 +75,52 @@ export const DashboardPage = () => {
         </Stack>
       </Stack>
       <Grid className="mt-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 pb-8">
-        {statItems.map((item) => (
-          <StatCard key={item.id} data={item} />
-        ))}
+        <CAN role={"admin"} >
+          {adminStatItems.map((item) => (
+            <StatCard key={item.id} data={item} />
+          ))}
+        </CAN>
+        <CAN role={"agent"} >
+          {agentStatItems.map((item) => (
+            <StatCard key={item.id} data={item} />
+          ))}
+        </CAN>
       </Grid>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 xl:grid-cols-6 gap-4 sm:gap-6 pb-4">
-        <Box className="md:col-span-2 xl:col-span-2">
-          <FlightTypeOverview />
+      <CAN role={"admin"} >
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 xl:grid-cols-6 gap-4 sm:gap-6 md:gap-8">
+          <Box className="md:col-span-2 xl:col-span-2">
+            <FlightTypeOverview />
+          </Box>
+          <Box className="md:col-span-2 xl:col-span-4">
+            <MonthlyFlightOperation />
+          </Box>
+        </div>
+      </CAN>
+      <CAN role={"agent"} >
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 md:gap-8">
+          <Box className="col-span-1">
+            <BookingStatusOverview />
+          </Box>
+          <Box className="col-span-1">
+            <MonthlyBookingFlights />
+          </Box>
+        </div>
+      </CAN>
+      <CAN role={"admin"} >
+        <Box className="mt-8">
+          <OverviewTable />
         </Box>
-        <Box className="md:col-span-2 xl:col-span-4">
-          <MonthlyFloghtOperation />
-        </Box>
-      </div>
-      <Box className="">
-        <OverviewTable />
-      </Box>
+      </CAN>
+      <CAN role={"agent"} >
+        <>
+          <Box className="mt-8">
+            <UpcomingFlightTable />
+          </Box>
+          <Box className="mt-8">
+            <AdHocFlightRequestTable isHeader />
+          </Box>
+        </>
+      </CAN>
     </Box>
   );
 };

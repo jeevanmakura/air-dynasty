@@ -112,22 +112,6 @@ const BaseTable = ({
                               p: 0,
                               mr: 0.5,
                               color: "white",
-                              "& .MuiSvgIcon-root": {
-                                fontSize: 20,
-                                color: (theme) =>
-                                  theme.palette.primary.contrastText,
-                              },
-                              "& .MuiCheckbox-root": {
-                                backgroundColor: "white",
-                              },
-                              "& .Mui-checked": {
-                                color: (theme) =>
-                                  theme.palette.primary.contrastText,
-                              },
-                              "& .MuiCheckbox-indeterminate": {
-                                color: (theme) =>
-                                  theme.palette.primary.contrastText,
-                              },
                             }}
                           />
                           {flexRender(

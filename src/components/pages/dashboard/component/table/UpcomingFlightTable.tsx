@@ -1,4 +1,4 @@
-import { ArrowDown } from "iconsax-react";
+import { CalendarTick } from "iconsax-react";
 import DataCard from "../../../../molecules/DataCard";
 
 import { alpha, useTheme } from "@mui/material";
@@ -9,67 +9,61 @@ import BaseTable from "../../../../organism/BaseTable";
 const tableData = [
   {
     s_n: 1,
-    id: "8738284712",
     sector: "Lukla–Makalu",
     agent: "Ahii0",
-    departure: "12:00PM",
+    flight_date: "12nd Jan, 2025",
     arrival: "1:20PM",
     pax: 7,
-    status: "on-time",
+    status: "approved",
   },
   {
     s_n: 2,
-    id: "9873828712",
     sector: "Lukla–Makalu",
     agent: "Ahii0",
-    departure: "12:00PM",
+    flight_date: "12nd Jan, 2025",
     arrival: "1:20PM",
     pax: 9,
-    status: "delayed",
+    status: "not-approved",
   },
   {
     s_n: 3,
-    id: "9873284712",
     sector: "Lukla–Makalu",
     agent: "Ahii0",
-    departure: "12:00PM",
+    flight_date: "12nd Jan, 2025",
     arrival: "1:20PM",
     pax: 990,
-    status: "failed",
+    status: "not-approved",
   },
   {
     s_n: 4,
-    id: "9987284712",
     sector: "Lukla–Makalu",
     agent: "Ahii0",
-    departure: "12:00PM",
+    flight_date: "12nd Jan, 2025",
     arrival: "1:20PM",
     pax: 100,
-    status: "failed",
+    status: "not-approved",
   },
   {
     s_n: 5,
-    id: "8738284712",
     sector: "Lukla–Makalu",
     agent: "Ahii0",
-    departure: "12:00PM",
+    flight_date: "12nd Jan, 2025",
     arrival: "1:20PM",
     pax: 7,
-    status: "on-time",
+    status: "approved",
   },
   {
     s_n: 6,
-    id: "8738284712",
     sector: "Lukla–Makalu",
     agent: "Ahii0",
-    departure: "12:00PM",
+    flight_date: "12nd Jan, 2025",
     arrival: "1:20PM",
     pax: 7,
-    status: "on-time",
+    status: "approved",
   },
 ];
 
-const OverviewTable = () => {
+const UpcomingFlightTable = () => {
   const theme = useTheme();
 
   const customRenderer = {
@@ -81,15 +75,8 @@ const OverviewTable = () => {
       }
 
       const map: Record<string, { color: string }> = {
-        "on-time": {
+        "approved": {
           color: theme.palette.success.main,
-        },
-        delayed: {
-          color: theme.palette.error.light,
-        },
-
-        failed: {
-          color: theme.palette.error.main,
         },
 
         "not-approved": {
@@ -123,14 +110,13 @@ const OverviewTable = () => {
     },
   };
 
-  const perPage = 4;
+  const perPage = 6;
   const customHeaders = {
     s_n: "SN",
-    id: "Flight No",
     sector: "Sector",
     agent: "Agent",
-    price: "Price",
     flight_date: "Flight Date",
+    arrival: "Arrival Time",
     pax: "No. of Pax",
     status: "Status",
   };
@@ -148,10 +134,10 @@ const OverviewTable = () => {
 
   return (
     <DataCard
-      icon={ArrowDown}
+      icon={CalendarTick}
       isHeader={true}
-      title="Daily Operations"
-      subtitle="Monitor and manage today’s active flights — track status, passengers, and performance in real time"
+      title="Upcoming Flights"
+      subtitle="Stay updated on flights departing in the coming days."
     >
       <div className="mt-4">
         <BaseTable
@@ -165,4 +151,4 @@ const OverviewTable = () => {
   );
 };
 
-export default OverviewTable;
+export default UpcomingFlightTable;

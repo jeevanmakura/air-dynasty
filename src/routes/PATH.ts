@@ -70,16 +70,36 @@ export const PATH = {
       ROOT: "/settings",
     },
   },
-  ROLES: {
-    ROOT: "/roles",
-    ALL_ROLES: {
-      ROOT: "all-roles",
+  AGENT: {
+    DASHBOARD: {
+      ROOT: "/agent-dashboard"
     },
-    CREATE_ROLE: {
-      ROOT: "/roles/create-role",
+    FLIGHTS: {
+      ROOT: "/flights",
+      REQUEST_LIST: {
+        ROOT: "/flights/request-list",
+      },
+      ADD_HOC_FLIGHT: {
+        ROOT: "/flights/add-hoc",
+      },
+      PRE_BOOKING_LIST: {
+        ROOT: "/flights/pre-booking-list",
+      },
+      DAILY_OPERATION: {
+        ROOT: "/flights/daily-operation",
+      },
+      CANCELLED_FLIGHTS: {
+        ROOT: "/flights/cancelled-flight",
+      },
     },
-    EDIT_ROLE: {
-      ROOT: "/roles/:id",
+    PAYMENTS: {
+      ROOT: "/payments"
     },
-  },
+    FIXED_DEPARTURE: {
+      ROOT: "/fixed-departure"
+    },
+    STATEMENTS: {
+      ROOT: "/statements"
+    }
+  }
 };

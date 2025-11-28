@@ -12,6 +12,7 @@ import { DashboardPage } from "../components/pages/dashboard";
 import ActivityLogs from "../components/pages/dashboard/activityLog/index.tsx";
 import AdvertisementPage from "../components/pages/dashboard/advertisement/index.tsx";
 import AgentsPage from "../components/pages/dashboard/agents";
+import SeeStatement from "../components/pages/dashboard/agents/SeeStatement.tsx";
 import FixedDepartureTable from "../components/pages/dashboard/component/table/FixedDepartureTable.tsx";
 import EmailLogsPage from "../components/pages/dashboard/emailLogs/index.tsx";
 import FinanceDetailsPage from "../components/pages/dashboard/finance/detail/index.tsx";
@@ -46,6 +47,8 @@ const router = createBrowserRouter([
   {
     element: <Private />,
     children: [
+
+      //for admin
       {
         path: "/",
         element: <DashboardPage />,
@@ -133,6 +136,46 @@ const router = createBrowserRouter([
             element: <Setting />,
           },
         ],
+      },
+
+      //for agent
+      {
+        path: PATH.AGENT.DASHBOARD.ROOT,
+        element: <DashboardPage />,
+      },
+      {
+        path: PATH.AGENT.FLIGHTS.ROOT,
+        element: <FlightsPage />,
+        children: [
+          {
+            path: PATH.AGENT.FLIGHTS.PRE_BOOKING_LIST.ROOT,
+            element: <PreBookingList />,
+          },
+          {
+            path: PATH.AGENT.FLIGHTS.DAILY_OPERATION.ROOT,
+            element: <DailyOperation />,
+          },
+          {
+            path: PATH.AGENT.FLIGHTS.CANCELLED_FLIGHTS.ROOT,
+            element: <CanceledFlight />,
+          },
+          {
+            path: PATH.AGENT.FLIGHTS.REQUEST_LIST.ROOT,
+            element: <FlightRequestList />,
+          }
+        ],
+      },
+      {
+        path: PATH.AGENT.PAYMENTS.ROOT,
+        element: <FinanceDetailsPage />,
+      },
+      {
+        path: PATH.AGENT.FIXED_DEPARTURE.ROOT,
+        element: <FixedDepartureTable />,
+      },
+      {
+        path: PATH.AGENT.STATEMENTS.ROOT,
+        element: <SeeStatement />,
       },
       {
         path: "*",

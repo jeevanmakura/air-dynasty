@@ -1,6 +1,6 @@
 import { useTheme } from "@mui/material";
 import type { ApexOptions } from "apexcharts";
-import { Airplane } from "iconsax-react";
+import { Calendar } from "iconsax-react";
 import { useMemo } from "react";
 import ReactApexChart from "react-apexcharts";
 import DataCard from "../../../molecules/DataCard";
@@ -114,7 +114,8 @@ const MonthlyFlightOperation = () => {
     <DataCard
       title="Monthly Flight Overview"
       subtitle="Flight activity over the past month to monitor operational performance."
-      icon={Airplane}
+      icon={Calendar}
+      isHeader
     >
       <ReactApexChart
         options={options}

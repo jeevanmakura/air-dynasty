@@ -65,6 +65,7 @@ const FlightTypeOverview = () => {
     <DataCard
       title="Flight Type Overview"
       icon={AirplaneSquare}
+      isHeader
       subtitle="Quickly track the balance between scheduled and ad-hoc flights to assess demand and operational load."
     >
       <ReactApexChart

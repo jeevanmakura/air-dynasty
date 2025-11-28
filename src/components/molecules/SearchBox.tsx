@@ -1,4 +1,4 @@
-import { Box, InputAdornment, TextField } from "@mui/material";
+import { Box, InputAdornment, TextField, useTheme } from "@mui/material";
 import { Command, SearchNormal1 } from "iconsax-react";
 
 export default function SearchBox({
@@ -12,6 +12,7 @@ export default function SearchBox({
   inputRef?: React.RefObject<HTMLInputElement | null>;
   onChange?: (value: string) => void;
 }) {
+  const theme = useTheme();
   return (
     <TextField
       placeholder="Search..."
@@ -26,7 +27,7 @@ export default function SearchBox({
           md: 330,
         },
         height: "100%",
-        backgroundColor: "#fff",
+        backgroundColor: theme.palette.background.default,
         borderRadius: "4px",
         overflow: "hidden",
 
@@ -67,6 +68,11 @@ export default function SearchBox({
                   transition: "color 0.2s",
                 },
 
+                "& span": {
+                  color: theme.palette.text.primary,
+                  transition: "color 0.2s",
+                },
+
                 // highlight when TextField is focused
                 ".Mui-focused &": {
                   borderColor: theme.palette.primary.main,
@@ -75,14 +81,10 @@ export default function SearchBox({
                 ".Mui-focused & svg": {
                   color: theme.palette.primary.main,
                 },
-
-                ".Mui-focused & span": {
-                  color: theme.palette.primary.main,
-                },
               })}
             >
               <Command size={12} />
-              <span className="text-xs">K</span>
+              <span className="text-xs text-inherit">K</span>
             </Box>
           </InputAdornment>
         ),

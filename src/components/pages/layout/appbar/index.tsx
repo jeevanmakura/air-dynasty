@@ -3,7 +3,8 @@ import {
   Box,
   IconButton,
   Stack,
-  Toolbar
+  Toolbar,
+  useTheme
 } from "@mui/material";
 import {
   EmojiNormal,
@@ -11,9 +12,8 @@ import {
   NotificationBing
 } from "iconsax-react";
 import { useEffect, useRef } from "react";
-import { useLocation } from "react-router-dom";
-import { sidebarMenuItems } from "../../../../constants";
-import type { MenuItem } from "../../../../types/types";
+import { adminSidebarMenuItems, agentSidebarMenuItems } from "../../../../constants";
+import CAN from "../../../../routes/CAN";
 import Notification from "../../../molecules/Notification";
 import PageBreadcrumbs from "../../../molecules/PageBreadcrumbs";
 import PopoverButton from "../../../molecules/PopoverButton";
@@ -27,27 +27,8 @@ export default function CustomAppbar({
 }: {
   handleDrawerToggle: () => void;
 }) {
-  const location = useLocation();
-
   const inputRef = useRef<HTMLInputElement>(null);
-
-  const segments = location.pathname.split("/").filter(Boolean);
-
-  const parent = sidebarMenuItems.find(
-    (item) => item.path === `/${segments[0]}`
-  );
-
-  let child: MenuItem | undefined;
-
-  if (parent?.children) {
-    child = parent.children.find(
-      (c) => c.path === `/${segments[0]}/${segments[1]}`
-    );
-  }
-
-  if (child) {
-    console.log(child);
-  }
+  const theme = useTheme();
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -71,6 +52,7 @@ export default function CustomAppbar({
         width: { md: `calc(100% - ${drawerWidth}px)` },
         ml: { sm: `${drawerWidth}px` },
         borderBottom: (theme) => `1px solid ${theme.palette.divider}`,
+        bgcolor: theme.palette.background.paper,
       }}
     >
       <Toolbar sx={{ px: 3 }}>
@@ -93,7 +75,8 @@ export default function CustomAppbar({
             <HambergerMenu size={30} color="gray" />
           </IconButton>
           <Box sx={{ mr: 2, width: "100%", display: { xs: "none", sm: "block" } }}>
-            <PageBreadcrumbs />
+            <CAN role="admin"><PageBreadcrumbs menuItem={adminSidebarMenuItems} /> </CAN>
+            <CAN role="agent"><PageBreadcrumbs menuItem={agentSidebarMenuItems} /> </CAN>
           </Box>
 
           <Box
@@ -117,12 +100,12 @@ export default function CustomAppbar({
                   sx={{
                     width: 40,
                     height: 40,
-                    backgroundColor: "#fff",
+                    backgroundColor: theme.palette.background.default,
                     borderRadius: 1,
-                    border: "1px solid #e0e0e0",
+                    border: `1px solid ${theme.palette.border}`,
                   }}
                 >
-                  <NotificationBing size={18} color="gray" />
+                  <NotificationBing size={18} color={theme.palette.icon.light} />
                 </IconButton>
               }
             >
@@ -135,12 +118,12 @@ export default function CustomAppbar({
                   sx={{
                     width: 40,
                     height: 40,
-                    backgroundColor: "#fff",
+                    backgroundColor: theme.palette.background.default,
                     borderRadius: 1,
-                    border: "1px solid #e0e0e0",
+                    border: `1px solid ${theme.palette.border}`,
                   }}
                 >
-                  <EmojiNormal size={18} color="gray" />
+                  <EmojiNormal size={18} color={theme.palette.icon.light} />
                 </IconButton>
               }
             >

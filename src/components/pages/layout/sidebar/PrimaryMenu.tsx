@@ -14,11 +14,13 @@ import {
 import { Setting2 } from "iconsax-react";
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { sidebarMenuItems } from "../../../../constants";
+import type { MenuItem } from "../../../../types/types";
 
 export default function PrimaryMenu({
+  menuItems,
   handleDrawerToggle,
 }: {
+  menuItems: MenuItem[];
   handleDrawerToggle: any;
 }) {
   const [open, setOpen] = useState<string | null>(null);
@@ -30,13 +32,22 @@ export default function PrimaryMenu({
   };
 
   return (
-    <Box sx={{ padding: "0 16px" }}>
+    <Box
+      sx={{
+        p: "0 16px 16px 16px",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "space-between",
+        alignItems: "stretch",
+        height: "100%",
+      }}
+    >
       <List>
-        {sidebarMenuItems.map((item) => {
+        {menuItems.map((item) => {
           const hasChildren = !!item.children;
 
           return (
-            <Box key={item.label}>
+            <Box>
               {/* Parent menu */}
               <ListItem
                 disablePadding
@@ -60,20 +71,8 @@ export default function PrimaryMenu({
                       : "transparent",
                     "& .MuiTypography-root": {
                       fontWeight: location.pathname.includes(item.path)
-                        ? 600
+                        ? 500
                         : "normal",
-                    },
-
-                    "&:hover": {
-                      backgroundColor: alpha(theme.palette.primary.light, 0.1),
-                      color: theme.palette.primary.main,
-                      fontWeight: 600,
-                      "& .MuiListItemIcon-root": {
-                        color: theme.palette.primary.main,
-                      },
-                      "& .MuiTypography-root": {
-                        fontWeight: "semibold",
-                      },
                     },
                   })}
                 >
@@ -142,7 +141,7 @@ export default function PrimaryMenu({
                                 fontWeight: location.pathname.includes(
                                   child.path
                                 )
-                                  ? 600
+                                  ? 500
                                   : "normal",
                               },
 
@@ -194,9 +193,8 @@ export default function PrimaryMenu({
             : theme.palette.text.secondary,
 
           padding: "16px 12px",
-          height: "48px",
+          maxHeight: "48px",
           borderRadius: "8px",
-          mt: 4,
           backgroundColor: location.pathname.includes("settings")
             ? alpha(theme.palette.primary.light, 0.1)
             : "transparent",
@@ -204,17 +202,6 @@ export default function PrimaryMenu({
             fontWeight: location.pathname.includes("settings") ? 600 : "normal",
           },
 
-          "&:hover": {
-            backgroundColor: alpha(theme.palette.primary.light, 0.1),
-            color: theme.palette.primary.main,
-            fontWeight: 600,
-            "& .MuiListItemIcon-root": {
-              color: theme.palette.primary.main,
-            },
-            "& .MuiTypography-root": {
-              fontWeight: "semibold",
-            },
-          },
         })}
         component={Link}
         to="/settings"

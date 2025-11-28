@@ -1,17 +1,16 @@
 import { Box, Typography, useTheme } from '@mui/material';
 import { ArrowRight2, Setting2 } from 'iconsax-react';
 import { useLocation } from 'react-router-dom';
-import { sidebarMenuItems } from '../../constants';
 import type { MenuItem } from '../../types/types';
 
-const PageBreadcrumbs = () => {
+const PageBreadcrumbs = ({ menuItem }: { menuItem: MenuItem[] }) => {
     const theme = useTheme();
     const location = useLocation();
 
 
     const segments = location.pathname.split("/").filter(Boolean);
 
-    const parent = sidebarMenuItems.find(
+    const parent = menuItem.find(
         (item) => item.path === `/${segments[0]}`
     );
 

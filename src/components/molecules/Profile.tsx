@@ -3,6 +3,14 @@ import { Link } from "react-router-dom";
 
 const Profile = () => {
   const theme = useTheme();
+
+  const handleUserChange = (role: string) => {
+    const user = { name: "Jems Kumar", role };
+    localStorage.setItem("activeUser", JSON.stringify(user));
+
+    window.dispatchEvent(new Event("storage"));
+  };
+
   return (
     <Box component={"div"} className="px-3 min-w-40">
       <Typography variant="h6" className="py-2 text-center">
@@ -19,6 +27,12 @@ const Profile = () => {
           <Link to="/logout" className={`text-[${theme.palette.primary.main}]`}>
             Logout
           </Link>
+        </Button>
+        <Button onClick={() => handleUserChange("admin")}>
+          Admin Dashboard
+        </Button>
+        <Button onClick={() => handleUserChange("agent")}>
+          Agent Dashboard
         </Button>
       </Box>
     </Box>

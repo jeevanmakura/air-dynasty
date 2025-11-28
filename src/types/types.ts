@@ -5,6 +5,7 @@ export interface MenuItem {
   icon: Icon | null;
   path: string;
   children?: MenuItem[];
+  permissions?: string[];
 }
 
 export interface FormFields {
