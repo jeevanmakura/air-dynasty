@@ -16,12 +16,22 @@ import FormSection from "../../../../organism/FormSection";
 
 const fields: FormFields[] = [
   {
-    label: "Amount",
-    name: "amount",
-    type: "text",
+    label: "Sector",
+    name: "sector",
+    type: "select",
     required: true,
+    placeholder: "Select Sector",
     defaultValue: "",
-    placeholder: "Enter Amount",
+    options: [],
+  },
+  {
+    label: "Agents",
+    name: "agents",
+    type: "select",
+    required: true,
+    placeholder: "Select Agents",
+    defaultValue: "",
+    options: [],
   },
   {
     label: "Date",
@@ -31,26 +41,49 @@ const fields: FormFields[] = [
     placeholder: "Select Date",
     defaultValue: "",
   },
-
   {
-    label: "Payement Mode",
-    name: "payment_mode",
+    label: "Price",
+    name: "price",
+    type: "number",
+    required: true,
+    placeholder: "Enter Price",
+    defaultValue: "",
+  },
+  {
+    label: "No. of Pax",
+    name: "pax",
     type: "select",
     required: true,
+    placeholder: "Select Pax",
     defaultValue: "",
-    placeholder: "Select Payement Mode",
-    options: ["Online", "Cash"],
+    options: ["1", "2", "3", "4", "5", "6+"],
   },
-
+  {
+    label: "Balance",
+    name: "balance",
+    type: "number",
+    required: true,
+    placeholder: "Enter Balance",
+    defaultValue: "",
+  },
+  {
+    label: "Adv. RCVD",
+    name: "adv_rcvd",
+    type: "number",
+    required: true,
+    placeholder: "Enter Adv. RCVD",
+    defaultValue: "",
+  },
   {
     label: "Remarks",
     name: "remarks",
     type: "text",
     required: true,
-    defaultValue: "",
     placeholder: "Enter Remarks",
+    defaultValue: "",
   },
 ];
+
 
 const AddAdHocForm = ({ setOpen }: { setOpen?: (open: boolean) => void }) => {
   const [form, setForm] = useState<Record<string, any>>(
@@ -72,6 +105,7 @@ const AddAdHocForm = ({ setOpen }: { setOpen?: (open: boolean) => void }) => {
         severity: "success",
       }),
     );
+    setOpen && setOpen(false);
   };
 
   const theme = useTheme();

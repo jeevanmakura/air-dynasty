@@ -88,7 +88,7 @@ const NoticeTable = () => {
 
       const map: Record<string, { color: string }> = {
         active: {
-          color: theme.palette.success.light,
+          color: theme.palette.success.main,
         },
 
         inactive: {

@@ -85,7 +85,7 @@ const OverviewTable = () => {
           color: theme.palette.success.main,
         },
         delayed: {
-          color: theme.palette.error.light,
+          color: theme.palette.warning.dark,
         },
 
         failed: {

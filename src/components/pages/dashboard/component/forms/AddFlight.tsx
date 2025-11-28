@@ -155,6 +155,7 @@ const AllFlight = ({
         severity: "success",
       }),
     );
+    setOpen && setOpen(false);
   };
 
   useEffect(() => {
@@ -279,8 +280,7 @@ const AllFlight = ({
           alignItems="center"
           justifyContent="end"
           gap={1.5}
-          px={2}
-          my={3}
+          mt={3}
         >
           <Button
             variant="outlined"

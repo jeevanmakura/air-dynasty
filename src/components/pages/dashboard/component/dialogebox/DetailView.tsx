@@ -9,8 +9,10 @@ import {
 import { MessageQuestion } from "iconsax-react";
 import { formatText } from "../../../../../utils/helper";
 
-const DetailView = ({ data }: any) => {
+const DetailView = ({ data, customRenderer }: any) => {
   const theme = useTheme();
+  console.log(customRenderer);
+
   return (
     <Box>
       <Stack direction="row" alignItems="center" gap={1} mb={3}>
@@ -52,8 +54,19 @@ const DetailView = ({ data }: any) => {
       />
       <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
         {Object.keys(data).map((key) => {
+          const value = data[key];
+
+          // Check if this key has a custom renderer
+          const hasRenderer = customRenderer && customRenderer[key];
+
+          const renderedValue = hasRenderer
+            ? customRenderer[key]({
+              getValue: () => value,
+            })
+            : value;
+
           return (
-            <Box>
+            <Box key={key}>
               <Typography
                 variant="subtitle2"
                 fontWeight="normal"
@@ -63,13 +76,21 @@ const DetailView = ({ data }: any) => {
               >
                 {formatText(key)}
               </Typography>
-              <Typography variant="subtitle2" fontWeight="semibold">
-                {data[key]}
-              </Typography>
+
+              {/* If custom renderer returns JSX, DO NOT wrap in Typography */}
+              {hasRenderer ? (
+                <Box>{renderedValue}</Box>
+              ) : (
+                <Typography variant="subtitle2" fontWeight="semibold">
+                  {renderedValue}
+                </Typography>
+              )}
             </Box>
           );
         })}
       </div>
+
+
     </Box>
   );
 };

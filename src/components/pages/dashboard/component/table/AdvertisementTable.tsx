@@ -47,7 +47,7 @@ const AdvertisementTable = () => {
 
       const map: Record<string, { color: string }> = {
         visible: {
-          color: theme.palette.success.light,
+          color: theme.palette.success.main,
         },
 
         invisible: {

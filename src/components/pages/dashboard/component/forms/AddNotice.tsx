@@ -86,6 +86,7 @@ const AddNotice = ({
         severity: "success",
       }),
     );
+    setOpen && setOpen(false);
   };
 
   const theme = useTheme();

@@ -80,6 +80,7 @@ const AddAgend = ({
         severity: "success",
       }),
     );
+    setOpen && setOpen(false);
   };
 
   const theme = useTheme();

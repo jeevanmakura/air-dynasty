@@ -1,11 +1,14 @@
 import DataCard from "../../../../molecules/DataCard";
 
-import BaseTable from "../../../../organism/BaseTable";
-import useFetchTable from "../../../../../hook/useFetchTable";
-import { useMemo } from "react";
-import { IconButton, Stack, useTheme, alpha } from "@mui/material";
+import { alpha, IconButton, Stack, useTheme } from "@mui/material";
 import { Eye, Trash } from "iconsax-react";
+import { useMemo } from "react";
+import useFetchTable from "../../../../../hook/useFetchTable";
 import type { TableConfig } from "../../../../../types/types";
+import BaseTable from "../../../../organism/BaseTable";
+import DialogButton from "../../../../organism/DialogButton";
+import DeleteBox from "../dialogebox/DeleteBox";
+import DetailView from "../dialogebox/DetailView";
 
 const tableData = [
   {
@@ -78,7 +81,7 @@ const DailyOperationTable = () => {
           color: theme.palette.success.main,
         },
         delayed: {
-          color: theme.palette.warning.dark,
+          color: theme.palette.success.main,
         },
 
         failed: {
@@ -134,11 +137,25 @@ const DailyOperationTable = () => {
 
   const ActionField = ({ row }: { row: any }) => (
     <Stack direction="row" spacing={1}>
-      <IconButton size="small" onClick={() => console.log(row.sn)}>
-        <Eye size={24} color={theme.palette.text.light} variant="Bold" />
+      <IconButton size="small">
+        <DialogButton
+          title="View Request List's Details"
+          button={
+            <Eye size={24} color={theme.palette.icon.light} variant="Bold" />
+          }
+        >
+          <DetailView data={row} customRenderer={customRenderer} />
+        </DialogButton>
       </IconButton>
       <IconButton size="small">
-        <Trash size={24} color={theme.palette.text.light} variant="Bold" />
+        <DialogButton
+          title="Delete row"
+          button={
+            <Trash size={24} color={theme.palette.icon.light} variant="Bold" />
+          }
+        >
+          <DeleteBox />
+        </DialogButton>
       </IconButton>
     </Stack>
   );

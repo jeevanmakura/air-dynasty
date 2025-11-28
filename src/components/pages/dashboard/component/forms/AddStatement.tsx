@@ -73,6 +73,7 @@ const AddStatement = ({ setOpen }: { setOpen?: (open: boolean) => void }) => {
         severity: "success",
       }),
     );
+    setOpen && setOpen(false);
   };
 
   const theme = useTheme();

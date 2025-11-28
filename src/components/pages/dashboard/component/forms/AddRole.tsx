@@ -202,6 +202,7 @@ export default function AddRole({
         severity: "success",
       }),
     );
+    setOpen && setOpen(false);
   };
 
   useEffect(() => {

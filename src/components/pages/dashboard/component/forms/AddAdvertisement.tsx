@@ -70,6 +70,8 @@ const AddAdvertisement = ({
         severity: "success",
       }),
     );
+
+    setOpen && setOpen(false);
   };
 
   const theme = useTheme();

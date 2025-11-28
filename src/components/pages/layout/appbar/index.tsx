@@ -53,6 +53,7 @@ export default function CustomAppbar({
         ml: { sm: `${drawerWidth}px` },
         borderBottom: (theme) => `1px solid ${theme.palette.divider}`,
         bgcolor: theme.palette.background.paper,
+        borderRadius: 0,
       }}
     >
       <Toolbar sx={{ px: 3 }}>

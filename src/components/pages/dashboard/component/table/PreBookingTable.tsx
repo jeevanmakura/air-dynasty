@@ -1,12 +1,14 @@
 import DataCard from "../../../../molecules/DataCard";
 
-import BaseTable from "../../../../organism/BaseTable";
-import useFetchTable from "../../../../../hook/useFetchTable";
-import { useMemo } from "react";
 import { IconButton, Stack, useTheme } from "@mui/material";
 import { CloseSquare, Eye, Trash } from "iconsax-react";
+import { useMemo } from "react";
+import useFetchTable from "../../../../../hook/useFetchTable";
 import type { TableConfig } from "../../../../../types/types";
-import AllFlight from "../forms/AddFlight";
+import BaseTable from "../../../../organism/BaseTable";
+import DialogButton from "../../../../organism/DialogButton";
+import DeleteBox from "../dialogebox/DeleteBox";
+import DetailView from "../dialogebox/DetailView";
 
 const tableData = [
   {
@@ -102,18 +104,32 @@ const PreBookingTable = () => {
 
   const ActionField = ({ row }: { row: any }) => (
     <Stack direction="row" spacing={1}>
-      <IconButton size="small" onClick={() => console.log(row.sn)}>
-        <Eye size={24} color={theme.palette.text.light} variant="Bold" />
+      <IconButton size="small">
+        <DialogButton
+          title="View Request List's Details"
+          button={
+            <Eye size={24} color={theme.palette.icon.light} variant="Bold" />
+          }
+        >
+          <DetailView data={rowData} />
+        </DialogButton>
       </IconButton>
       <IconButton size="small" onClick={() => console.log(row.sn)}>
         <CloseSquare
           size={24}
-          color={theme.palette.text.light}
+          color={theme.palette.icon.light}
           variant="Bold"
         />
       </IconButton>
       <IconButton size="small">
-        <Trash size={24} color={theme.palette.text.light} variant="Bold" />
+        <DialogButton
+          title="Delete row"
+          button={
+            <Trash size={24} color={theme.palette.icon.light} variant="Bold" />
+          }
+        >
+          <DeleteBox />
+        </DialogButton>
       </IconButton>
     </Stack>
   );
@@ -136,15 +152,6 @@ const PreBookingTable = () => {
       showSearch: true,
       showFilter: true,
       showDelete: true,
-    },
-
-    headerRight: {
-      primaryButton: {
-        headerText: "Flight Requests",
-        label: "Add Flight",
-        path: "/dashboard/agents/add-statement",
-        component: <AllFlight />,
-      },
     },
   };
 

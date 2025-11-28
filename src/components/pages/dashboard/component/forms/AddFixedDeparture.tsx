@@ -154,6 +154,7 @@ const AddFixedDeparture = ({
         severity: "success",
       }),
     );
+    setOpen && setOpen(false);
   };
 
   useEffect(() => {

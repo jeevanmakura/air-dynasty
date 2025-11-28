@@ -96,7 +96,6 @@ const AgentsTable = () => {
             <Eye size={24} color={theme.palette.icon.light} variant="Bold" />
           }
         >
-          {/* only send clicked row data */}
           <DetailView data={rowData} />
         </DialogButton>
       </IconButton>

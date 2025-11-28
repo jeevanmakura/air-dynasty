@@ -79,6 +79,7 @@ const AddUser = ({
         severity: "success",
       }),
     );
+    setOpen && setOpen(false);
   };
 
   const theme = useTheme();
