@@ -1,8 +1,24 @@
-import MenuIcon from "@mui/icons-material/Menu";
-import { AppBar, Box, IconButton, Stack, Toolbar } from "@mui/material";
+import {
+  AppBar,
+  Box,
+  IconButton,
+  Stack,
+  Toolbar,
+  useTheme
+} from "@mui/material";
+import {
+  EmojiNormal,
+  HambergerMenu,
+  NotificationBing
+} from "iconsax-react";
+import { useEffect, useRef } from "react";
+import { adminSidebarMenuItems, agentSidebarMenuItems } from "../../../../constants";
+import CAN from "../../../../routes/CAN";
+import Notification from "../../../molecules/Notification";
+import PageBreadcrumbs from "../../../molecules/PageBreadcrumbs";
+import PopoverButton from "../../../molecules/PopoverButton";
+import Profile from "../../../molecules/Profile";
 import SearchBox from "../../../molecules/SearchBox";
-import { EmojiNormal, NotificationBing } from "iconsax-react";
-import DashboardIcon from "@mui/icons-material/Dashboard";
 
 const drawerWidth = 260;
 
@@ -11,15 +27,33 @@ export default function CustomAppbar({
 }: {
   handleDrawerToggle: () => void;
 }) {
+  const inputRef = useRef<HTMLInputElement>(null);
+  const theme = useTheme();
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.ctrlKey && e.key.toLowerCase() === "k") {
+        e.preventDefault();
+        console.log("FOCUS triggered");
+        inputRef.current?.focus();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
+
   return (
     <AppBar
       position="fixed"
       color="default"
       elevation={0}
       sx={{
-        width: { sm: `calc(100% - ${drawerWidth}px)` },
+        width: { md: `calc(100% - ${drawerWidth}px)` },
         ml: { sm: `${drawerWidth}px` },
         borderBottom: (theme) => `1px solid ${theme.palette.divider}`,
+        bgcolor: theme.palette.background.paper,
+        borderRadius: 0,
       }}
     >
       <Toolbar sx={{ px: 3 }}>
@@ -33,28 +67,19 @@ export default function CustomAppbar({
             gap: 2,
           }}
         >
-          {/* LEFT — drawer toggle */}
           <IconButton
             edge="start"
-            sx={{ display: { sm: "none" } }} // hide on desktop
+            sx={{ display: { md: "none" } }}
             onClick={handleDrawerToggle}
             color="primary"
           >
-            <MenuIcon />
+            <HambergerMenu size={30} color="gray" />
           </IconButton>
+          <Box sx={{ mr: 2, width: "100%", display: { xs: "none", sm: "block" } }}>
+            <CAN role="admin"><PageBreadcrumbs menuItem={adminSidebarMenuItems} /> </CAN>
+            <CAN role="agent"><PageBreadcrumbs menuItem={agentSidebarMenuItems} /> </CAN>
+          </Box>
 
-          <IconButton
-            type="button"
-            edge="start"
-            sx={{ mr: 2 }}
-            onClick={handleDrawerToggle}
-            color="primary"
-          >
-            {" "}
-            <DashboardIcon /> Dashboard{" "}
-          </IconButton>
-
-          {/* RIGHT — search + icons */}
           <Box
             sx={{
               flexGrow: 1,
@@ -66,36 +91,45 @@ export default function CustomAppbar({
               maxHeight: "40px",
             }}
           >
-            {/* Search Box - takes remaining space */}
-            <Box>
-              <SearchBox />
+            <Box component={"div"} className="hidden sm:block">
+              <SearchBox hasEndAdornment inputRef={inputRef} />
             </Box>
 
-            {/* Notification */}
-            <IconButton
-              sx={{
-                width: 40,
-                height: 40,
-                backgroundColor: "#fff",
-                borderRadius: 1, // square corners
-                border: "1px solid #e0e0e0",
-              }}
+            <PopoverButton
+              trigger={
+                <IconButton
+                  sx={{
+                    width: 40,
+                    height: 40,
+                    backgroundColor: theme.palette.background.default,
+                    borderRadius: 1,
+                    border: `1px solid ${theme.palette.border}`,
+                  }}
+                >
+                  <NotificationBing size={18} color={theme.palette.icon.light} />
+                </IconButton>
+              }
             >
-              <NotificationBing size={18} color="grey" />
-            </IconButton>
+              <Notification />
+            </PopoverButton>
 
-            {/* User icon */}
-            <IconButton
-              sx={{
-                width: 40,
-                height: 40,
-                backgroundColor: "#fff",
-                borderRadius: 1,
-                border: "1px solid #e0e0e0",
-              }}
+            <PopoverButton
+              trigger={
+                <IconButton
+                  sx={{
+                    width: 40,
+                    height: 40,
+                    backgroundColor: theme.palette.background.default,
+                    borderRadius: 1,
+                    border: `1px solid ${theme.palette.border}`,
+                  }}
+                >
+                  <EmojiNormal size={18} color={theme.palette.icon.light} />
+                </IconButton>
+              }
             >
-              <EmojiNormal size={18} color="grey" />
-            </IconButton>
+              <Profile />
+            </PopoverButton>
           </Box>
         </Stack>
       </Toolbar>

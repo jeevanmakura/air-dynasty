@@ -1,1 +1,46 @@
 @import "tailwindcss";
+
+* {
+  font-family: "DM Sans", sans-serif;
+}
+
+.css-ck9f8y-MuiNativeSelect-root-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input.css-ck9f8y-MuiNativeSelect-root-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input.css-ck9f8y-MuiNativeSelect-root-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input {
+  padding-right: 20px !important;
+}
+
+.css-1rfqz7c-MuiSvgIcon-root-MuiNativeSelect-root-MuiSelect-icon {
+  right: 4px !important;
+}
+
+/* Target the input inside MUI TextField */
+/* .custom-date input {
+  padding: 8px 10px;
+  font-size: 14px;
+  color: #333;
+  border-radius: 6px;
+} */
+
+/* Remove default calendar icon */
+input::-webkit-calendar-picker-indicator {
+  opacity: 0;
+  /* width: 100%; */
+  cursor: pointer;
+}
+
+/* Add custom icon */
+input[type="date"] {
+  position: relative;
+}
+
+input[type="date"]::after {
+  content: "";
+  background: url("/assets/icons/callender.svg") no-repeat center center;
+  background-size: 20px;
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+}

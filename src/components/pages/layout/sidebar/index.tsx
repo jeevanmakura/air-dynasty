@@ -1,8 +1,11 @@
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
 import Toolbar from "@mui/material/Toolbar";
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { adminSidebarMenuItems, agentSidebarMenuItems } from "../../../../constants";
+import CAN from "../../../../routes/CAN";
+import PageBreadcrumbs from "../../../molecules/PageBreadcrumbs";
 import CustomAppbar from "../appbar";
 import PriymaryMenu from "./PrimaryMenu";
 
@@ -30,21 +33,36 @@ export default function ResponsiveDrawer({ window, children }: Props) {
     if (!isClosing) setMobileOpen(!mobileOpen);
   };
 
-  const drawer = (
-    <div>
-      <Toolbar sx={{ padding: "16px", justifyContent: "center" }}>
+  // Drawer content: Logo on top, menu below
+  const drawerContent = (
+    <Box sx={{ display: "flex", flexDirection: "column", height: "100%" }}>
+      <Toolbar
+        sx={{ padding: "16px", justifyContent: "center", flexShrink: 0 }}
+      >
         <Link to={"/"}>
           <img src="/logo.svg" alt="Logo" width={156} height={46} />
         </Link>
       </Toolbar>
 
-      <div>
-        <PriymaryMenu />
-      </div>
-    </div>
+      <Box sx={{ flexGrow: 1, overflowY: "auto" }}>
+        <CAN role="admin" > <PriymaryMenu handleDrawerToggle={handleDrawerToggle} menuItems={adminSidebarMenuItems} /> </CAN>
+        <CAN role="agent" > <PriymaryMenu handleDrawerToggle={handleDrawerToggle} menuItems={agentSidebarMenuItems} /> </CAN>
+      </Box>
+    </Box>
   );
 
   const container = window ? () => window().document.body : undefined;
+
+  const location = useLocation();
+
+  useEffect(() => {
+    // Route changed → ensure drawer is closed
+    setMobileOpen(false);
+
+    // Remove MUI scroll lock
+    document.body.style.overflow = "auto";
+    document.body.style.paddingRight = "0px";
+  }, [location.pathname]);
 
   return (
     <Box sx={{ display: "flex" }}>
@@ -52,7 +70,7 @@ export default function ResponsiveDrawer({ window, children }: Props) {
       <Box
         component="nav"
         sx={{
-          width: { sm: drawerWidth },
+          width: { md: drawerWidth },
           flexShrink: { sm: 0 },
         }}
       >
@@ -64,24 +82,24 @@ export default function ResponsiveDrawer({ window, children }: Props) {
           onTransitionEnd={handleDrawerTransitionEnd}
           onClose={handleDrawerClose}
           sx={{
-            display: { xs: "block", sm: "none" },
+            display: { xs: "block", md: "none" },
             "& .MuiDrawer-paper": { width: drawerWidth },
           }}
           slotProps={{ root: { keepMounted: true } }}
         >
-          {drawer}
+          {drawerContent}
         </Drawer>
 
         {/* DESKTOP DRAWER */}
         <Drawer
           variant="permanent"
           sx={{
-            display: { xs: "none", sm: "block" },
+            display: { xs: "none", md: "block" },
             "& .MuiDrawer-paper": { width: drawerWidth },
           }}
           open
         >
-          {drawer}
+          {drawerContent}
         </Drawer>
       </Box>
 
@@ -102,10 +120,31 @@ export default function ResponsiveDrawer({ window, children }: Props) {
           component="main"
           sx={{
             flexGrow: 1,
-            p: 0,
+            p: {
+              xs: 2,
+              sm: 3,
+              md: 3,
+              lg: 4,
+            },
+            maxWidth: "100vw",
+            height: "100%",
           }}
         >
           <Toolbar />
+          <Box sx={{
+            mb: 2, width: "100%", px: {
+              xs: 2,
+              sm: 3,
+              md: 7,
+            },
+            display: {
+              xs: "block",
+              sm: "none",
+            }
+          }} >
+            <CAN role="admin" > <PageBreadcrumbs menuItem={adminSidebarMenuItems} /> </CAN>
+            <CAN role="agent" > <PageBreadcrumbs menuItem={agentSidebarMenuItems} /> </CAN>
+          </Box>
           {children}
         </Box>
       </Box>

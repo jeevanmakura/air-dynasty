@@ -1,15 +1,33 @@
-import { TextField, InputAdornment, Box } from "@mui/material";
+import { Box, InputAdornment, TextField, useTheme } from "@mui/material";
 import { Command, SearchNormal1 } from "iconsax-react";
 
-export default function SearchBox() {
+export default function SearchBox({
+  value,
+  onChange,
+  inputRef,
+  hasEndAdornment = false,
+}: {
+  hasEndAdornment?: boolean;
+  value?: string;
+  inputRef?: React.RefObject<HTMLInputElement | null>;
+  onChange?: (value: string) => void;
+}) {
+  const theme = useTheme();
   return (
     <TextField
       placeholder="Search..."
       size="small"
+      inputRef={(inputRef && inputRef) || undefined}
+      value={value}
+      onChange={(e) => onChange && onChange(e.target.value)}
       sx={{
-        width: 330,
+        width: {
+          xs: 150,
+          sm: 200,
+          md: 330,
+        },
         height: "100%",
-        backgroundColor: "#fff",
+        backgroundColor: theme.palette.background.default,
         borderRadius: "4px",
         overflow: "hidden",
 
@@ -33,7 +51,7 @@ export default function SearchBox() {
           </InputAdornment>
         ),
 
-        endAdornment: (
+        endAdornment: hasEndAdornment && (
           <InputAdornment position="end">
             <Box
               sx={(theme) => ({
@@ -41,11 +59,16 @@ export default function SearchBox() {
                 alignItems: "center",
                 gap: 0.5,
                 padding: "2px 4px",
-                border: `1px solid ${theme.palette.divider}`,
+                border: `1px solid ${theme.palette.border}`,
                 borderRadius: "4px",
                 transition: "all 0.2s",
 
                 "& svg": {
+                  color: theme.palette.text.primary,
+                  transition: "color 0.2s",
+                },
+
+                "& span": {
                   color: theme.palette.text.primary,
                   transition: "color 0.2s",
                 },
@@ -58,14 +81,10 @@ export default function SearchBox() {
                 ".Mui-focused & svg": {
                   color: theme.palette.primary.main,
                 },
-
-                ".Mui-focused & span": {
-                  color: theme.palette.primary.main,
-                },
               })}
             >
               <Command size={12} />
-              <span className="text-xs">K</span>
+              <span className="text-xs text-inherit">K</span>
             </Box>
           </InputAdornment>
         ),

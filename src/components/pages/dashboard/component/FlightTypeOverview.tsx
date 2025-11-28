@@ -1,26 +1,25 @@
+import { useTheme } from "@mui/material";
 import { AirplaneSquare } from "iconsax-react";
-import DataCard from "../../../molecules/DataCard";
-import React from "react";
 import ReactApexChart from "react-apexcharts";
-import { useTheme, Typography, Box } from "@mui/material";
+import DataCard from "../../../molecules/DataCard";
 
 const FlightTypeOverview = () => {
   const theme = useTheme();
-  const primary = theme.palette.primary.main; // Red-ish color
-  const light = "#f8c6c6"; // Light pink for Ad-Hoc
+  const { primary } = theme.palette;
 
-  const series = [97, 3]; // 97% scheduled, 3% Ad-Hoc
-  const options: ApexCharts.ApexOptions = {
+  const chartSeries = [95, 5];
+
+  const chartOptions: ApexCharts.ApexOptions = {
     chart: {
       type: "donut",
       height: 350,
     },
     labels: ["Scheduled Flights", "Ad-Hoc Flights"],
-    colors: [primary, light],
+    colors: [primary.main, primary.light],
     stroke: {
       show: true,
       width: 10,
-      colors: ["#fff"], // gap between slices
+      colors: ["#fff"],
     },
     plotOptions: {
       pie: {
@@ -28,17 +27,12 @@ const FlightTypeOverview = () => {
           size: "70%",
           labels: {
             show: true,
-            name: {
-              show: true,
-            },
             value: {
               show: true,
               fontSize: "30px",
               fontWeight: "bold",
-              color: primary,
-              formatter: function (val: number) {
-                return val + "%";
-              },
+              color: primary.main,
+              formatter: (val: number) => `${val}%`,
             },
             total: {
               show: true,
@@ -50,24 +44,33 @@ const FlightTypeOverview = () => {
         },
       },
     },
-    dataLabels: {
-      enabled: false,
-    },
+    dataLabels: { enabled: false },
     legend: {
       position: "bottom",
-      markers: {},
+      horizontalAlign: "center",
+      fontSize: "14px",
+      offsetY: -15,
     },
+    responsive: [
+      {
+        breakpoint: 480,
+        options: {
+          chart: { height: 300 },
+        },
+      },
+    ],
   };
 
   return (
     <DataCard
       title="Flight Type Overview"
       icon={AirplaneSquare}
+      isHeader
       subtitle="Quickly track the balance between scheduled and ad-hoc flights to assess demand and operational load."
     >
       <ReactApexChart
-        options={options}
-        series={series}
+        options={chartOptions}
+        series={chartSeries}
         type="donut"
         height={350}
       />

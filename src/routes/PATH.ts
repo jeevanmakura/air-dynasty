@@ -19,21 +19,87 @@ export const PATH = {
     },
     FLIGHTS: {
       ROOT: "/flights",
+      REQUEST_LIST: {
+        ROOT: "/flights/request-list",
+      },
+      ADD_HOC_FLIGHT: {
+        ROOT: "/flights/add-hoc",
+      },
+      PRE_BOOKING_LIST: {
+        ROOT: "/flights/pre-booking-list",
+      },
+      DAILY_OPERATION: {
+        ROOT: "/flights/daily-operation",
+      },
+      CANCELLED_FLIGHTS: {
+        ROOT: "/flights/cancelled-flight",
+      },
     },
+
     AGENTS: {
       ROOT: "/agents",
     },
+    NOTICES: {
+      ROOT: "/notices",
+    },
+    USERS: {
+      ROOT: "/users",
+    },
+    ROLES: {
+      ROOT: "/roles",
+    },
+    FINANCE: {
+      ROOT: "/finance",
+      FINANCE_DETAILS: {
+        ROOT: "/finance/:id",
+      },
+    },
+    FIXED_DEPARTURE: {
+      ROOT: "/fixed-departure",
+    },
+    ACTIVITY_LOGS: {
+      ROOT: "/activity-logs",
+    },
+    ADVERTISMENT: {
+      ROOT: "/advertisements",
+    },
+    EMAIL_LOGS: {
+      ROOT: "/email-logs",
+    },
+    SETTINGS: {
+      ROOT: "/settings",
+    },
   },
-  ROLES: {
-    ROOT: "/roles",
-    ALL_ROLES: {
-      ROOT: "all-roles",
+  AGENT: {
+    DASHBOARD: {
+      ROOT: "/agent-dashboard"
     },
-    CREATE_ROLE: {
-      ROOT: "/roles/create-role",
+    FLIGHTS: {
+      ROOT: "/flights",
+      REQUEST_LIST: {
+        ROOT: "/flights/request-list",
+      },
+      ADD_HOC_FLIGHT: {
+        ROOT: "/flights/add-hoc",
+      },
+      PRE_BOOKING_LIST: {
+        ROOT: "/flights/pre-booking-list",
+      },
+      DAILY_OPERATION: {
+        ROOT: "/flights/daily-operation",
+      },
+      CANCELLED_FLIGHTS: {
+        ROOT: "/flights/cancelled-flight",
+      },
     },
-    EDIT_ROLE: {
-      ROOT: "/roles/:id",
+    PAYMENTS: {
+      ROOT: "/payments"
     },
-  },
+    FIXED_DEPARTURE: {
+      ROOT: "/fixed-departure"
+    },
+    STATEMENTS: {
+      ROOT: "/statements"
+    }
+  }
 };

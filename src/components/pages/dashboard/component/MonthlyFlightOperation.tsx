@@ -1,26 +1,52 @@
-import { Airplane } from "iconsax-react";
-import DataCard from "../../../molecules/DataCard";
-import { useState } from "react";
-import ReactApexChart from "react-apexcharts";
 import { useTheme } from "@mui/material";
+import type { ApexOptions } from "apexcharts";
+import { Calendar } from "iconsax-react";
+import { useMemo } from "react";
+import ReactApexChart from "react-apexcharts";
+import DataCard from "../../../molecules/DataCard";
 
-const MonthlyFloghtOperation = () => {
+const MonthlyFlightOperation = () => {
   const theme = useTheme();
+
   const primary = theme.palette.primary.main;
   const light = theme.palette.primary.light;
-  const [state] = useState({
-    series: [
+
+  // ====== Chart Series ======
+  const series = useMemo(
+    () => [
       {
         name: "Flights",
         data: [100, 120, 90, 80, 42, 60, 70, 51, 42, 60, 170, 51],
       },
     ],
-    options: {
+    []
+  );
+
+  // ====== Chart Options ======
+  const options: ApexOptions = useMemo(
+    () => ({
       chart: {
-        height: 350,
         type: "area",
         toolbar: { show: false },
       },
+
+      responsive: [
+        {
+          breakpoint: 1200,
+          options: { chart: { height: 300 } },
+        },
+        {
+          breakpoint: 900,
+          options: {
+            chart: { height: 260 },
+            xaxis: { labels: { rotate: -45 } },
+          },
+        },
+        {
+          breakpoint: 600,
+          options: { chart: { height: 240 } },
+        },
+      ],
 
       dataLabels: { enabled: false },
 
@@ -44,19 +70,11 @@ const MonthlyFloghtOperation = () => {
           "Nov",
           "Dec",
         ],
-
-        axisTicks: {
-          show: false,
-        },
-
-        axisBorder: {
-          show: true,
-        },
+        axisTicks: { show: false },
+        axisBorder: { show: true },
         labels: {
           show: true,
-          style: {
-            colors: "#9aa0ac",
-          },
+          style: { colors: "#9aa0ac" },
         },
       },
 
@@ -79,34 +97,34 @@ const MonthlyFloghtOperation = () => {
       fill: {
         type: "gradient",
         gradient: {
-          shade: "light", // light or dark
-          type: "vertical", // vertical, horizontal
-          shadeIntensity: 1,
-          gradientToColors: [light], // second color
+          shade: "light",
+          type: "vertical",
+          gradientToColors: [light],
           opacityFrom: 0.9,
           opacityTo: 0.1,
-          stops: [0, 100], // gradient stops
+          stops: [0, 100],
         },
-        colors: [primary], // starting color
+        colors: [primary],
       },
-    },
-  });
+    }),
+    [primary, light]
+  );
 
   return (
     <DataCard
       title="Monthly Flight Overview"
       subtitle="Flight activity over the past month to monitor operational performance."
-      icon={Airplane}
+      icon={Calendar}
+      isHeader
     >
       <ReactApexChart
-        options={state.options}
-        series={state.series}
+        options={options}
+        series={series}
         type="area"
         height={350}
-        width="100%"
       />
     </DataCard>
   );
 };
 
-export default MonthlyFloghtOperation;
+export default MonthlyFlightOperation;

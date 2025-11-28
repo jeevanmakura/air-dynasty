@@ -1,8 +1,10 @@
-import { configureStore } from '@reduxjs/toolkit'
+import { configureStore } from '@reduxjs/toolkit';
 import themeReducer from "../slice/themeSlice";
+import toastReducer from "../slice/toastSlice";
 export const store = configureStore({
     reducer: {
         theme: themeReducer,
+        toast: toastReducer,
     },
 })
 
